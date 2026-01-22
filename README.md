@@ -10,7 +10,3 @@ Run Coolify on a Virtual Private Server.
 
 ## [Uninstall Coolify](docs/coolify/uninstall-coolify.md)
 
-## [Develop Coolify][]
-
-## Troubleshooting
-- my-domain.com does not redirect to www.my-domain.com

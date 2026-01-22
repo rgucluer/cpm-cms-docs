@@ -25,15 +25,3 @@
 Back to [README](../README.md)
 
 ---
-
-Previous intallations
-
-### [Create a Next.js Application](nextjs/publish-app-nextjs.md)
-
-### [Create a Next.js Application from a private git repository ](nextjs/publish-app-nextjs-2.md)
-
----
-
-Unsuccessful attempts
-
-### [Implement a Payload CMS with Coolify on a Virtual Machine](unsuccessful-payload-1st-try/publish-payload-cms-vm.md)
