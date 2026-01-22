@@ -623,3 +623,40 @@ multipass start coolvm
 - https://coolify.io/self-hosted/
 - https://coolify.io/docs/knowledge-base/proxy/traefik/redirects
 - https://coolify.io/docs/knowledge-base/docker/compose
+
+## Troubleshooting
+
+## Payload build error
+- ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with <ROOT>/package.json
+
+On Dev PC
+```bash
+cd <payload-app-full-path>
+```
+```bash
+pnpm store prune
+```
+```bash
+rm pnpm-lock.yaml
+```
+```bash
+rm -rf ./node_modules/
+```
+```bash
+pnpm install
+```
+```bash
+git add .
+```
+```bash
+git commit
+```
+```bash
+git push origin dev
+```
+
+- Coolify UI (On VM) -> Projects -> cpm-cms (production) -> payload(devserver1) -> Redeploy
+
+
+
+
