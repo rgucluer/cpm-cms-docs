@@ -1,0 +1,73 @@
+#cloud-config
+
+# timedatectl list-timezones  command lists the timezones.
+# Select your zone from the list , and enter the value to the name key below.
+# timezone: "US/Eastern"
+timezone: "Utc"
+# timezone: "Europe/Istanbul"
+
+ssh:
+  allow_public_ssh_keys: true
+  emit_keys_to_console: false
+
+# Basic system setup
+hostname: devserver1
+fqdn: devserver1.example.com
+
+disable_root: false
+
+groups:
+  - admingroup:
+    - root
+    - sys
+  - cloud-users
+
+# User setup configuration
+users:
+  - name: vmuser
+    gecos: Development User
+    groups: users, sudo
+    homedir: /home/vmuser
+    shell: /bin/bash
+    lock_passwd: true
+    # Enter the public ssh key below. Copy value from ~/.ssh/vmuserkey.pub 
+    ssh_authorized_keys:
+    - "ssh-ed25519 Enter_your_vmuserkey.pub_content_inside_quotes vmuser"
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+  - name: root
+    gecos: Root User
+    primary_group: root
+    homedir: /root
+    shell: /bin/bash
+    lock_passwd: true
+    # Enter the public ssh key below. Copy value from ~/.ssh/vmuserkey.pub 
+    ssh_authorized_keys:
+    - "ssh-ed25519 Enter_your_rootkey.pub_content_inside_quotes root"
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+
+# https://cloudinit.readthedocs.io/en/latest/reference/modules.html#locale
+locale: false
+
+keyboard:
+  layout: us
+  model: pc105
+  variant: nodeadkeys
+  options: compose:rwin
+
+package_update: true
+package_upgrade: true
+packages:
+  - lego
+  - nano
+  - curl
+  - python3-pip
+
+
+# Reboot the instance after configuration
+power_state:
+  mode: reboot
+  message: Rebooting after initial setup
+  timeout: 30
+  condition: true
