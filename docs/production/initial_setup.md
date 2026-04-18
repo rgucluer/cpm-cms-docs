@@ -12,9 +12,10 @@ Install packages
 - nano
 - curl
 - python3-pip
+- ncdu
 
 ```bash
-sudo apt install lego nano curl python3-pip
+sudo apt install lego nano curl python3-pip ncdu
 ```
 
 ## [Install git](../install-git.md)

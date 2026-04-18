@@ -6,7 +6,7 @@ paru snapd
 ```
 This will list software from the aur repository. Choose, and enter the number listing aur/snapd. I enter 1 and continue
 ```bash
-1 aur/snapd 2.70-3 [+224 ~1.50] [Installed]
+1 aur/snapd 2.74.1-1 [+229 ~2.16] [Installed]
     Service and tools for management of snap packages.
 ...
 :: Packages to install (eg: 1 2 3, 1-3):
@@ -15,7 +15,7 @@ This will list software from the aur repository. Choose, and enter the number li
 
 ```bash
 Aur (1)    Old Version  New Version    Make Only
-aur/snapd  2.70-3       2.70-3         No
+aur/snapd  2.70-3       2.74.1-1         No
 
 :: Proceed to review? [Y/n]: Y
 ```
@@ -44,10 +44,12 @@ sudo pacman -S lego nano curl python-pip base-devel
 sudo snap install multipass
 ```
 
+Close open terminal windows. Open new terminal window, add ssh-keys, and continue.
+
 ### Create a Virtual Machine with Canonical Multipass
 
 ```bash
-mkdir -p <app-full-path>/multipass/cloud-init
+mkdir -p <coolify-app-full-path>/multipass/cloud-init
 ```
 
 Create multipass/cloud-init/cloud-config.yaml file
@@ -119,6 +121,7 @@ packages:
   - nano
   - curl
   - python3-pip
+  - ncdu
 
 # Reboot the instance after configuration
 power_state:
@@ -162,7 +165,7 @@ keyboard:
 ### Create the Virtual Machine
 
 ```bash
-cd <app-full-path>/multipass/cloud-init
+cd <coolify-app-full-path>/multipass/cloud-init
 ```
 ```bash
 multipass launch 24.04 --name coolvm --cpus 2 --disk 40G --memory 8G --cloud-init cloud-config.yaml
@@ -177,5 +180,6 @@ multipass list
 
 Note the IP address in the output ( IPv4 ) . We will use it in the following steps. It takes some time for VM to start. If VM state is "Restarting" then wait a few seconds, and run the command again.
 
+Continue from: [Test Virtual Machine ssh login](test-ssh-dev.md)
 
 Back to [Development Environment Installation](development.md)

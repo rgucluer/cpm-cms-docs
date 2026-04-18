@@ -23,8 +23,8 @@ When you see these variables through the document , enter the values valid for y
   - workspace: workspace
     - The directory to store software source code.
   - workspace-full-path: /home/<local-user-name>/<workspace>
-  - app-directory: coolify-dev
-  - app-full-path: /home/<local-user-name>/<local-workspace>/<app-directory>
+  - coolify-app-directory: coolify-dev
+  - coolify-app-full-path: /home/<local-user-name>/<local-workspace>/<coolify-app-directory>
     - example: /home/jack/workspace/coolify-dev
   - payload-app-full-path: /home/<local-user-name>/<local-workspace>/<payload-app-directory>
     - example: /home/jack/workspace/cpm-cms
@@ -36,8 +36,8 @@ When you see these variables through the document , enter the values valid for y
   - github-user-email
   - git-repo-url : https://github.com/<github-username>/cpm-cms
   - github-app-name: 
-    - next-app-docker
-    - cpm-cms
+    - payload-app-123456 ( Used in Virtual Machine )
+    - cpm-cms ( Used in Virtual Machine)
 
 - Virtual Machine
   - vm-user-name: vmuser
@@ -46,13 +46,16 @@ When you see these variables through the document , enter the values valid for y
   - vm-root-user: root
   - vm-root-key: root-ssh-key
   - virtual-m-ip: IP of Virtual Machine. Lear from the result of multipass list command.
+  - vm-server-name : devserver1  
+  - vm-coolify-server-name: devserver1
 
 - Virtual Private Server
   - vps-user-name
   - vps-user-key: vps-user-ssh-key
   - vps-ssh-port: 22
   - vps-ip-address:
-  - server-name : serv1  
+  - server-name : server1  
+  - vps-coolify-server-name: server1
   - generated-app-directory-name: The string that is listed when we list directories in /data/coolify/applications/ used by our application
   - full-application-path-coolify: /data/coolify/applications/<generated-app-directory-name>
 
@@ -75,9 +78,16 @@ When you see these variables through the document , enter the values valid for y
     - lego-service-provider-dns : hetzner
       - Look up for your DNS Provider's settings in https://go-acme.github.io/lego/dns/#dns-providers
     - traefik-ping-address : https://traefik.my-server.com/ping
+  - coolify-github-private-ssh-key-name
+    - github-app-cpm-cms
+  - Sources
+    - Source ID
+      - Coolify Web UI -> Sources
+        - Click the related App Name (cpm-cms)
+          - Source ID is the last section of the URL of this web page.
+            - https://`<dev-domain-name>`/source/github/`<Source ID>`
 
-- Compose
-  - COMPOSE_PROJECT_NAME: payload-project
+
 
 
 

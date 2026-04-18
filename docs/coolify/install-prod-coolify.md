@@ -17,6 +17,7 @@ Ensure these settings are present:
 ```bash
 PermitRootLogin prohibit-password
 PubkeyAuthentication yes
+PasswordAuthentication no
 ```
 
 Restart SSH Service
@@ -24,13 +25,13 @@ Restart SSH Service
 systemctl restart ssh
 ```
 
+Update system packages, and restart if necassary.
+
 Run Installation Command
 
 ```bash
 cd ~
 ```
-
-Update system packages, and restart if necassary.
 
 ```bash
 curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
@@ -63,7 +64,7 @@ http://<another-ipv6-here>:8000
 WARNING: It is highly recommended to backup your Environment variables file (/data/coolify/source/.env) to a safe location, outside of this server (e.g. into a Password Manager).
 ```
 
-- Backup your /data/coolify/source/.env file on the VPS
+- Backup your /data/coolify/source/.env file on the VPS to a safe place
 - Open a web browser, and browse to `http://<vps-ip-address>:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
 
@@ -77,4 +78,4 @@ WARNING: It is highly recommended to backup your Environment variables file (/da
       - Click Check Again
   - Click "Skip Setup" at the bottom
 
-Coolify UI (v4.0.0-beta.455 - 2025-12-21)
+[2026-04-11 20:07:42] Version: 4.0.0-beta.472

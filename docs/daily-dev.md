@@ -45,7 +45,10 @@ Changes for IP
 - /etc/hosts on Developer PC
 ```bash
 .....
-10.9.172.90 traefik.devserver1.my-domain.com coolify.devserver1.my-domain.com www.devserver1.my-domain.com devserver1.my-domain.com devserver1
+10.9.172.90 www.devserver1.my-domain.com
+10.9.172.90 traefik.devserver1.my-domain.com coolify.devserver1.my-domain.com 
+10.9.172.90 devserver1.my-domain.com
+10.9.172.90 devserver1
 ```
 ## ssh to Virtual Machine
 Me must have the ability to ssh to the Virtual Machine with root user. This is necassary for Coolify.
@@ -108,11 +111,7 @@ git branch --show-current
 ```
 
 - Make changes you see fit for your application.
-
-### Use Virtual Machine to check if it works. 
-  - git commit
-  - git push origin dev
-  - Redeploy app on Virtual Machine
+- 
 
 #### git commit
 ```bash
@@ -134,11 +133,11 @@ git push origin dev
 
 ### Update documentation
 - Update documentation about changes.
-  - Commit document changes
 
 Continue to [daily-prod](daily-prod.md) if everything is OK.
 
 ### TODO: Write docs for Payload CMS editing
+### TODO: Add tests
 
 References:
 - https://payloadcms.com/

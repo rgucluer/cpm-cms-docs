@@ -4,14 +4,33 @@
 
 https://nodejs.org/en/download
 
-Get Node.js v22.21.1(LTS) for Linux using nvm with pnpm
+Get Node.js v22.22.1(LTS) for Linux using nvm with pnpm
 
-
+ssh to VM or VPS if you are installing Node on VM on VPS, otherwise skip this step (on Developer PC)
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+ssh <vps-user-name>@<vps-ip-address> -p <vps-ssh-port>
+```
+or
+```bash
+ssh <vm-user-name>@<virtual-m-ip> -p <vm-ssh-port>
 ```
 
-End terminal session. Close all open terminals. Open a new terminal. Node runs on bash .
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+```
+
+End terminal session. Close all open terminals. Open a new terminal. 
+
+```bash
+command -v nvm
+```
+
+If the result is "nvm" then nvm installation is complete. Continue with [Install Node](#install-node)
+
+
+Node runs on bash . If command -v nvm comman does not work, then run the following command first. No need to run this command on Ubuntu.
+
+On Controller PC
 ```bash
 ssh-agent bash
 ```
@@ -25,42 +44,28 @@ ssh-add <vps-user-key>
 ssh-add <vm-user-key>
 ```
 
-ssh to VM or VPS
-```bash
-ssh <vps-user-name>@<vps-ip-address> -p <vps-ssh-port>
-```
-or
-```bash
-ssh <vm-user-name>@<virtual-m-ip> -p <vm-ssh-port>
-```
-
-```bash
-command -v nvm
-```
-If the result is "nvm" then nvm installation is complete.
-
 ### Install Node
 
 ```bash
-nvm install 22
+nvm install v22.22.1
 ```
 
 ```bash
-nvm use 22
+nvm use v22.22.1
 ```
 
 ```bash
-nvm alias default 22
+nvm alias default v22.22.1
 ```
 
 ```bash
 node -v
-v22.21.1
+v22.22.1
 ```
 
 ```bash
-nvm which v22.21.1
-/root/.nvm/versions/node/v22.21.1/bin/node
+nvm which v22.22.1
+/root/.nvm/versions/node/v22.22.0/bin/node
 ```
 
 ### Install pnpm
@@ -72,10 +77,10 @@ https://pnpm.io/installation
 npm install --global corepack@latest
 ```
 
-Prompts for an npm update 11.7.0
+Prompts for an npm update 11.12.0
 
 ```bash
-npm install -g npm@11.7.0
+npm install -g npm@11.12.0
 ```
 
 ```bash
@@ -86,18 +91,12 @@ corepack enable pnpm
 pnpm -v
 ```
 
-```
-! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.27.0.tgz
-? Do you want to continue? [Y/n] 
-```
-[ENTER] to continue
-
 ```bash
-10.27.0
+10.32.3
 ```
 
 Continue with
-- [Set swap](set_swap.md)
+- [Set swap](../set_swap.md)
 
 
 

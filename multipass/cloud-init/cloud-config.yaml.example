@@ -6,6 +6,8 @@
 timezone: "Utc"
 # timezone: "Europe/Istanbul"
 
+no_ssh_fingerprints: false
+
 ssh:
   allow_public_ssh_keys: true
   emit_keys_to_console: false
@@ -24,8 +26,10 @@ groups:
 
 # User setup configuration
 users:
+  - default
   - name: vmuser
     gecos: Development User
+    primary_group: vmuser
     groups: users, sudo
     homedir: /home/vmuser
     shell: /bin/bash
@@ -44,7 +48,6 @@ users:
     # Enter the public ssh key below. Copy value from ~/.ssh/vmuserkey.pub 
     ssh_authorized_keys:
     - "ssh-ed25519 Enter_your_rootkey.pub_content_inside_quotes root"
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
 
 
 # https://cloudinit.readthedocs.io/en/latest/reference/modules.html#locale
@@ -63,7 +66,7 @@ packages:
   - nano
   - curl
   - python3-pip
-
+  - ncdu
 
 # Reboot the instance after configuration
 power_state:

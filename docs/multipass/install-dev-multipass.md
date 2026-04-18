@@ -16,4 +16,5 @@
 
 ## [Test Virtual Machine ssh login with domain name](test-ssh-dev-domain.md)
 
-### Continue with [Install & run Coolify on a local Virtual Machine](coolify/install-dev-coolify.md)
+Continue with: [Install & run Coolify on a local Virtual Machine](coolify/install-dev-coolify.md)
+

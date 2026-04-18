@@ -18,10 +18,16 @@ We already created a git repository. We will use it.
 
 ### [Configure Coolify - Setup Wildcard SSL Certificates with Traefik](coolify/configure-coolify-traefik-vps.md)
 
+### [Configure Coolify - Create a private key](coolify/create-private-key.md)
+  TODO: Check
+
+### [Set e-mail with Resend](coolify-email-resend.md)
+
 ### [Configure Coolify - Get rid of zombies](coolify/get-rid-zombies.md)
 
 Take a snapshot of the VPS. Can be handy later.
 
+Currently working on:
 ### [Implement a Payload CMS with Coolify on a Virtual Private Server](payload/publish-payload-cms-vps.md)
 
 ---

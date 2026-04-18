@@ -7,7 +7,7 @@ https://coolify.io/docs/get-started/installation#quick-installation-recommended
 
 ssh to the virtual machine
 ```bash
-ssh root@devserver1.<my-server.com>
+ssh root@<virtual-m-ip>
 ```
 
 ```bash
@@ -17,18 +17,22 @@ Ensure these settings are present:
 ```bash
 PermitRootLogin prohibit-password
 PubkeyAuthentication yes
+PasswordAuthentication no
 ```
-
-```bash
-cd ~
-```
+Save & Exit
 
 Restart SSH Service
 ```bash
 systemctl restart ssh
 ```
 
+Update system packages, and restart if necassary.
+
 Run Installation Command
+
+```bash
+cd ~
+```
 
 ```bash
 curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
@@ -57,16 +61,17 @@ http://10.0.1.1:8000
 WARNING: It is highly recommended to backup your Environment variables file (/data/coolify/source/.env) to a safe location, outside of this server (e.g. into a Password Manager).
 ```
 
-- Backup your /data/coolify/source/.env file on VM
+- Backup your /data/coolify/source/.env file on VM to a safe place
 - Open a web browser, and browse to `http://<virtual-m-ip>:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
+
 - After registration we see "Welcome to Coolify" message
-  - Click "Get Started"
-  - Self-hosting with superpowers! 
-    - Click Next
-  - Server
-    - Click Localhost
-  - Project
-    - Click "Skip onboarding..."
+  - Click "Let's go!"
+  - Choose Server Type
+    - This Machine 
+      - Wait a few seconds
+  - Project Setup
+    - Click Skip Setup
+  - Close pop up forms
 
 ### Continue with [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](coolify/configure-coolify-traefik.md)

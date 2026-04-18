@@ -1,5 +1,0 @@
-# Your connection is not private
-
-NET::ERR_CERT_AUTHORITY_INVALID
-Subject: TRAEFIK DEFAULT CERT
-Issuer: TRAEFIK DEFAULT CERT

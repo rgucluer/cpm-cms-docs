@@ -8,8 +8,7 @@
 
 Following ports can be closed after configured Traefik and a custom domain
 - 8000
-- 6001
-- 6002
+
 
 ---
 

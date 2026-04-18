@@ -22,6 +22,8 @@ ssh vmuser@devserver1.<my-domain.com>
 
 Now, we are in the Virtual Machine. To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.
 
+
+
 ### Troubleshooting:
 - [Permission denied (publickey)](../troubleshoot//ssh-permission-denied-pub-key.md)
 - [Remote host id changed](../troubleshoot/rem-host-id-change.md)

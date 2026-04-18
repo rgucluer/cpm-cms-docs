@@ -36,25 +36,27 @@ ICMP    ICMP  Any IPv4, Any IPv6
 ### Set Coolify Domain
 
 - Coolify Web UI -> Settings -> Configuration -> General
-  - Domain: https://coolify.devserver1.my-domain.com
+  - URL: https://coolify.devserver1.my-domain.com
   - Name: coolify-dev
   - Instance Timezone: UTC
   - Do not change Instance's Public IPv4
   - Save
+  You IPv4 may not be reachable from public internet because of network structure.
 
 ### Setup General Settings for the Virtual Machine
 - Coolify Web User Interface:
   - Servers -> localhost -> Configuration -> General
-    - Name: <servername>
+    - Name: <servername> (initial value: localhost)
       - devserver1
     - Wildcard Domain: https://devserver1.my-domain.com
     - IP Address/Domain: host.docker.internal
     - User: root
-    - Port: <vm-ssh-port>
+    - Port: <vm-ssh-port> ( default: 22 )
     - Save
     - Validate server if needed.
-  - Restart Proxy
+  - Start/Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
+  - Refresh Page
 
   - Servers -> <servername> -> Configuration -> Sentinel
     - Coolify URL
@@ -69,6 +71,7 @@ ICMP    ICMP  Any IPv4, Any IPv6
     - Save
   - Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
+    - Or close the form if you see the "Successfull ..." message
 
 ### Set Timezone
 
@@ -76,7 +79,7 @@ List the timezones
 ```bash
 timedatectl list-timezones
 ```
-Navigate with up,down,PgUp,PgDown. Note or copy your selection.
+Navigate with up,down,PgUp,PgDown. Note or copy your selection. Press <kbd>q</kbd> button to exit.
 
 Set the following values in UI
 - Settings -> Configuration -> General -> Instance Timezone
@@ -104,7 +107,14 @@ Enter a password you choose twice. This will save your traefik user name and enc
   - Servers -> `<servername>` -> Proxy -> Configuration -> Traefik (Coolify Proxy)
   - Add or modify the following sections: 
     - ( ..... represents the ommited sections )
-    - <variable-inside> Enter the variable suits to your setup without the angle brackets .
+    - <variable-inside> Enter the value of the variable suits to your setup without the angle brackets .
+    - Get values from your DNS Provider for
+      - For Hetzner
+        - DNS: hetzner
+        - EMAIL: the e-mail used in DNS provider registration
+        - HETZNER_API_TOKEN
+      - For detailed information please read
+        - Lego Dns Provider list: https://go-acme.github.io/lego/dns/
 
 ```yaml
 name: coolify-proxy
@@ -114,19 +124,20 @@ networks:
 services:
   traefik:
     container_name: coolify-proxy
-    image: 'traefik:v3.6.6'
+    image: 'traefik:v3.6'
     restart: unless-stopped
     environment:
       - 'TZ=Universal'
       - 'EMAIL=<lego-email>'
-      - 'DNS=<lego-service-provider-dns>'
+      - 'DNS=hetzner'
       - '<lego-service-provider-env-var>=<lego-service-provider-api-token>'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     security_opt:
       - 'no-new-privileges=true'
     healthcheck:
-      test: 'wget -qO- https://traefik.<dev-domain-name>/ping || exit 1'
+      # test: 'wget -qO- https://traefik.<dev-domain-name>/ping || exit 1'
+      test: 'wget -qO- http://localhost:80/ping || exit 1'
       interval: 4s
       timeout: 2s
       retries: 5
@@ -145,7 +156,7 @@ services:
     command:
       - '--global.checkNewVersion=true'
       - '--ping=true'
-      - '--ping.entrypoint=https'
+      - '--ping.entryPoint=https'
       - '--ping.terminatingStatusCode=204'
       - '--api.dashboard=true'
       - '--api.insecure=false'
@@ -153,13 +164,15 @@ services:
       - '--entrypoints.https.address=:443'
       - '--entrypoints.http.http.encodequerysemicolons=true'
       - '--entrypoints.https.http.encodequerysemicolons=true'
-      - '--providers.docker.exposedbydefault=false'
-      - '--providers.file.directory=/traefik/dynamic/'
-      - '--providers.file.watch=true'
       - '--entryPoints.http.http2.maxConcurrentStreams=250'
       - '--entryPoints.https.http2.maxConcurrentStreams=250'
       - '--entrypoints.https.http3'
       - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
+      - '--providers.docker.endpoint=unix:///var/run/docker.sock'
+      - '--providers.docker.network=coolify'
+      - '--providers.file.directory=/traefik/dynamic/'
+      - '--providers.file.watch=true'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge=true'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=hetzner'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=60'
@@ -172,8 +185,6 @@ services:
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[2]=193.47.99.4:53'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[3]=1.1.1.1:53'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[4]=8.8.8.8:53'
-      - '--providers.docker.endpoint=unix:///var/run/docker.sock'
-      - '--providers.docker.network=coolify'
       - '--accesslog.format=json'
       - '--global.sendAnonymousUsage=false'
     labels:
@@ -185,6 +196,8 @@ services:
 Save
 
 Lego Dns Provider list: https://go-acme.github.io/lego/dns/
+
+https://doc.traefik.io/traefik/expose/docker/
 
 ### Add Traefik Dynamic Configuration
 - Coolify UI -> Servers -> <servername> -> Proxy -> Dynamic Configurations
@@ -200,6 +213,11 @@ http:
           - '<traefik-user>:<traefik-enc-password>'
     content-type:
       contenttype: true
+    gzip:
+      compress: true
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
   routers:
     ping-http:
       entryPoints:
@@ -237,15 +255,17 @@ http:
         certResolver: letsencrypt
         domains:
           -
-            main: my-domain.com
+            main: devserver1.my-domain.com
             sans:
-              - '*.my-domain.com'
+              - '*.devserver1.my-domain.com'
 ```    
+
 - Save
 - Close Form
 - Restart Proxy
   - Confirm ... -> Restart Proxy
   - Wait for the process to start ...
+    - Close Proxy Startup Logs form
 
 ---
 
@@ -269,6 +289,10 @@ http:
     - DNS Validation: Check
   - Save
 
+- Settings -> Configuration -> Advanced -> UI Settings
+  - SPA Navigation: Uncheck
+  - Save
+
 ---
 
 ### Start Proxy or Restart Proxy
@@ -284,7 +308,6 @@ Successfully connected coolify-proxy to coolify network.
 ```
 Close Form. If form is unresponsive, wait a few minutes, than close the form.
 
-
 ### Check https://coolify.devserver1.<domain-name>
 
 - Login
@@ -294,22 +317,21 @@ Close Form. If form is unresponsive, wait a few minutes, than close the form.
 
 Check https://traefik.<dev-domain-name>/ping
 
-If it returns "OK", it is OK .
+If it returns "OK", Traefik ping is OK .
 
 https://traefik.<dev-domain-name>/dashboard/
 
 Asks for username and password. Enter username (traefikuser) & password you created during "Traefik Basic Authentication" step.
 
+- You can close port 8000 on firewall after successful login via domain name.
+
 ---
 
-Later , after adding an App (Resource), read https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs#normal for setting up Traefik settings for your application.
+Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs#normal for setting up Traefik settings for your application.
 
-### Continue with
-- [Create a snapshot of the virtual machine](coolify/create-snapshot.md)
+### Continue with [Create Private Key](create-private-key.md)
 
 ## Troubleshooting
-
-### Error: no available server
 
 ### Error: ssh: connect to host <servername>.<domain-name> port 22: Connection refused
 
@@ -319,4 +341,4 @@ Later , after adding an App (Resource), read https://coolify.io/docs/knowledge-b
       - host.docker.internal
       - Save
 
-- [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
+- TODO: [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)

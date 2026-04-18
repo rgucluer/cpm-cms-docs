@@ -1,6 +1,7 @@
 
 ### Lots of zombie 'ssh-clients' processes
 
+TODO: This guide is incomplete.
 
 After ssh connection, we get notification about zombie processes in System information
 

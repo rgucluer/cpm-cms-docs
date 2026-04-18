@@ -1,0 +1,70 @@
+<workspace-full-path>/next.config.js
+
+
+```javascript
+import { withPayload } from '@payloadcms/next/withPayload'
+
+import redirects from './redirects.js'
+
+const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      ...[NEXT_PUBLIC_SERVER_URL].map((item) => {
+        const url = new URL(item)
+
+        return {
+          protocol: url.protocol.replace(':', ''),
+          hostname: url.hostname,
+          port: url.port || '',
+          pathname: '/api/media/file/**',
+        }
+      }),
+      ...[NEXT_PUBLIC_SERVER_URL].map((item) => {
+        const url = new URL(item)
+
+        return {
+          protocol: url.protocol.replace(':', ''),
+          hostname: url.hostname,
+          port: url.port || '',
+          pathname: '/media/**',
+        }
+      }),
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/api/media/file/**',
+      },
+    ],
+  },
+  webpack: (webpackConfig) => {
+    webpackConfig.resolve.extensionAlias = {
+      '.cjs': ['.cts', '.cjs'],
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+    }
+
+    return webpackConfig
+  },
+  experimental: {
+    webpackMemoryOptimizations: true,
+  },
+  reactStrictMode: true,
+  redirects,
+}
+
+export default withPayload(nextConfig, { devBundleServerPackages: false })
+```
+
+When Deploying as a production build; add ```output``` to next.config.js
+```javascript
+.....
+  output: 'standalone',
+  reactStrictMode: true,
+  redirects,
+}
+.....
+```

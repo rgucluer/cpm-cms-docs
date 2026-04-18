@@ -19,10 +19,22 @@ Swap:             0B          0B          0B
 swapon --show
 ```
 
-No Result
+No Result, or
+
+```bash
+NAME      TYPE SIZE USED PRIO
+/swapfile file   4G   0B   -2
+```
+
+or
+
+```bash
+NAME       TYPE       SIZE USED PRIO
+/dev/zram0 partition 31,2G   0B  100
+```
 
 ## Creating a Swap File
-
+Create a swap file one does not exist
 ```bash
 sudo fallocate -l 4G /swapfile
 ```
@@ -32,8 +44,10 @@ ls -lh /swapfile
 ```
 
 ```bash
--rw-r--r-- 1 root root 4.0G Nov 24 00:47 /swapfile
+-rw------- 1 root root 4.0G Jan  6 00:21 /swapfile
 ```
+
+TODO: Check file ownership information (root:disk on CachyOS)
 
 ## Enabling the Swap File
 ```bash
@@ -45,7 +59,7 @@ ls -lh /swapfile
 ```
 
 ```bash
--rw------- 1 root root 4.0G Nov 24 00:47 /swapfile
+-rw------- 1 root root 4.0G Jan  6 00:21 /swapfile
 ```
 
 ```bash
@@ -86,7 +100,7 @@ cp /etc/fstab /etc/fstab.bak
 ```
 
 ```bash
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+echo '/dev/zram0 none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
 ## Tuning your Swap Settings
@@ -100,16 +114,7 @@ cat /proc/sys/vm/swappiness
 ```
 
 ```bash
-sysctl vm.swappiness=1
-```
-
-```bash
-sudo nano /etc/sysctl.conf
-```
-
-Add the following to the end of the file, then save and exit.
-```bash
-vm.swappiness=1
+sudo sysctl vm.swappiness=1
 ```
 
 Also check swap status on Virtual Machine, and Virtual Private Server

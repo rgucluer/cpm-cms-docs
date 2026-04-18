@@ -4,6 +4,8 @@ On Virtual Machine or VPS .
 
 https://coolify.io/docs/get-started/uninstallation
 
+Using Coolify Web UI stop all projects' containers. ssh to VM or VPS
+
 1. Stop and Remove Containers
 
 List running containers:
