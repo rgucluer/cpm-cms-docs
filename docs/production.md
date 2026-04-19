@@ -19,7 +19,6 @@ We already created a git repository. We will use it.
 ### [Configure Coolify - Setup Wildcard SSL Certificates with Traefik](coolify/configure-coolify-traefik-vps.md)
 
 ### [Configure Coolify - Create a private key](coolify/create-private-key.md)
-  TODO: Check
 
 ### [Set e-mail with Resend](coolify-email-resend.md)
 
