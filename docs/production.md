@@ -27,7 +27,6 @@ We already created a git repository. We will use it.
 
 Take a snapshot of the VPS. Can be handy later.
 
-Currently working on:
 ### [Implement a Payload CMS with Coolify on a Virtual Private Server](payload/publish-payload-cms-vps.md)
 
 ---
