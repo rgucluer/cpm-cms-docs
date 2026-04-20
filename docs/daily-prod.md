@@ -19,6 +19,8 @@ ssh root@<vps-ip-address> -p <ssh-port>
 ```
 
 ## Update apt packages
+On VPS
+
 ```bash
 apt update
 ```
@@ -32,7 +34,7 @@ After completing [development](daily-dev.md), let's see production steps
 
 ## Merge dev branch to main branch
 
-Switch to main branch
+On Development PC. Switch to main branch
 ```bash
 git switch main
 ```

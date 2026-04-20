@@ -20,7 +20,7 @@ We already created a git repository. We will use it.
 
 ### [Configure Coolify - Create a private key](coolify/create-private-key.md)
 
-### [Set e-mail with Resend](coolify-email-resend.md)
+### [Set e-mail with Resend](coolify/coolify-email-resend.md)
 
 Take a snapshot of the VPS. Can be handy later.
 
@@ -36,4 +36,4 @@ Take a snapshot of the VPS. Can be handy later.
 
 ## Incomplete Ones
 
-### [Configure Coolify - Get rid of zombies](coolify/get-rid-zombies.md)
+### [Configure Coolify - Get rid of zombies](troubleshoot/get-rid-of-zombies.md)
