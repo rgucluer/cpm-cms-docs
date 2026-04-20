@@ -22,8 +22,6 @@ We already created a git repository. We will use it.
 
 ### [Set e-mail with Resend](coolify-email-resend.md)
 
-### [Configure Coolify - Get rid of zombies](coolify/get-rid-zombies.md)
-
 Take a snapshot of the VPS. Can be handy later.
 
 ### [Implement a Payload CMS with Coolify on a Virtual Private Server](payload/publish-payload-cms-vps.md)
@@ -32,7 +30,10 @@ Take a snapshot of the VPS. Can be handy later.
 
 ## [Daily Operations of Production Environment](daily-prod.md)
 
----
 
 ## [Uninstall Coolify](coolify/uninstall-coolify-vps.md)
 
+
+## Incomplete Ones
+
+### [Configure Coolify - Get rid of zombies](coolify/get-rid-zombies.md)
