@@ -4,7 +4,7 @@ On Developer PC
 
 
 ```bash
-cd <workspace-full-path>
+cd < workspace-full-path >
 ```
 
 ```bash
@@ -100,12 +100,12 @@ pnpm dev
 ```
 
 ```bash
-> payload-app@1.0.0 dev <workspace-full-path>/payload-app
+> payload-app@1.0.0 dev < workspace-full-path >/payload-app
 > cross-env NODE_OPTIONS=--no-deprecation next dev
 
    ▲ Next.js 15.4.10
    - Local:        http://localhost:3000
-   - Network:      <dev-pc-local-ip>:3000
+   - Network:      < dev-pc-local-ip >:3000
    - Environments: .env
 
  ✓ Starting...

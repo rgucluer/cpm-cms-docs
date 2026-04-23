@@ -9,8 +9,8 @@ git is already installed.
 
 ## Set options for git:
 ```bash
-git config --global user.name "<github-name-surname>"
-git config --global user.email <github-user-email>
+git config --global user.name "< github-name-surname >"
+git config --global user.email < github-user-email >
 git config --global core.editor nano
 git config --list
 ```

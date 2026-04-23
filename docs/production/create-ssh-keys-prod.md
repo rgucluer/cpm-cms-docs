@@ -17,21 +17,21 @@ ssh-agent bash
 ```
 
 ```bash
-ssh-keygen -C <vps-user-name> -f <vps-user-key>
+ssh-keygen -C < vps-user-name > -f < vps-user-key >
 ```
 
 It will ask for a passphraze, you can enter one, or skip it by pressing <kbd>ENTER</kbd> . ( You will need this passphraze later, keep it safe. )
 
 Make key pair readable/writable only by the user: 
 ```bash
-chmod u=wr-,g=---,o=--- ~/.ssh/<vps-user-key>*
+chmod u=wr-,g=---,o=--- ~/.ssh/< vps-user-key >*
 ```
 Don't forget the "*" at the end.
 
 
 ### Add ssh key to ssh agent :
 ```bash
-ssh-add ~/.ssh/<vps-user-key>
+ssh-add ~/.ssh/< vps-user-key >
 ```
 
 The public key must be saved in VPS, and ssh service must be configured to make root user login without a password (via the public key).

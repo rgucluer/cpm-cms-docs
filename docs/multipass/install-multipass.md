@@ -49,7 +49,7 @@ Close open terminal windows. Open new terminal window, add ssh-keys, and continu
 ### Create a Virtual Machine with Canonical Multipass
 
 ```bash
-mkdir -p <coolify-app-full-path>/multipass/cloud-init
+mkdir -p < coolify-app-full-path >/multipass/cloud-init
 ```
 
 Create multipass/cloud-init/cloud-config.yaml file
@@ -165,7 +165,7 @@ keyboard:
 ### Create the Virtual Machine
 
 ```bash
-cd <coolify-app-full-path>/multipass/cloud-init
+cd < coolify-app-full-path >/multipass/cloud-init
 ```
 ```bash
 multipass launch 24.04 --name coolvm --cpus 2 --disk 40G --memory 8G --cloud-init cloud-config.yaml

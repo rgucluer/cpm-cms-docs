@@ -8,11 +8,11 @@ Get Node.js v22.22.1(LTS) for Linux using nvm with pnpm
 
 ssh to VM or VPS if you are installing Node on VM on VPS, otherwise skip this step (on Developer PC)
 ```bash
-ssh <vps-user-name>@<vps-ip-address> -p <vps-ssh-port>
+ssh < vps-user-name >@< vps-ip-address > -p < vps-ssh-port >
 ```
 or
 ```bash
-ssh <vm-user-name>@<virtual-m-ip> -p <vm-ssh-port>
+ssh < vm-user-name >@< virtual-m-ip > -p < vm-ssh-port >
 ```
 
 ```bash
@@ -37,11 +37,11 @@ ssh-agent bash
 Add your ssh keys
 
 ```bash
-ssh-add <vps-user-key>
+ssh-add < vps-user-key >
 ```
 
 ```bash
-ssh-add <vm-user-key>
+ssh-add < vm-user-key > 
 ```
 
 ### Install Node

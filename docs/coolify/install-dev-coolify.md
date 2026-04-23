@@ -7,7 +7,7 @@ https://coolify.io/docs/get-started/installation#quick-installation-recommended
 
 ssh to the virtual machine
 ```bash
-ssh root@<virtual-m-ip>
+ssh root@< virtual-m-ip >
 ```
 
 ```bash
@@ -50,19 +50,19 @@ Result
 
 Your instance is ready to use!
 
-You can access Coolify through your Public IPV4: http://<your-public-ip>:8000
+You can access Coolify through your Public IPV4: http://< your-public-ip >:8000
 
 If your Public IP is not accessible, you can use the following Private IPs:
 
 http://10.0.0.1:8000
 http://10.0.1.1:8000
-<another-ip-here>
+< another-ip-here >
 
 WARNING: It is highly recommended to backup your Environment variables file (/data/coolify/source/.env) to a safe location, outside of this server (e.g. into a Password Manager).
 ```
 
 - Backup your /data/coolify/source/.env file on VM to a safe place
-- Open a web browser, and browse to `http://<virtual-m-ip>:8000`
+- Open a web browser, and browse to `http://< virtual-m-ip >:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
 
 - After registration we see "Welcome to Coolify" message

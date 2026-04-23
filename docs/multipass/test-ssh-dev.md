@@ -1,7 +1,7 @@
 ## Test Virtual Machine ssh login
 
 ```bash
-ssh root@<virtual_machine_IP>
+ssh root@< virtual_machine_IP >
 ```
 
 Will ask "Are you sure you want to continue connecting (yes/no/[fingerprint])?" , write  "yes" and press <kbd>ENTER</kbd> .
@@ -24,7 +24,7 @@ multipass start coolvm
 ```
 
 ```bash
-ssh root@<virtual_machine_IP>
+ssh root@< virtual_machine_IP >
 ```
 
 To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.
@@ -32,7 +32,7 @@ To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.
 Do the same thing for vmuser
 
 ```bash
-ssh vmuser@<virtual_machine_IP>
+ssh vmuser@< virtual_machine_IP >
 ```
 
 Now, we are in the Virtual Machine. To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.

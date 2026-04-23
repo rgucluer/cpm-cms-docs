@@ -2,8 +2,8 @@
 
 
 ```bash
-ssh root@devserver1.<my-domain.com>
-```
+ssh root@devserver1.< my-domain.com >
+``` 
 
 Will ask "Are you sure you want to continue connecting (yes/no/[fingerprint])?" , write  "yes" and press <kbd>ENTER</kbd> .
 
@@ -17,7 +17,7 @@ Now, we are back in Controller PC .
 Do the same thing for vmuser
 
 ```bash
-ssh vmuser@devserver1.<my-domain.com>
+ssh vmuser@devserver1.< my-domain.com >
 ```
 
 Now, we are in the Virtual Machine. To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.

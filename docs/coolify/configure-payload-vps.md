@@ -1,7 +1,7 @@
 ## Configure the Project
 
 - Coolify Web UI -> Projects -> payload-vps ( production )
-  - Applications -> <github-app-name>:main-...
+  - Applications -> < github-app-name >:main-...
 
     - Configuration -> General
       - Name: payload
@@ -42,14 +42,14 @@
       - HOSTNAME: 0.0.0.0
       - DATABASE_URL: Get value from mongodb-payload-vps (public), and paste here.
         - Change IP address to VPS public IP address ( ....@`IP ADDRESS`/?directConnection=true )
-      - PAYLOAD_SECRET: <copy value from local copy .env file >
-      - NEXT_PUBLIC_SERVER_URL : `https://www.<domain-name>`    
-      - CRON_SECRET: <Enter_your_password_here>
-      - PREVIEW_SECRET: <Enter_your_password_here>
+      - PAYLOAD_SECRET: < copy value from local copy .env file >
+      - NEXT_PUBLIC_SERVER_URL : `https://www.< domain-name >`    
+      - CRON_SECRET: < Enter_your_password_here >
+      - PREVIEW_SECRET: < Enter_your_password_here >
 
       - Configuration -> Git Source
         - Repository:
-          - <github-username>/cpm-cms
+          - < github-username >/cpm-cms
         - Branch: 
           - main
         - Commit SHA

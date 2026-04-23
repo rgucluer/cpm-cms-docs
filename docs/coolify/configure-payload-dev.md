@@ -42,14 +42,14 @@
       - HOSTNAME: 0.0.0.0
       - DATABASE_URL: Get value from mongodb-payload Mongo URL (public), and paste as value. 
         - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
-      - PAYLOAD_SECRET: <copy value from local copy .env file to here>
-      - NEXT_PUBLIC_SERVER_URL : https://www.devserver1.<domain-name>
-      - CRON_SECRET: <Enter_your_password_here>
-      - PREVIEW_SECRET: <Enter_your_password_here>
+      - PAYLOAD_SECRET: < copy value from local copy .env file to here >
+      - NEXT_PUBLIC_SERVER_URL : https://www.devserver1.< domain-name >
+      - CRON_SECRET: < Enter_your_password_here >
+      - PREVIEW_SECRET: < Enter_your_password_here >
       
     - Configuration -> Git Source
       - Repository:
-        - <github-username>/cpm-cms
+        - < github-username >/cpm-cms
       - Branch: 
         - dev
       - Commit SHA

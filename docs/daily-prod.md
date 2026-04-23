@@ -6,16 +6,16 @@ ssh-agent bash
 ```
 
 ```bash
-ssh-add ~/.ssh/<vps-user-key>
+ssh-add ~/.ssh/< vps-user-key >
 ```
 
 ```bash
-ssh-add ~/.ssh/<github-user-key>
+ssh-add ~/.ssh/< github-user-key >
 ```
 
 ## ssh to VPS
 ```bash
-ssh root@<vps-ip-address> -p <ssh-port>
+ssh root@< vps-ip-address > -p < ssh-port >
 ```
 
 ## Update apt packages
@@ -51,8 +51,8 @@ git push origin main
 ```
 
 ## Redeploy on Virtual Private Server
-- Coolify Dev UI ( https://coolify.<domain-name> ) 
-  - Projects -> <project-name> 
+- Coolify Dev UI ( https://coolify.< domain-name > ) 
+  - Projects -> < project-name > 
     - Applications -> payload
       - Redeploy
 

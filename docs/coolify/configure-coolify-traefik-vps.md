@@ -43,26 +43,26 @@ ICMP    ICMP  Any IPv4, Any IPv6
 ### Setup General Settings for the Virtual Private Server
 - Coolify Web User Interface:
   - Servers -> localhost -> Configuration -> General
-    - Name: <servername>
+    - Name: < servername >
       - server1
     - Wildcard Domain: https://my-domain.com
     - IP Address/Domain: host.docker.internal
     - User: root
-    - Port: <vps-ssh-port>
+    - Port: < vps-ssh-port >
     - Save
     - Validate server if needed.
   - Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
   - Refresh Page
 
-  - Servers -> <servername> -> Configuration -> Sentinel
+  - Servers -> < servername > -> Configuration -> Sentinel
     - Coolify URL
       - http://coolify.my-domain.com
       - Check: Enable Sentinel
       - UnCheck: Enable Metrics
     - Save
 
-  - Servers -> <servername> -> Proxy -> Configuration -> Advanced
+  - Servers -> < servername > -> Proxy -> Configuration -> Advanced
     - Override default request handler: 
       - Unchecked
     - Save
@@ -82,7 +82,7 @@ Navigate with up,down,PgUp,PgDown. Note or copy your selection. Press <kbd>q</kb
 Set the following values in UI
 - Settings -> Configuration -> General -> Instance Timezone
   - Save
-- Servers -> `<servername>` -> Configuration -> General -> Server Timezone  
+- Servers -> < servername > -> Configuration -> General -> Server Timezone  
   - Save
 
 ### Set API token for Hetzner if you use Hetzner
@@ -100,7 +100,7 @@ Set the following values in UI
     - Cloud Tokens
       - Provider: Hetzner
         - Token Name: HETZNER_API_TOKEN
-        - API Token: <Enter your token content here. Get it from Hetzner Console web app>
+        - API Token: < Enter your token content here. Get it from Hetzner Console web app >
         - Click - Validate & Add Token
   - Servers -> server1 -> Configuration -> General
     - Restart Proxy
@@ -136,10 +136,10 @@ Enter a password you choose twice. This will save your traefik user name and enc
 
 ### Edit Traefik Configuration on VPS
 - Coolify Web User Interface:
-  - Servers -> `<servername>` -> Proxy -> Configuration -> Traefik (Coolify Proxy)
+  - Servers -> < servername > -> Proxy -> Configuration -> Traefik (Coolify Proxy)
   - Add or modify the following sections: 
     - ( ..... represents the ommited sections )
-    - <variable-inside> Enter the variable suits to your setup without the angle brackets .
+    - < variable-inside > Enter the variable suits to your setup without the angle brackets .
     - Get values from your DNS Provider for
       - For Hetzner
         - DNS: hetzner
@@ -160,9 +160,9 @@ services:
     restart: unless-stopped
     environment:
       - 'TZ=Universal'
-      - 'EMAIL=<lego-email>'
-      - 'DNS=<lego-service-provider-dns>'
-      - '<lego-service-provider-env-var>=<lego-service-provider-api-token>'
+      - 'EMAIL=< lego-email >'
+      - 'DNS=< lego-service-provider-dns >'
+      - '< lego-service-provider-env-var >=< lego-service-provider-api-token >'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     security_opt:
@@ -208,7 +208,7 @@ services:
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=hetzner'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=60'
       - '--certificatesresolvers.letsencrypt.acme.storage=/traefik/acme.json'
-      - '--certificatesresolvers.letsencrypt.acme.email=<lego-email>'
+      - '--certificatesresolvers.letsencrypt.acme.email=< lego-email >'
       - '--certificatesresolvers.letsencrypt.acme.certificatesDuration=2160'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.disablePropagationCheck=false'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[0]=213.133.100.102:53'
@@ -231,7 +231,7 @@ https://doc.traefik.io/traefik/expose/docker/
 
 ### Add Traefik Dynamic Configuration
 
-- Coolify UI -> Servers -> <servername> -> Proxy -> Dynamic Configurations
+- Coolify UI -> Servers -> < servername > -> Proxy -> Dynamic Configurations
   - +Add
     - Filename: traefik-dashboard.yml
 ```yaml
@@ -241,7 +241,7 @@ http:
       basicAuth:
         realm: traefik-dashboard
         users:
-          - '<traefik-user>:<traefik-enc-password>'
+          - < traefik-user >:< traefik-enc-password >
     content-type:
       contenttype: true
     gzip:
@@ -280,7 +280,7 @@ http:
         - authentication
         - content-type
         - gzip
-      rule: 'Host(`traefik.<domain-name>`)&&(PathPrefix(`/api`)||PathPrefix(`/dashboard`))'
+      rule: 'Host(`traefik.< domain-name >`)&&(PathPrefix(`/api`)||PathPrefix(`/dashboard`))'
       service: api@internal
       tls:
         certResolver: letsencrypt
@@ -307,7 +307,8 @@ http:
     - Enter IPs of your domain's name servers
   - API Settingss
     - Allowed IPs for API Access
-      - `<vps-ip>`
+      - < vps-ip >
+      - < virtual-m-ip >
     - API Access: Check
   - Save
 
@@ -326,7 +327,7 @@ http:
 ### Start Proxy or Restart Proxy
 
 - Coolify Web User Interface:
-  - Servers -> `<servername>` -> Start Proxy / Restart Proxy
+  - Servers -> < servername > -> Start Proxy / Restart Proxy
 
 Modal Form - Proxy Status
 ```bash
@@ -336,18 +337,18 @@ Successfully connected coolify-proxy to coolify network.
 ```
 Close Form. If form is unresponsive, wait a few minutes, than close the form.
 
-### Check https://coolify.<domain-name>
+### Check https://coolify.< domain-name >
 
 - Login
 
 - Change your password
 - Close the tab that is using the IP to connect Coolify.
 
-Check https://traefik.<domain-name>/ping
+Check https://traefik.< domain-name >/ping
 
 If it returns "OK", Traefik ping is OK .
 
-https://traefik.<domain-name>/dashboard/
+https://traefik.< domain-name >/dashboard/
 
 Asks for username and password. Enter username (traefikuser) & password you created during "Traefik Basic Authentication" step.
 

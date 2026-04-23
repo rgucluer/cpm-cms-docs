@@ -1,4 +1,4 @@
-- Servers -> <servername> -> Configuration -> Private Key
+- Servers -> < servername > -> Configuration -> Private Key
   - You should not use passphrase protected keys.
   - Add
     - Click `Generate new ED25519 SSH Key` button

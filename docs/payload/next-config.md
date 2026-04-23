@@ -1,4 +1,4 @@
-<workspace-full-path>/next.config.js
+< workspace-full-path >/next.config.js
 
 
 ```javascript

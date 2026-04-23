@@ -1,6 +1,6 @@
 # Daily Operations of Development Environment
 
-After finishing initial development, and production environment setup, we use the environments as follows.
+After finishing initial development, and production environment setup, we use the development environment as follows.
 
 ## Change shell to bash
 ```bash
@@ -10,7 +10,7 @@ ssh-agent bash
 ## Add ssh keys to ssh agent 
 
 ```bash
-ssh-add ~/.ssh/<vm-user-key>
+ssh-add ~/.ssh/< vm-user-key >
 ```
 
 ```bash
@@ -18,8 +18,10 @@ ssh-add ~/.ssh/coolifyrootkey
 ```
 
 ```bash
-ssh-add ~/.ssh/<github-user-key>
+ssh-add ~/.ssh/< github-user-key > 
 ```
+
+Open a second terminal, do those above. Use one to ssh to VM/VPS, the other for local operations.
 
 ## Start Virtual Machine
 ```bash
@@ -54,7 +56,7 @@ Changes for IP
 Me must have the ability to ssh to the Virtual Machine with root user. This is necassary for Coolify.
 
 ```bash
-ssh root@<virtual-m-ip>
+ssh root@< virtual-m-ip >
 ```
 or
 ```bash
@@ -73,7 +75,7 @@ apt upgrade
 Reboot if necessary.
 
 ## Open Coolify Web Interface
-Open Browser: http://`<virtual-m-ip>`:8000/
+Open Browser: http://`< virtual-m-ip >`:8000/
 
 If you finished domain & TLS setting properly you can use:
 
@@ -85,10 +87,10 @@ Check https://www.devserver1.my-domain.com
 Check https://www.devserver1.my-domain.com/admin
 
 ## Development steps
-- git-repo-url : https://github.com/<github-username>/<github-app-name>
-- payload-app-full-path : /home/<local-user-name>/<local-workspace>/<payload-app-directory>
+- git-repo-url : https://github.com/< github-username >/< github-app-name >
+- payload-app-full-path : /home/< local-user-name >/< local-workspace >/< payload-app-directory >
 ```bash
-cd <payload-app-full-path>
+cd < payload-app-full-path >
 ```
 ```bash
 git config list
@@ -111,7 +113,28 @@ git branch --show-current
 ```
 
 - Make changes you see fit for your application.
-- 
+- Check locally,
+  - Mongo URL (public) must be enabled, and DATABASE_URL must be set in .env file.
+  ```bash
+  cd < payload-app-full-path >
+  ```
+  - .env file content must be similar to VM Payload CMS Environment Variables
+  ```bash
+  pnpm install
+  ```
+  ```bash
+  pnpm build
+  ```
+  - Copy < payload-app-full-path >/public into < payload-app-full-path >/.next/standalone
+  - Copy < payload-app-full-path >/.next/static into < payload-app-full-path >/.next/standalone/.next
+  ```bash
+  node .next/standalone/server.js
+  ```
+  - Open a web browser, navigate to http://localhost:3000
+  - This renders the homepage of Payload.
+  - ```CTRL``` + ```C``` on terminal to stop the service
+
+    
 
 #### git commit
 ```bash
@@ -129,7 +152,7 @@ git push origin dev
 
 #### Redeploy on VM
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Project -> <project-name> -> payload -> Redeploy
+  - Project -> < project-name > -> payload -> Redeploy
 
 ### Update documentation
 - Update documentation about changes.

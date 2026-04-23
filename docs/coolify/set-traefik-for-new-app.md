@@ -20,7 +20,7 @@ We use the first two sections of the container name, and adding @docker at the e
 Use payload-y....d@docker in payload-app.yaml in Dynamic Configurations below
 
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Servers -> <vm-coolify-server-name> -> Proxy -> Dynamic Configurations
+  - Servers -> < vm-coolify-server-name > -> Proxy -> Dynamic Configurations
     - +Add
       - Filename: payload-app.yaml
       - Configuration: 

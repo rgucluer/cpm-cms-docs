@@ -1,6 +1,6 @@
 On Dev PC
 ```bash
-cd <payload-app-full-path>
+cd < payload-app-full-path >
 ```
 
 ```bash

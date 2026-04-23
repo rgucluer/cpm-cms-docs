@@ -9,7 +9,7 @@ https://payloadcms.com/docs/production/deployment
 ## Open Coolify Web UI of Virtual Machine
 
 - Start Virtual Machine
-- Visit `https://coolify.devserver1.<domain-name>`
+- Visit `https://coolify.devserver1.< domain-name >`
 
 ## Coolify - Add a new Project
 
@@ -36,7 +36,7 @@ Private repository name: cpm-cms
 ## Install npm packages & build the project
 
 ```bash
-cd <payload-app-full-path>
+cd < payload-app-full-path >
 ```
 
 Check values in .env file, if it fits your current setup.
@@ -60,14 +60,14 @@ pnpm dev
 This command uses the .env file for environment variables. When we use Coolify inside a VM or VPS we define each variable in the Coolify UI Environment Variables page.
 
 ```bash
-> payload-app@1.0.0 dev <payload-app-full-path>
+> payload-app@1.0.0 dev < payload-app-full-path >
 > cross-env NODE_OPTIONS=--no-deprecation next dev
 or
 > next dev
 
    ▲ Next.js 15.4.11
    - Local:        http://localhost:3000
-   - Network:      http://<dev-pc-local-ip>:3000
+   - Network:      http://< dev-pc-local-ip >:3000
    - Environments: .env
    - Experiments (use with caution):
      ✓ webpackMemoryOptimizations
@@ -85,7 +85,9 @@ Open http://localhost:3000 in a browser
 ---
 
 ### Run application in production mode on local machine
-cd <payload-app-full-path>
+```bash
+cd < payload-app-full-path >
+```
 
 Edit next.config.ts, add ```output``` as following, save & exit.
 
@@ -110,9 +112,9 @@ pnpm install
 pnpm build
 ```
 
-Copy <payload-app-full-path>/public into <payload-app-full-path>/.next/standalone
+Copy < payload-app-full-path >/public into < payload-app-full-path >/.next/standalone
 
-Copy <payload-app-full-path>/.next/static into <payload-app-full-path>/.next/standalone/.next
+Copy < payload-app-full-path >/.next/static into < payload-app-full-path >/.next/standalone/.next
 
 ```bash
 node .next/standalone/server.js
@@ -133,11 +135,11 @@ Set a GitHub repository as the remote for cpm-cms
 https://docs.github.com/en/get-started/git-basics/managing-remote-repositories
 
 ```bash
-cd <workspace-full-path>/payload-app
+cd < workspace-full-path >/payload-app
 ```
 
 ```bash
-git remote add origin git@github.com:<github-username>/cpm-cms.git
+git remote add origin git@github.com:< github-username >/cpm-cms.git
 ```
 
 ## git push code to GitHub repository
@@ -177,7 +179,7 @@ git push origin dev
 
 ## Deploy / Redeploy Payload Application
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Projects -> <project-name> (production) -> payload -> 
+  - Projects -> < project-name > (production) -> payload -> 
     - Redeploy / Deploy
     - Or, Advanced -> Force deploy (without cache)
   - Wait until the message "Container payload-... Started"
@@ -189,7 +191,7 @@ git push origin dev
 
 
 ## Check the Application
-- Check `https://www.devserver1.<domain-name>`
+- Check `https://www.devserver1.< domain-name >`
   - Works, good `:)` .
   - Not working, bad `:(`, try [troubleshooting](#troubleshooting).
 
@@ -203,7 +205,7 @@ git push origin dev
     - If successful we get the `Database seeded! You can now visit your website` message.
     - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
-- Visit `https://www.devserver1.<domain-name>`
+- Visit `https://www.devserver1.< domain-name >`
 
 - Page renders with images.
 
@@ -230,7 +232,7 @@ Currently working on:
 - [Click](../troubleshoot/render-images.md) to see the solution.
 
 ### Payload build error
-- ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with <ROOT>/package.json
+- ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with < ROOT >/package.json
 - [Click](../troubleshoot/frozen-lockfile.md) to see the solution.
 
 ### Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin
@@ -242,7 +244,7 @@ Currently working on:
 ### SSL Certificate Error net::ERR_CERT_AUTHORITY_INVALID
 
 - Check Server Traefik configuration
-  - <payload-app-full-path>/docs/coolify/configure-coolify-traefik.md
+  - < payload-app-full-path >/docs/coolify/configure-coolify-traefik.md
 - Check Application Traefik configuration
 - Make necessary changes, restart Proxy, Redeploy application
 

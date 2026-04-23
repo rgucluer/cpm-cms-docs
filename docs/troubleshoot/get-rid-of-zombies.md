@@ -19,7 +19,7 @@ ps aux | grep 'Z'
 
 Find parent of a process
 ```bash
-pstree -p -s <process_id>
+pstree -p -s < process_id >
 ```
 
 ```bash
@@ -52,7 +52,7 @@ sudo systemctl restart ssh
 https://github.com/coollabsio/coolify/issues/4769
 
 ### Enable Sentinel:
-- Coolify UI -> Servers -> <servername> 
+- Coolify UI -> Servers -> < servername >  
   - Enable Sentinel
   - Do NOT check : Enable Metrics
   - Save

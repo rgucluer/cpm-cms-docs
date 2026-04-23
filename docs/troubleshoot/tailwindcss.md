@@ -1,6 +1,6 @@
 ### Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin
 
-- <payload-app-full-path>/postcss.config.js
+- < payload-app-full-path >/postcss.config.js
 ```js
 const config = {
   plugins: {
@@ -15,12 +15,12 @@ export default config
 
 - Install PostCSS Plugin Package
 ```bash
-cd <payload-app-full-path>
+cd < payload-app-full-path >
 ```
 ```bash
 pnpm install -D @tailwindcss/postcss
 ```
-- <payload-app-full-path>/src/app/(frontend)/globals.css
+- < payload-app-full-path >/src/app/(frontend)/globals.css
 
 Change following
 

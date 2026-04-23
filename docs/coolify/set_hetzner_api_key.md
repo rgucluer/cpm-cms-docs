@@ -13,6 +13,6 @@
     - New Token
       - Provider Hetzner: 
         - Token Name: HETZNER_API_TOKEN
-        - API Token: <lego-service-provider-api-key>
+        - API Token: < lego-service-provider-api-key >
         - Validate & Add Token
         - Cloud provider token added successfully.

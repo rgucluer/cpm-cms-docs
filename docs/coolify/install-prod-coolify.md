@@ -6,7 +6,7 @@ https://coolify.io/docs/get-started/installation#quick-installation-recommended
 
 ssh to the Virtual Private Server
 ```bash
-ssh root@<my-server.com> -p <ssh-port>
+ssh root@< my-server.com > -p < ssh-port >
 ```
 
 ```bash
@@ -49,8 +49,8 @@ Result
 
 Your instance is ready to use!
 
-You can access Coolify through your Public IPV4: http://<your-public-ip>:8000
-You can access Coolify through your Public IPv6: http://<your-public-ipv6>:8000
+You can access Coolify through your Public IPV4: http://< your-public-ip >:8000
+You can access Coolify through your Public IPv6: http://< your-public-ipv6 >:8000
 
 
 If your Public IP is not accessible, you can use the following Private IPs:
@@ -58,14 +58,14 @@ If your Public IP is not accessible, you can use the following Private IPs:
 http://10.0.2.1:8000
 http://10.0.0.1:8000
 http://10.0.1.1:8000
-http://<an-ipv6-here>:8000
-http://<another-ipv6-here>:8000
+http://< an-ipv6-here >:8000
+http://< another-ipv6-here >:8000
 
 WARNING: It is highly recommended to backup your Environment variables file (/data/coolify/source/.env) to a safe location, outside of this server (e.g. into a Password Manager).
 ```
 
 - Backup your /data/coolify/source/.env file on the VPS to a safe place
-- Open a web browser, and browse to `http://<vps-ip-address>:8000`
+- Open a web browser, and browse to `http://< vps-ip-address >:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
 
 - Welcome to Coolify - Connect your first server and start deploying in minutes

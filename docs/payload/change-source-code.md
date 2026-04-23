@@ -1,6 +1,6 @@
 ## Make some changes in source code
 
-Edit <workspace-full-path>/.gitignore file . Add "*.db" at the end of file . Save & exit .
+Edit < workspace-full-path >/.gitignore file . Add "*.db" at the end of file . Save & exit .
 ```text
 .....
 /playwright/.cache/
@@ -11,7 +11,7 @@ Edit <workspace-full-path>/.gitignore file . Add "*.db" at the end of file . Sav
 
 ---
 
-<workspace-full-path>/next.config.js
+< workspace-full-path >/next.config.js
 Original:
 [https://github.com/payloadcms/payload/tree/main/templates/website](https://github.com/payloadcms/payload/tree/main/templates/website/next.config.ts)
 
@@ -23,7 +23,7 @@ Changed:
 Add a npm package
 
 ```bash
-cd <payload-app-full-path>
+cd < payload-app-full-path >
 ```
 
 ```bash
@@ -36,7 +36,7 @@ If needed update pnpm.
 corepack use pnpm@latest-10
 ```
 
-<workspace-full-path>/package.json
+< workspace-full-path >/package.json
 
 Our previous actions make the following changes in package.json
 
@@ -62,7 +62,7 @@ pnpm-lock.yaml is generated with `pnpm install` command referencing package.json
 
 ---
 
-<workspace-full-path>/postcss.config.js
+< workspace-full-path >/postcss.config.js
 ```javascript
 import autoprefixer from "autoprefixer"
 
@@ -79,7 +79,7 @@ export default config
 
 ---
 
-<workspace-full-path>/payload-app/src/components/Media/ImageMedia/index.tsx
+< workspace-full-path >/payload-app/src/components/Media/ImageMedia/index.tsx
 
 Set Image unoptimized
 
@@ -103,7 +103,7 @@ Set Image unoptimized
 
 ---
 
-<workspace-full-path>/payload-app/src/payload.config.ts
+< workspace-full-path >/payload-app/src/payload.config.ts
 ```javascript
   .....
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
@@ -111,7 +111,7 @@ Set Image unoptimized
   .....
 ```
 
-<workspace-full-path>/payload-app/.env
+< workspace-full-path >/payload-app/.env
 ```ini
 NODE_OPTIONS="--no-deprecation --max-old-space-size=3072"
 

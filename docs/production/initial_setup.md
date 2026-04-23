@@ -23,7 +23,7 @@ sudo apt install lego nano curl python3-pip ncdu
 ## Set hostname on VPS
 
 ```bash
-hostnamectl set-hostname <server-name>
+hostnamectl set-hostname < server-name >
 ```
 
 ```bash
@@ -35,7 +35,7 @@ nano /etc/hosts
 ```
 
 ```bash
-127.0.1.1 traefik.<domain-name> coolify.<domain-name> www.<domain-name> <servername>.<domain-name> <domain-name> <servername>
+127.0.1.1 traefik.< domain-name > coolify.< domain-name > www.< domain-name > < servername >.< domain-name > < domain-name > < servername >
 127.0.0.1 localhost
 .....
 ```
@@ -68,7 +68,7 @@ Use up/down arrow keys, PgUp/PgDown keys. Search for your timezone. Copy or note
 
 Set New Timezone
 ```bash
-timedatectl set-timezone <timezone>
+timedatectl set-timezone < timezone >
 ```
 
 Edit /etc/ssh/sshd_config
@@ -89,7 +89,7 @@ X11Forwarding no
 # ClientAliveInterval 60
 # ClientAliveCountMax 3
 .....
-# AllowUsers <vps-user-name> root
+# AllowUsers < vps-user-name > root
 
 ```
 

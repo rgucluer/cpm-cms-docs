@@ -5,7 +5,7 @@ This can happen after deleting, and recreating virtual machines. The recorded (o
 Open a new terminal. Edit manually /home/< user name >/.ssh/known_hosts with a text editor. Read the error message, find the related row, delete, save, close.
 ```bash
 ...
-Offending ED25519 key in /home/<user name>/.ssh/known_hosts:170
+Offending ED25519 key in /home/< user name >/.ssh/known_hosts:170
 ...
 ```
 So look at row 170, delete row, save, exit.

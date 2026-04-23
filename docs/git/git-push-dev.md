@@ -1,7 +1,7 @@
 ## git push code to GitHub repository
 
 ```bash
-cd <workspace-full-path>/payload-app
+cd < workspace-full-path >/payload-app
 ```
 
 ```bash

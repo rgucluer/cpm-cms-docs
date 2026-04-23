@@ -20,7 +20,7 @@ Wait nearly a minute, than ssh to VPS, and continue.
 docker ps
 ```
 
-If all containers are healthy check https://coolify.`<domain-name>`
+If all containers are healthy check https://coolify.`< domain-name >`
 
 ---
 
@@ -76,7 +76,7 @@ docker volume list
 
 Delete unused volumes
 ```bash
-docker volume rm <volume-name>
+docker volume rm < volume-name >
 ```
 
 ```bash
@@ -86,7 +86,7 @@ docker ps
 Find payload service copy it's name
 
 ```bash
-docker stop <payload_container_name>
+docker stop < payload_container_name >
 ```
 
 Stop Coolify related containers
@@ -96,8 +96,8 @@ docker stop coolify
 docker stop coolify-db
 docker stop coolify-realtime
 docker stop coolify-redis
-docker stop <generated_app_id>
-docker stop <generated_app_id>-proxy
+docker stop < generated_app_id >
+docker stop < generated_app_id >-proxy
 docker stop coolify-proxy
 
 ```
@@ -111,7 +111,7 @@ docker images
 ```
 
 ```bash
-docker image rm <image-name>
+docker image rm < image-name >
 ```
 
 ---

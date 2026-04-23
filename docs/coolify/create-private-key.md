@@ -4,7 +4,7 @@
   - Keys & Tokens
     - Private Keys
     - Add
-        - Name: <coolify-private-ssh-key-name>
+        - Name: < coolify-private-ssh-key-name >
           - Change name as you want    
       - We have two options:
         - Add an existing key
@@ -23,7 +23,7 @@
 
 ssh to VM
 ```bash
-ssh root@<virtual-m-ip>
+ssh root@< virtual-m-ip >
 ```
 
 ```bash

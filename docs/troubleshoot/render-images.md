@@ -16,7 +16,7 @@ export default buildConfig({
 
 ---
 
-- <payload-app-full-path>/next.config.ts
+- < payload-app-full-path >/next.config.ts
 
 ```javascript
 import { withPayload } from '@payloadcms/next/withPayload'

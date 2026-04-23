@@ -10,7 +10,7 @@ https://payloadcms.com/docs/production/deployment
 
 ## Open Coolify Web UI of Virtual Private Server
 
-- Visit `https://coolify.<domain-name>`
+- Visit `https://coolify.< domain-name >`
 
 ## Coolify - Add a new Project
 
@@ -57,7 +57,7 @@ We created the files during development stage. Merge development to main branch.
 
 On Developer PC
 ```bash
-cd <workspace-full-path>/payload-app
+cd < workspace-full-path >/payload-app
 ```
 
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
@@ -85,7 +85,7 @@ git push origin main
 
 ## Deploy / Redeploy Payload Application
 - Coolify UI on VPS (https://coolify.my-domain.com)
-  - Projects -> <project-name> (production) -> payload 
+  - Projects -> < project-name > (production) -> payload 
     - Redeploy / Deploy
     - Or, Advanced -> Force deploy (without cache)
   - Wait until the message "Container payload-... Started"
@@ -97,7 +97,7 @@ git push origin main
 
 
 ## Check the Application
-- Check `https://www.<domain-name>`
+- Check `https://www.< domain-name >`
   - Works, good `:)` .
   - Not working, bad `:(`, try [troubleshooting](#troubleshooting).
 
@@ -109,7 +109,7 @@ git push origin main
     - If successful we get the `Database seeded! You can now visit your website` message.
     - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
-- Visit `https://www.<domain-name>`
+- Visit `https://www.< domain-name >`
 
 - Page renders with images.
 

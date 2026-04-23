@@ -4,7 +4,7 @@
   - Click Resources +New
     - Applications -> Git Based
       - Click Private Repository ( with GitHub App )
-        - Select a GitHub App: Click <github-app-name> button
+        - Select a GitHub App: Click < github-app-name > button
             - Repository: cpm-cms
             - Click Load Repository
             - Branch: main
