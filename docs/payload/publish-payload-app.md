@@ -35,6 +35,7 @@ Private repository name: cpm-cms
 
 ## Install npm packages & build the project
 
+On Developer PC
 ```bash
 cd < payload-app-full-path >
 ```
@@ -43,10 +44,6 @@ Check values in .env file, if it fits your current setup.
 
 ```bash
 pnpm install
-```
-
-```bash
-pnpm build
 ```
 
 ### Run application in development mode
@@ -59,26 +56,29 @@ pnpm dev
 
 This command uses the .env file for environment variables. When we use Coolify inside a VM or VPS we define each variable in the Coolify UI Environment Variables page.
 
+Wait for results ...
+
 ```bash
 > payload-app@1.0.0 dev < payload-app-full-path >
 > cross-env NODE_OPTIONS=--no-deprecation next dev
 or
 > next dev
 
-   ▲ Next.js 15.4.11
-   - Local:        http://localhost:3000
-   - Network:      http://< dev-pc-local-ip >:3000
-   - Environments: .env
-   - Experiments (use with caution):
-     ✓ webpackMemoryOptimizations
+▲ Next.js 16.2.3 (Turbopack)
+- Local:        http://localhost:3000
+- Network:      http://< dev-pc-local-ip >:3000
+- Environments: .env
+✓ Ready in 346ms
+- Experiments (use with caution):
+  ⨯ turbopackServerFastRefresh
+  ✓ webpackMemoryOptimizations
 
- ✓ Starting...
- ✓ Ready in 3.6s
 ```
 
-Check, and fix any errors.
 
-Open http://localhost:3000 in a browser
+- Check, and fix any errors.
+- Open http://localhost:3000 in a browser
+  - This renders Payload CMS 
 
 <kbd>CTRL</kbd> + <kbd>C</kbd> in terminal to stop the server
 
@@ -165,7 +165,7 @@ git checkout -b dev
 git push origin dev
 ```
 
-## Coolify - Add a new Source
+## Coolify - Add a new Source ( Virtual Machine )
 [Click](../coolify/add-new-source.md) for details
 
 
@@ -229,7 +229,7 @@ git push origin dev
 
 Currently working on:
 ### Payload does not render images
-- [Click](../troubleshoot/render-images.md) to see the solution.
+- [Click](../troubleshoot/render-images.md) to see the solution (for VM/VPS).
 
 ### Payload build error
 - ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with < ROOT >/package.json

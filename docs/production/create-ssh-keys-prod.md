@@ -34,4 +34,9 @@ Don't forget the "*" at the end.
 ssh-add ~/.ssh/< vps-user-key >
 ```
 
-The public key must be saved in VPS, and ssh service must be configured to make root user login without a password (via the public key).
+The public key must be saved in VPS, and ssh service must be configured to make root user login without a password (via the public key). Check your providers documentation.
+
+
+References:
+- https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu
+- https://community.hetzner.com/tutorials/howto-initial-setup-ubuntu

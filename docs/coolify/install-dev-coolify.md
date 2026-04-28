@@ -1,9 +1,8 @@
-# Install Coolify
+# Install & run Coolify on a Virtual Machine
 
 Following [self hosted installation instructions](https://coolify.io/self-hosted/) for [Coolify](https://coolify.io/)
 
 https://coolify.io/docs/get-started/installation#quick-installation-recommended
-
 
 ssh to the virtual machine
 ```bash
@@ -65,7 +64,8 @@ WARNING: It is highly recommended to backup your Environment variables file (/da
 - Open a web browser, and browse to `http://< virtual-m-ip >:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
 
-- After registration we see "Welcome to Coolify" message
+- After registration we see
+  - Welcome to Coolify - Connect your first server and start deploying in minutes
   - Click "Let's go!"
   - Choose Server Type
     - This Machine 

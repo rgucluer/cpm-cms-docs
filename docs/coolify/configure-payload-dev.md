@@ -29,7 +29,8 @@
         - Consistent Container Names: Uncheck
         - Custom Container Name: payload
           - Save
-      - Network - Connect To Predefined Network : Check
+      - Docker Compose
+        - Connect To Predefined Network : Check
 
     - Configuration -> Environment Variables
       - Check: Use Docker Build Secrets
@@ -73,6 +74,6 @@
     - Configuration -> General
       - Check & Save
 
-Continue with [Set Traefik for the new application](./set-traefik-for-new-app.md)
+Continue with [Deploy Application](../payload/publish-payload-cms-vps.md#deploy--redeploy-payload-application)
 
 Back to [publish-payload-app.md](../payload/publish-payload-app.md#configure-the-payload-project).

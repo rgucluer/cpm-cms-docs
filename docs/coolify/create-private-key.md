@@ -33,7 +33,3 @@ nano ~/.ssh/authorized_keys
 Copy public key content from Coolify, and paste as a new line in VM text editor. Save & exit .
 
 
-### Continue with [Set e-mail with Resend](coolify-email-resend.md)
-
-## References
-

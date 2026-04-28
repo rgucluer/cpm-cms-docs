@@ -1,6 +1,6 @@
 ## Configure the Project
 
-- Coolify Web UI -> Projects -> payload-vps ( production )
+- Coolify Web UI -> Projects -> payload-project ( production )
   - Applications -> < github-app-name >:main-...
 
     - Configuration -> General
@@ -29,7 +29,8 @@
         - Consistent Container Names: Uncheck
         - Custom Container Name: payload
           - Save
-      - Network - Connect To Predefined Network : Check
+      - Docker Compose
+        - Connect To Predefined Network : Check
 
     - Configuration -> Environment Variables
       - Check: Use Docker Build Secrets
@@ -40,8 +41,7 @@
           - Save, Close Form, Update
       - NODE_OPTIONS: --no-deprecation --max-old-space-size=2048
       - HOSTNAME: 0.0.0.0
-      - DATABASE_URL: Get value from mongodb-payload-vps (public), and paste here.
-        - Change IP address to VPS public IP address ( ....@`IP ADDRESS`/?directConnection=true )
+      - DATABASE_URL: Get value from mongodb-payload-vps (Internal), and paste here.
       - PAYLOAD_SECRET: < copy value from local copy .env file >
       - NEXT_PUBLIC_SERVER_URL : `https://www.< domain-name >`    
       - CRON_SECRET: < Enter_your_password_here >
@@ -73,6 +73,7 @@
     - Configuration -> General
       - Check & Save
 
-Continue with [Set Traefik for the new application](./set-traefik-for-new-app-vps.md)
+Continue with [Deploy Application](../payload/publish-payload-cms-vps.md#deploy--redeploy-payload-application)
 
-Back to [publish-payload-vps](../payload/publish-payload-cms-vps.md#configure-the-payload-project).
+
+Back to [publish-payload-vps](../payload/publish-payload-cms-vps.md#configure-the-payload-vps).

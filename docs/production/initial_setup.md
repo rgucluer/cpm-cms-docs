@@ -71,7 +71,8 @@ Set New Timezone
 timedatectl set-timezone < timezone >
 ```
 
-Edit /etc/ssh/sshd_config
+Edit /etc/ssh/sshd_config. After you succesfully connected with public ssh keys set PasswordAuthentication, and KbdInteractiveAuthentication to no. It will be even better if you limit users who can ssh with AllowUsers directive.
+
 
 ```bash
 .....
@@ -80,8 +81,8 @@ Port 22
 MaxAuthTries 200
 PermitRootLogin prohibit-password
 PubkeyAuthentication yes
-#PasswordAuthentication no
-KbdInteractiveAuthentication no
+# PasswordAuthentication no
+# KbdInteractiveAuthentication no
 UsePAM yes
 X11Forwarding no
 .....
@@ -90,12 +91,16 @@ X11Forwarding no
 # ClientAliveCountMax 3
 .....
 # AllowUsers < vps-user-name > root
+# AllowUsers < vps-user-name >
 
 ```
 
 ```bash
 systemctl restart ssh
 ```
+
+
+
 
 It would be better if we can use Coolify with a regular user.
 

@@ -21,7 +21,7 @@ Visit `https://coolify.< dev-domain-name >`
       - Automated Installation
         - Use this for creating a new GitHub App for your source repository
       - [Manual Installation](#manual-installation)
-        - If GitHub App already exists, you can add it with Manual Installation.
+        - If GitHub App already exists, you can add it to Coolify with Manual Installation.
 
 ### Automated Installation
 
@@ -41,7 +41,7 @@ Visit `https://coolify.< dev-domain-name >`
     - Select from "Select repositories"
       - < my-github-username >/cpm-cms
   - Click Install
-- We are back in Sources -> < my-github-app >
+- We are back in Coolify UI Sources - GitHub App Form -> < my-github-app >
   - Save
 
 

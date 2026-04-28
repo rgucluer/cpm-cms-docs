@@ -1,10 +1,12 @@
 # Uninstall Coolify
 
-On Virtual Machine or VPS .
+On Virtual Machine.
 
 https://coolify.io/docs/get-started/uninstallation
 
-Using Coolify Web UI stop all projects' containers. ssh to VM or VPS
+- Using Coolify Web UI stop all projects' containers. 
+- Stop database container
+- ssh to VM
 
 1. Stop and Remove Containers
 

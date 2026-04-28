@@ -13,4 +13,10 @@ sudo apt upgrade
 sudo pacman -Syu
 ```
 
+or
+
+```bash
+paru
+```
+
 Restart the computer if needed.

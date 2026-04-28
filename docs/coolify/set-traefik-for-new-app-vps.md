@@ -32,34 +32,38 @@ Use payload-y....d@docker in payload-app.yaml in Dynamic Configurations below
                 regex: '^((https?:\/\/)|).my-domain.com'
                 replacement: 'https://www.my-domain.com'
                 permanent: true
-        routers:
-          redirect-root:
-            rule: Host(`my-domain.com`)
-            entryPoints:
-              - http
-              - https
-            middlewares:
-              - root-to-www
-            tls:
-              certResolver: letsencrypt
-              domains:
-                main: my-domain.com
-            service: noop@internal
-          payload-https:
-            rule: Host(`www.my-domain.com`)
-            entryPoints:
-              - https
-            tls:
-              certResolver: letsencrypt
-              domains:
-                main: my-domain.com
-                sans:
-                  - '*.my-domain.com'
-            service: payload-.....@docker
+            routers:
+              redirect-root:
+                rule: Host(`my-domain.com`)
+                entryPoints:
+                  - http
+                  - https
+                middlewares:
+                  - root-to-www
+                tls:
+                  certResolver: letsencrypt
+                  domains:
+                    main: my-domain.com
+                service: noop@internal
+              payload-https:
+                rule: Host(`www.my-domain.com`)
+                entryPoints:
+                  - https
+                tls:
+                  certResolver: letsencrypt
+                  domains:
+                    main: my-domain.com
+                    sans:
+                      - '*.my-domain.com'
+                service: payload-.....@docker
         ```
         
-      - Paste the Payload service name as value to service (payload-y....d@docker)
+      - Paste the Payload service name + "@docker" as value to service (payload-y....d@docker)
+        - Use only the first two sections of the container name
+          - payload-y....d-123...234
+          - payload-y....d@docker
       - Save
       - Restart Proxy
         - Wait a few minutes than close the "Proxy Startup Logs" form
           - A white page can appear, click background on edges of white form.
+        - Still unresponsive, browse to https://coolify.<domain-name>

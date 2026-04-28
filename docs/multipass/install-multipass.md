@@ -19,7 +19,7 @@ aur/snapd  2.70-3       2.74.1-1         No
 
 :: Proceed to review? [Y/n]: Y
 ```
-May ask for user password.
+May ask for user password. 
 
 ```bash
 sudo systemctl enable --now snapd.socket
@@ -52,7 +52,8 @@ Close open terminal windows. Open new terminal window, add ssh-keys, and continu
 mkdir -p < coolify-app-full-path >/multipass/cloud-init
 ```
 
-Create multipass/cloud-init/cloud-config.yaml file
+Create multipass/cloud-init/cloud-config.yaml file. Or copy multipass/cloud-init/cloud-config.yaml.example as multipass/cloud-init/cloud-config.yaml and edit the file.
+
 ```yaml
 #cloud-config
 

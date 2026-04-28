@@ -4,11 +4,11 @@ On Developer PC
 
 
 ```bash
-cd < workspace-full-path >
+$ cd < workspace-full-path >
 ```
 
 ```bash
-pnpx create-payload-app@latest -t website
+$ pnpx create-payload-app@latest -t website
 ```
 
 ```bash
@@ -57,7 +57,17 @@ Downloading @swc/core-linux-x64-gnu@1.15.3: 12.40 MB/12.40 MB, done
   - Change IP address with the IP address of the VM. Get the IP from multipass list command 
   - Press Enter at the end of line to continue
 │
-◇  Found latest version of Payload 3.81.0
+◆  Select a coding agent to install the Payload skill for
+│  ● Claude Code
+│  ○ Codex
+│  ○ Cursor
+│  ○ None
+└
+
+I choosed None, choose as you wish, and continue
+
+│
+◇  Found latest version of Payload 3.84.1
 │
 ◇  Using pnpm.
 │  
@@ -75,46 +85,51 @@ Downloading @swc/core-linux-x64-gnu@1.15.3: 12.40 MB/12.40 MB, done
 │  
 │  Documentation:
 │  
-│    - Getting Started: https://payloadcms.com/docs/getting-started/what-is-payload
-│    - Configuration: https://payloadcms.com/docs/configuration/overview
+│    - Getting Started
+│    - Configuration
 │  
 │  
 │
-└   Have feedback?  Visit us on GitHub: https://github.com/payloadcms/payload .
+└   Have feedback?  Visit us on GitHub.
+
 ```
 
 ```bash
-cd payload-app
+$ cd payload-app
 ```
 
 ```bash
-pnpm approve-builds
+$ pnpm approve-builds
 ```
 
 ```bash
-corepack use pnpm@latest-10
+$ corepack use pnpm@latest-10
 ```
 
 ```bash
-pnpm dev
+Installing pnpm@10.33.2 in the project...
+
+Lockfile is up to date, resolution step is skipped
+Already up to date
+Done in 1s using pnpm v10.33.2
+```
+
+```bash
+$ pnpm dev
 ```
 
 ```bash
 > payload-app@1.0.0 dev < workspace-full-path >/payload-app
 > cross-env NODE_OPTIONS=--no-deprecation next dev
 
-   ▲ Next.js 15.4.10
-   - Local:        http://localhost:3000
-   - Network:      < dev-pc-local-ip >:3000
-   - Environments: .env
+▲ Next.js 16.2.3 (Turbopack)
+- Local:        http://localhost:3000
+- Network:      < dev-pc-local-ip >:3000
+- Environments: .env
+✓ Ready in 374ms
+- Experiments (use with caution):
+  ⨯ turbopackServerFastRefresh
 
- ✓ Starting...
- Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
- ✓ Ready in 1876ms
 ```
 
 - Visit http://localhost:3000
@@ -127,9 +142,9 @@ https://nextjs.org/telemetry
 
 - Click "Seed your database"
 
-- Wait seeding to finish, then click visit your website link
+- Wait seeding to finish on terminal, then click visit your website link on browser
 
-- http://localhost:3000/ opens and homepage is rendered.
+- http://localhost:3000/ opens and homepage is rendered with images.
 
 - Switch to terminal, <kbd>CTRL</kbd> + <kbd>C</kbd> to stop service
 

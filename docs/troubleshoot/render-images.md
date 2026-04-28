@@ -2,6 +2,9 @@
 
 After initial seeding after deployment, Payload CMS does not render images in homepage.
 
+Current (2026-04-28) images render on VM/VPS but not run on local development run (pnpm dev). Problem is solved after moving node build stage out of Dockerfile.
+
+
 ---
 
 src/payload.config.ts
@@ -30,9 +33,12 @@ import { redirects } from './redirects'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
   ? process.env.NEXT_PUBLIC_SERVER_URL
-  : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
+  : 'http://localhost:3000'
 
 const nextConfig: NextConfig = {
+  sassOptions: {
+    loadPaths: ['./node_modules/@payloadcms/ui/dist/scss/'],
+  },
   images: {
     localPatterns: [
       {

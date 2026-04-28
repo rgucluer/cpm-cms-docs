@@ -19,7 +19,7 @@ Swap:             0B          0B          0B
 swapon --show
 ```
 
-No Result, or
+No Result, or similar to
 
 ```bash
 NAME      TYPE SIZE USED PRIO
@@ -34,7 +34,7 @@ NAME       TYPE       SIZE USED PRIO
 ```
 
 ## Creating a Swap File
-Create a swap file one does not exist
+Create a swap file if one does not exist
 ```bash
 sudo fallocate -l 4G /swapfile
 ```

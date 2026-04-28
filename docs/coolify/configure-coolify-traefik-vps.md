@@ -9,8 +9,10 @@ https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs
   - Each provider needs environment variables to be set in the Traefik configuration.
   - You can find the required variables in the [official documentation](https://doc.traefik.io/traefik/https/acme/#providers) .
 
+---
+
 ### Ports should be opened for self hosting Coolify
-Open the following inbound ports in VPS firewall
+Open the following inbound ports in VM/VPS firewall
 ```bash
 ICMP    ICMP  Any IPv4, Any IPv6
 22      TCP   Any IPv4, Any IPv6  (or custom SSH port)
@@ -79,45 +81,20 @@ timedatectl list-timezones
 ```
 Navigate with up,down,PgUp,PgDown. Note or copy your selection. Press <kbd>q</kbd> to exit
 
+```bash
+EET
+Etc/GMT+3
+Etc/UTC
+Etc/Universal
+Europe/Istanbul
+US/Eastern
+```
+
 Set the following values in UI
 - Settings -> Configuration -> General -> Instance Timezone
   - Save
 - Servers -> < servername > -> Configuration -> General -> Server Timezone  
   - Save
-
-### Set API token for Hetzner if you use Hetzner
-
-- Hetzner Console:
-  - Create an API token in the Hetzner Console → choose Project → Security → API Tokens.
-    - Generate API Token
-      - Description: HETZNER_API_TOKEN
-      - Permissions: Read&Write
-      - Generate API Token
-      - Copy and securely store the value somewhere
-
-- Coolify Web User Interface:
-  - Keys & Tokens
-    - Cloud Tokens
-      - Provider: Hetzner
-        - Token Name: HETZNER_API_TOKEN
-        - API Token: < Enter your token content here. Get it from Hetzner Console web app >
-        - Click - Validate & Add Token
-  - Servers -> server1 -> Configuration -> General
-    - Restart Proxy
-
-- It may take some time(several minutes) to "Link to Hetzner Cloud" section to appear. Be patient. 
-
-- Coolify Web User Interface:
-  - Servers -> server1 -> Configuration -> General
-    - Link to Hetzner Cloud (If available)
-      - Hetzner Token
-        - Choose HETZNER_API_TOKEN
-        - Enter your Hetzner Server ID (Get your ID from Hetzner Console)
-          - Click Search by ID
-          - If a result appears, click "Link This Server"
-            - If not, wait a minute try again.
-
-
 
 #### Prepare username & password for Traefik Basic Authentication
 
@@ -132,14 +109,14 @@ cd ~
 htpasswd users.txt traefikuser
 ```
 
-Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as value for traefik.http.middlewares.traefik-basic-auth.basicauth.users .
+Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as `Traefik Dynamic Configuration` value for `traefik.http.middlewares.traefik-basic-auth.basicauth.users` in single quotes .
 
 ### Edit Traefik Configuration on VPS
 - Coolify Web User Interface:
   - Servers -> < servername > -> Proxy -> Configuration -> Traefik (Coolify Proxy)
   - Add or modify the following sections: 
     - ( ..... represents the ommited sections )
-    - < variable-inside > Enter the variable suits to your setup without the angle brackets .
+    - < variable-inside > Enter the value of the variable suits to your setup without the angle brackets .
     - Get values from your DNS Provider for
       - For Hetzner
         - DNS: hetzner
@@ -150,9 +127,7 @@ Enter a password you choose twice. This will save your traefik user name and enc
 
 ```yaml
 name: coolify-proxy
-networks:
-  coolify:
-    external: true
+
 services:
   traefik:
     container_name: coolify-proxy
@@ -168,13 +143,11 @@ services:
     security_opt:
       - 'no-new-privileges=true'
     healthcheck:
-      test: 'wget -qO- https://traefik.my-domain.com/ping || exit 1'
+      test: 'wget -qO- https://traefik.< domain-name >/ping || exit 1'
       interval: 4s
       timeout: 2s
       retries: 5
       start_period: 6s
-    networks:
-      - coolify
     ports:
       - '80:80'
       - '443:443'
@@ -296,6 +269,7 @@ http:
   - Confirm ... -> Restart Proxy
   - Wait for the process to start ...
     - Close Proxy Startup Logs form
+
 ---
 
 ### Set DNS Servers
@@ -309,6 +283,7 @@ http:
     - Allowed IPs for API Access
       - < vps-ip >
       - < virtual-m-ip >
+      - seperated with a comma
     - API Access: Check
   - Save
 
@@ -335,12 +310,11 @@ Modal Form - Proxy Status
 Successfully started coolify-proxy.
 Successfully connected coolify-proxy to coolify network.
 ```
-Close Form. If form is unresponsive, wait a few minutes, than close the form.
+Close Form. If form is unresponsive, wait a few minutes, than than browser to https://coolify.devserver1.< domain-name > .
 
 ### Check https://coolify.< domain-name >
 
 - Login
-
 - Change your password
 - Close the tab that is using the IP to connect Coolify.
 
@@ -362,3 +336,12 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
 
 ## Troubleshooting
 - [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
+
+- After changing Traefik settings get error:
+  - "ERR_CONNECTION_REFUSED"
+    - Open port 8000 on VM/VPS
+      - Browse to http://<vps-ip-address>:8000
+        - Continue setup
+        - Change password after a successsfull login via domain name.
+    - Start Proxy
+    - Close port 8000

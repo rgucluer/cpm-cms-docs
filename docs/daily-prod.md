@@ -10,8 +10,14 @@ ssh-add ~/.ssh/< vps-user-key >
 ```
 
 ```bash
+ssh-add ~/.ssh/coolifyrootkey
+```
+
+```bash
 ssh-add ~/.ssh/< github-user-key >
 ```
+
+Open a second terminal, do those above. Use one to ssh to VM/VPS, the other for local operations.
 
 ## ssh to VPS
 ```bash

@@ -32,30 +32,30 @@ Use payload-y....d@docker in payload-app.yaml in Dynamic Configurations below
                 regex: '^((https?:\/\/)|).devserver1.my-domain.com'
                 replacement: 'https://www.devserver1.my-domain.com'
                 permanent: true
-        routers:
-          redirect-root:
-            rule: Host(`devserver1.my-domain.com`)
-            entryPoints:
-              - http
-              - https
-            middlewares:
-              - root-to-www
-            tls:
-              certResolver: letsencrypt
-              domains:
-                main: devserver1.my-domain.com
-            service: noop@internal
-          payload-https:
-            rule: Host(`www.devserver1.my-domain.com`)
-            entryPoints:
-              - https
-            tls:
-              certResolver: letsencrypt
-              domains:
-                main: devserver1.my-domain.com
-                sans:
-                  - '*.devserver1.my-domain.com'
-            service: payload-.....@docker
+          routers:
+            redirect-root:
+              rule: Host(`devserver1.my-domain.com`)
+              entryPoints:
+                - http
+                - https
+              middlewares:
+                - root-to-www
+              tls:
+                certResolver: letsencrypt
+                domains:
+                  main: devserver1.my-domain.com
+              service: noop@internal
+            payload-https:
+              rule: Host(`www.devserver1.my-domain.com`)
+              entryPoints:
+                - https
+              tls:
+                certResolver: letsencrypt
+                domains:
+                  main: devserver1.my-domain.com
+                  sans:
+                    - '*.devserver1.my-domain.com'
+              service: payload-.....@docker
         ```
 
       - Paste the Payload service name as value to service (payload-y....d@docker)

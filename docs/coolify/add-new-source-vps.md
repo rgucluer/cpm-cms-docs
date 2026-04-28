@@ -21,7 +21,7 @@ Visit `https://coolify.< domain-name >`
       - Automated Installation
         - Use this for creating a new GitHub App for your source repository
       - [Manual Installation](#manual-installation)
-        - If GitHub App already exists, you can add it with Manual Installation.
+        - If GitHub App already exists, you can add it to Coolify with Manual Installation.
 
 ### Automated Installation
 
@@ -41,7 +41,7 @@ Visit `https://coolify.< domain-name >`
       - Select from "Select repositories"
         - `< my-github-username >`/`< github-app-name >`
     - Click Install
-  - We are back in Coolify UI - GitHub App Form
+  - We are back in Coolify UI - GitHub App Form -> < my-github-app >
     - Save
 
 
@@ -135,7 +135,7 @@ Visit `https://coolify.< domain-name >`
     - You must add the private key created on GitHub to Coolify Keys && Tokens section first, then select this key . 
     - Private Key: Select from list: `< coolify-github-private-ssh-key-name >`
       - github-app-`< my-github-app >`
-      - If you can not see the key in select box, refresh the page
+      - If you can not see the key in select box, save page then refresh the page
   - Save
   - Click Sync Name
     - "GitHub App name and SSH key name synchronized successfully."

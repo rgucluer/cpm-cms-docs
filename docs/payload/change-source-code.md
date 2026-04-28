@@ -11,24 +11,35 @@ Edit < workspace-full-path >/.gitignore file . Add "*.db" at the end of file . S
 
 ---
 
-< workspace-full-path >/next.config.js
+< workspace-full-path >/Dockerfile
+
 Original:
-[https://github.com/payloadcms/payload/tree/main/templates/website](https://github.com/payloadcms/payload/tree/main/templates/website/next.config.ts)
+https://github.com/payloadcms/payload/blob/main/templates/website/Dockerfile
 
 Changed:
-[https://github.com/rgucluer/cpm-cms/blob/main/next.config.js](https://github.com/rgucluer/cpm-cms/blob/main/next.config.js)
+https://github.com/rgucluer/cpm-cms/blob/main/Dockerfile
 
 ---
 
-Add a npm package
+< workspace-full-path >/docker-compose.yml
 
-```bash
-cd < payload-app-full-path >
-```
+Original:
+https://github.com/payloadcms/payload/blob/main/templates/website/docker-compose.yml
 
-```bash
-pnpm add tailwindcss-animate@1.0.7
-```
+Changed:
+https://github.com/rgucluer/cpm-cms/blob/main/docker-compose.yml
+
+---
+
+< workspace-full-path >/next.config.js
+
+Original:
+https://github.com/payloadcms/payload/blob/main/templates/website/next.config.ts
+
+Changed:
+https://github.com/rgucluer/cpm-cms/blob/main/next.config.ts
+
+---
 
 If needed update pnpm. 
 
@@ -40,21 +51,13 @@ corepack use pnpm@latest-10
 
 Our previous actions make the following changes in package.json
 
-```javascript
-{
-  /* other code */
+< workspace-full-path >/next.config.js
 
-  "dependencies": {
-  /* other code */
-    "@payloadcms/db-mongodb": "3.81.0",
-  /* other code */
-    "tailwindcss-animate": "^1.0.7"
-  },
-  /* other code */
-  "packageManager": "pnpm@....."
-}
-```
+Original:
+https://github.com/payloadcms/payload/blob/main/templates/website/package.json
 
+Changed:
+https://github.com/rgucluer/cpm-cms/blob/main/package.json
 
 ---
 
@@ -79,30 +82,6 @@ export default config
 
 ---
 
-< workspace-full-path >/payload-app/src/components/Media/ImageMedia/index.tsx
-
-Set Image unoptimized
-
-```javascript
-.....
-  if (!src && resource && typeof resource === 'object') {
-    .....
-    // src = getMediaUrl(url, cacheTag)
-    src = `${url}`
-  }
-.....
-  return (
-    <picture className={cn(pictureClassName)}>
-      <NextImage
-        unoptimized
-        .....
-      />
-    </picture>
-  )
-```
-
----
-
 < workspace-full-path >/payload-app/src/payload.config.ts
 ```javascript
   .....
@@ -118,6 +97,7 @@ NODE_OPTIONS="--no-deprecation --max-old-space-size=3072"
 HOSTNAME='0.0.0.0'
 .....
 ```
+Enter a value for CRON_SECRET, and PREVIEW_SECRET
 
 
 Continue from [Install npm packages & build the project](publish-payload-app.md#install-npm-packages--build-the-project)

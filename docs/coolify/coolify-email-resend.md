@@ -42,6 +42,6 @@
   - Check: Use system wide (transactional) email settings
   - Notification Settings:
     - Check notifications you want. 
-      - (Don't forget!; Resend has limited resources.)
+      - (Don't forget!; Resend (free version) has limited resources.)
     - Save
 

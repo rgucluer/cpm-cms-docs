@@ -68,7 +68,8 @@ WARNING: It is highly recommended to backup your Environment variables file (/da
 - Open a web browser, and browse to `http://< vps-ip-address >:8000`
   - Fill in the Coolify "Create an account" form, and register your Coolify root user.
 
-- Welcome to Coolify - Connect your first server and start deploying in minutes
+- After registration we see
+  - Welcome to Coolify - Connect your first server and start deploying in minutes
   - Click Let's go
   - Choose Server Type
     - Click This Machine

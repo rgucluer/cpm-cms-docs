@@ -23,33 +23,27 @@ https://payloadcms.com/docs/production/deployment
 ## Create a MongoDB using Coolify
 
 - Coolify UI -> Projects -> payload-project (production) 
-  - Resources Add Resource (or +New )
-  - Databases
-    - Mongo DB 
-      - Configuration:
-        - Name: mongodb-payload-vps
-        - Proxy
-          - Public Port: 27017
-        - Save
-      - Resource Limits
-        - Number of CPUs: 0.25
-        - CPU Weight: 256
-        - Limit Memory:
-          - Soft Memory Limit: 1g
-          - Maximum Memory Limit: 1g
-          - Swappiness: 1
-          - Maximum Swap Limit: 1g
-        - Save
-      - Start/Restart
-        - Close "Database Startup" form after "Database started." message
-        - Check for green Running (healthy) label
-      - Coolify UI -> Projects -> payload (production) 
-        - mongodb-payload-vps 
-          - Configuration - General
-            - Check : Proxy: Make it publicly available
-            - Wait
+  - Resources
+    - Add Resource (or +New )
+    - Databases
+      - Mongo DB 
+        - Configuration:
+          - Name: mongodb-payload-vps
+          - Proxy
+            - Public Port: 27017
           - Save
-          - We will use Mongo URL in later steps.
+        - Resource Limits
+          - Number of CPUs: 0.25
+          - CPU Weight: 256
+          - Limit Memory:
+            - Soft Memory Limit: 1g
+            - Maximum Memory Limit: 1g
+            - Swappiness: 1
+            - Maximum Swap Limit: 1g
+          - Save
+        - Start/Restart
+          - Close "Database Startup" form after "Database started." message
+          - Check for green Running (healthy) label
 
 ## Create a local copy of Payload CMS Website template
 
@@ -84,7 +78,7 @@ git push origin main
 [Click](../coolify/configure-payload-vps.md) for details
 
 ## Deploy / Redeploy Payload Application
-- Coolify UI on VPS (https://coolify.my-domain.com)
+- Coolify UI on VPS (https://coolify.< domain-name >)
   - Projects -> < project-name > (production) -> payload 
     - Redeploy / Deploy
     - Or, Advanced -> Force deploy (without cache)
@@ -103,8 +97,7 @@ git push origin main
 
 - Click `Visit the admin dashboard`
   - Create your first user
-    - Create
-  - or Login
+    - Create or Login
   - Click "Seed your database", wait ...
     - If successful we get the `Database seeded! You can now visit your website` message.
     - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
@@ -132,7 +125,9 @@ git push origin main
 
 ### Build failed because of webpack errors
   Error: ENOSPC: no space left on device, write
-  Use Coolify UI, Stop Payload App, check clean, then deploy Payload App
+  - Check for available free disk space on VM/VPS
+  - Use Coolify UI, Stop Payload App, check clean, then deploy Payload App
+
 
 ### Error after checking "Make it publicly available"
 Bind for 0.0.0.0:27017 failed: port is already allocated

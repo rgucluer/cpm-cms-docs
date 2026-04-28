@@ -11,14 +11,12 @@ When you see these variables through the document , enter the values valid for y
     - The domain name registered to you. 
     - fqdn.tld
   - dev-domain-name: devserver1.my-domain.com
-    - The domain name registered to you. 
-    - fqdn.tld
   - servername : 
     - Name of a specific server computer
       - server1
       - devserver1
 
-- Host Machine (Developer PC)
+- Host Machine (Developer PC, Controller PC)
   - dev-pc-local-ip: Developer PC local ip address
   - dev-pc-global-ip: Global IP address that Developer PC connects to internet.
   - local-username
@@ -90,6 +88,15 @@ When you see these variables through the document , enter the values valid for y
           - Source ID is the last section of the URL of this web page.
             - https://`< dev-domain-name >`/source/github/`< Source ID >`
 
+Conventions:
+
+If you see a `$` sign in terminal screen, it means content after `$` sign is a command you enter in a terminal and execute.
+
+```bash
+$ ls -la
+```
+
+Will use to seperate terminal result screens from command lines.
 
 
 

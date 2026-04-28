@@ -12,8 +12,6 @@
 
 ### [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](coolify/configure-coolify-traefik.md)
 
-### [Configure Coolify - Create a private key](coolify/create-private-key.md)
-
 ### [Set e-mail with Resend](coolify-email-resend.md)
 
 ### [Create a snapshot of the virtual machine](coolify/create-snapshot.md)
@@ -34,6 +32,23 @@ Back to [README](../README.md)
 
 ---
 
+## TODO
+
+### Problem: There are zombie processes
+### Fix: Run Coolify with a sudo enabled non-root system user
+### Requirement: Implement a method for e-mail send operations
+### Improvement: Implement another database option with a more permissive license (PostgreSQL with MongoDB like usage)
+### Improvement: Implement Payload CMS website template as a Coolify Resource
+### Improvement: Add a better authentication solution to Payload CMS
+### Improvement: Add a better authentication solution to Traefik Dashboard
+### Improvement: Automate installation of this stack in Development PC, Virtual Machine, Virtual Private Server.
+
 ## Incomplete
 
-### [Use Mongo URL (Internal) for db connection](coolify/coolify-config-payload-db-internal-connection.md)
+### [Use Mongo URL (Public) with TLS](coolify/configure-payload-db-public-tls-connection.md)
+
+## Other
+
+### [Use Mongo URL (Internal) for db connection](coolify/configure-payload-db-internal-connection.md)
+
+### [Configure Coolify - Create a private key](coolify/create-private-key.md)

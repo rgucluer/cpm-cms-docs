@@ -1,4 +1,4 @@
-İgnore the following notes for now.
+Ignore the following notes for now. We are not using this approach at currently.
 
 ## Create a mount for the project from pc to VM
 

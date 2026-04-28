@@ -81,6 +81,15 @@ timedatectl list-timezones
 ```
 Navigate with up,down,PgUp,PgDown. Note or copy your selection. Press <kbd>q</kbd> button to exit.
 
+```bash
+EET
+Etc/GMT+3
+Etc/UTC
+Etc/Universal
+Europe/Istanbul
+US/Eastern
+```
+
 Set the following values in UI
 - Settings -> Configuration -> General -> Instance Timezone
   - Save
@@ -100,9 +109,9 @@ cd ~
 htpasswd users.txt traefikuser
 ```
 
-Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as value for traefik.http.middlewares.traefik-basic-auth.basicauth.users .
+Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as  `Traefik Dynamic Configuration` value for `traefik.http.middlewares.traefik-basic-auth.basicauth.users` in single quotes .
 
-### Edit Traefik Configuration
+### Edit Traefik Configuration on VM
 - Coolify Web User Interface:
   - Servers -> < servername > -> Proxy -> Configuration -> Traefik (Coolify Proxy)
   - Add or modify the following sections: 
@@ -118,9 +127,7 @@ Enter a password you choose twice. This will save your traefik user name and enc
 
 ```yaml
 name: coolify-proxy
-networks:
-  coolify:
-    external: true
+
 services:
   traefik:
     container_name: coolify-proxy
@@ -136,14 +143,11 @@ services:
     security_opt:
       - 'no-new-privileges=true'
     healthcheck:
-      # test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
-      test: 'wget -qO- http://localhost:80/ping || exit 1'
+      test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
       interval: 4s
       timeout: 2s
       retries: 5
       start_period: 6s
-    networks:
-      - coolify
     ports:
       - '80:80'
       - '443:443'
@@ -192,7 +196,6 @@ services:
       - coolify.managed=true
       - coolify.proxy=true
 ```  
-
 Save
 
 Lego Dns Provider list: https://go-acme.github.io/lego/dns/
@@ -200,6 +203,7 @@ Lego Dns Provider list: https://go-acme.github.io/lego/dns/
 https://doc.traefik.io/traefik/expose/docker/
 
 ### Add Traefik Dynamic Configuration
+
 - Coolify UI -> Servers -> < servername > -> Proxy -> Dynamic Configurations
   - +Add
     - Filename: traefik-dashboard.yml
@@ -306,12 +310,11 @@ Modal Form - Proxy Status
 Successfully started coolify-proxy.
 Successfully connected coolify-proxy to coolify network.
 ```
-Close Form. If form is unresponsive, wait a few minutes, than close the form.
+Close Form. If form is unresponsive, wait a few minutes, than browser to https://coolify.devserver1.< domain-name > .
 
 ### Check https://coolify.devserver1.< domain-name >
 
 - Login
-
 - Change your password. 
 - Close the tab that is using the IP to connect Coolify.
 
@@ -340,5 +343,5 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
     - IP Address/Domain: Change value as below
       - host.docker.internal
       - Save
-
-- TODO: [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
+### Deploy command ends in error. Can not connect to MongoDB with Mongo URL (Internal)
+  - If Dockerfile includes Node build commands, it wants to connect to the database, but it can connect during build time. So moving build steps after image deployment gets rid of the error.
