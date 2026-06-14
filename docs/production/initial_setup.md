@@ -35,8 +35,8 @@ nano /etc/hosts
 ```
 
 ```bash
-127.0.1.1 traefik.< domain-name > coolify.< domain-name > www.< domain-name > < servername >.< domain-name > < domain-name > < servername >
 127.0.0.1 localhost
+127.0.1.1 traefik.< domain-name > coolify.< domain-name > www.< domain-name > < servername >.< domain-name > < domain-name > < servername >
 .....
 ```
 Save, and exit.
@@ -71,7 +71,7 @@ Set New Timezone
 timedatectl set-timezone < timezone >
 ```
 
-Edit /etc/ssh/sshd_config. After you succesfully connected with public ssh keys set PasswordAuthentication, and KbdInteractiveAuthentication to no. It will be even better if you limit users who can ssh with AllowUsers directive.
+Edit /etc/ssh/sshd_config. After you succesfully connected with public ssh keys, set PasswordAuthentication, and KbdInteractiveAuthentication to no. It will be even better if you limit users who can ssh with AllowUsers directive.
 
 
 ```bash

@@ -20,18 +20,23 @@ https://payloadcms.com/docs/production/deployment
     - Continue
 
 ## Create a MongoDB using Coolify
-[Click](create-mongodb.md) for details
+Apply [create-mongodb](create-mongodb.md)
+
+## Install nvm, and Node
+Apply [nextjs/install-nvm-node](nextjs/install-nvm-node.md)
 
 ## Create a Payload CMS Application
-[Click](create-payload-cms.md) for details
+- Method One:
+  - If you are creating a new Payload CMS application, and do not committed to a git repository yet, use this method.
+  - [Create app with pnpx](create-payload-cms.md)
+- Method Two: If you already have a git repository you created before, use this method.
+  - [Clone an existing git repository](create-payload-cms-with-git-clone.md) .
 
 ## Create a new private respository on GitHub
-[Click](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) for details
-
-Private repository name: cpm-cms
+Read [Github creating-a-new-repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) for details
 
 ## Make some changes in source code
-[Click](change-source-code.md) for details
+Apply [change-source-code](change-source-code.md)
 
 ## Install npm packages & build the project
 
@@ -48,8 +53,6 @@ pnpm install
 
 ### Run application in development mode
 
-Edit next.config.ts, if exists comment out ```output``` save & exit.
-
 ```bash
 pnpm dev
 ```
@@ -59,23 +62,19 @@ This command uses the .env file for environment variables. When we use Coolify i
 Wait for results ...
 
 ```bash
-> payload-app@1.0.0 dev < payload-app-full-path >
+> payload-app@0.1.0 dev < workspace-full-path >/payload-app
 > cross-env NODE_OPTIONS=--no-deprecation next dev
-or
-> next dev
 
 ▲ Next.js 16.2.3 (Turbopack)
 - Local:        http://localhost:3000
-- Network:      http://< dev-pc-local-ip >:3000
+- Network:      < dev-pc-local-ip >:3000
 - Environments: .env
-✓ Ready in 346ms
+✓ Ready in 374ms
 - Experiments (use with caution):
   ⨯ turbopackServerFastRefresh
   ✓ webpackMemoryOptimizations
 
 ```
-
-
 - Check, and fix any errors.
 - Open http://localhost:3000 in a browser
   - This renders Payload CMS 
@@ -84,67 +83,35 @@ or
 
 ---
 
-### Run application in production mode on local machine
-```bash
-cd < payload-app-full-path >
-```
-
-Edit next.config.ts, add ```output``` as following, save & exit.
-
-```typescript
-.....
-const nextConfig: NextConfig = {
-  .....
-  output: 'standalone',
-  reactStrictMode: true,
-  redirects,
-  .....
-}
-
-export default withPayload(....
-```
-
-```bash
-pnpm install
-```
-
 ```bash
 pnpm build
 ```
-
-Copy < payload-app-full-path >/public into < payload-app-full-path >/.next/standalone
-
-Copy < payload-app-full-path >/.next/static into < payload-app-full-path >/.next/standalone/.next
-
-```bash
-node .next/standalone/server.js
-```
-
-Open a web browser, navigate to http://localhost:3000
-
-This renders the homepage of Payload.
-
-```CTRL``` + ```C``` on terminal to stop the service
-
 ---
 
 ## Add a new remote for cpm-cms
 
-Set a GitHub repository as the remote for cpm-cms
-
-https://docs.github.com/en/get-started/git-basics/managing-remote-repositories
-
 ```bash
 cd < workspace-full-path >/payload-app
 ```
+
+Check if a remote is defined:
+```bash
+git config list
+```
+
+Look for `remote.origin.url`
+
+If a remote does not exist, set a GitHub repository as the remote for cpm-cms
+
+https://docs.github.com/en/get-started/git-basics/managing-remote-repositories
+
 
 ```bash
 git remote add origin git@github.com:< github-username >/cpm-cms.git
 ```
 
 ## git push code to GitHub repository
-[Click](../git/git-push-dev.md) for details
-
+[Click](../git/git-push.md) for details
 
 ## Create a new branch "dev" on Github
 
@@ -153,42 +120,44 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/propos
 
 ### Git push to dev branch
 
+```bash
+git checkout -b dev
+```
+
 After we make changes to source code, and commit the changes we can push the code to the original repo on GitHub.
 
 https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
 
-```bash
-git checkout -b dev
-```
 
 ```bash
 git push origin dev
 ```
 
 ## Coolify - Add a new Source ( Virtual Machine )
-[Click](../coolify/add-new-source.md) for details
-
+Apply [coolify/add-new-source](../coolify/add-new-source.md)
 
 ## Add Source to the Project
-[Click](../coolify/add-source-to-project.md) for details
-
+Apply [coolify/add-source-to-project](../coolify/add-source-to-project.md) for details
 
 ## Configure the Payload Project
-[Click](../coolify/configure-payload-dev.md) for details
-
+Apply [coolify/configure-payload-dev](../coolify/configure-payload-dev.md) for details
 
 ## Deploy / Redeploy Payload Application
+- !ATTENTION! Deploy operation will delete all content. 
+  - TODO: Implement Backup/Restore operations before/after deployment.
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Projects -> < project-name > (production) -> payload -> 
-    - Redeploy / Deploy
+  - Projects -> < project-name (production) -> payload
+    - Stop service if it is already running. 
+    - Deploy / Redeploy
     - Or, Advanced -> Force deploy (without cache)
   - Wait until the message "Container payload-... Started"
     - Click debug icon for more build information
-  - Check the green label above stays green "Running(healthy) for a couple of seconds...
+  - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
+  - After deployment node will build Payload CMS. It takes time (3 - 4 minutes).
+  
 
 ## Set Traefik for the new application
-[Click](../coolify/set-traefik-for-new-app.md) for details
-
+Apply [coolify/set-traefik-for-new-app](../coolify/set-traefik-for-new-app.md)
 
 ## Check the Application
 - Check `https://www.devserver1.< domain-name >`
@@ -196,13 +165,11 @@ git push origin dev
   - Not working, bad `:(`, try [troubleshooting](#troubleshooting).
 
 - Click `Visit the admin dashboard`
-  - Create your first user
-    - Create
-  - or Login
-
-- Seed your database
-  - Click `Seed your database` link
+  - `https://www.< domain-name >/admin`
+  - Create your first user, or login
+  - Click "Seed your database", wait ...
     - If successful we get the `Database seeded! You can now visit your website` message.
+      - Or just a "done" prompt right of "Seed your database" link.
     - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
 - Visit `https://www.devserver1.< domain-name >`
@@ -215,6 +182,10 @@ git push origin dev
 ## Continue with
 - [Production Environment](docs/production.md)
 
+- Back to [README](../../README.md)
+
+- [Daily Development Operations](../daily-dev.md)
+
 
 ## References
 - https://payloadcms.com/docs/production/deployment
@@ -223,56 +194,67 @@ git push origin dev
 - https://coolify.io/self-hosted/
 - https://coolify.io/docs/knowledge-base/proxy/traefik/redirects
 - https://coolify.io/docs/knowledge-base/docker/compose
+- https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
 
+
+## TODO: Work on better content persistence
+
+---
 
 ## Troubleshooting
 
-Currently working on:
+### Error: #1 [internal] load local bake definitions
+
+```bash
+corepack enable pnpm && pnpm install --frozen-lockfile;
+.....
+Error type: App\Exceptions\DeploymentException
+Error code: 0
+Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
+
+```
+- [Apply troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) 
+
 ### Payload does not render images
-- [Click](../troubleshoot/render-images.md) to see the solution (for VM/VPS).
+- In progress
+- Apply [troubleshoot/render-images](../troubleshoot/render-images.md) 
+
+### Error during seeding
+- An error occured while seeding
+  - Check Dockerfile for proper file/directory ownership
+    - Example
+      ```Dockerfile
+      COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+      ```
+      fixed my current error
+
+### An error occured while seeding
+- Apply [troubleshoot/seeding](../troubleshoot/seeding.md) for details
+
+### Container keeps restarting
+`Error: Cannot find module '/home/node/app/server.js'`
+- Comment out existing volumes in docker-compose.yml 
+- Do not use volumes in payload service
 
 ### Payload build error
 - ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with < ROOT >/package.json
-- [Click](../troubleshoot/frozen-lockfile.md) to see the solution.
+- Apply [troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md)
 
 ### Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin
-- [Click](../troubleshoot/tailwindcss.md) to see the solution.
-
-### Page turns white
-- [Click](../troubleshoot/page-turns-white.md) to see the solution.
+- Apply [troubleshoot/tailwindcss](../troubleshoot/tailwindcss.md)
 
 ### SSL Certificate Error net::ERR_CERT_AUTHORITY_INVALID
-
-- Check Server Traefik configuration
-  - < payload-app-full-path >/docs/coolify/configure-coolify-traefik.md
-- Check Application Traefik configuration
+- Check DNS settings on your InternetServiceProvider
+- Check Firewall settings
+- Check [Server Traefik configuration](../coolify/configure-coolify-traefik.md)
+- Check [Application Traefik configuration](../coolify/set-traefik-for-new-app.md) for details
 - Make necessary changes, restart Proxy, Redeploy application
-
-### Seeding error
-
-- Coolify UI -> Projects -> cpm-cms -> Applications: payload -> Terminal
-  - ```bash
-    cd ~
-    ```
-  
-  - ```bash
-    ls -la
-    ```
-  
-    ```bash
-    total 24
-    drwxr-sr-x    1 node     node          4096 Apr  3 12:04 .
-    drwxr-xr-x    1 root     root          4096 Mar 26 05:36 ..
-    -rw-------    1 node     node            62 Apr  3 12:05 .ash_history
-    drwxr-sr-x    3 node     node          4096 Apr  2 18:56 .config
-    drwxr-sr-x    9 node     node          4096 Apr  2 09:10 app
-    ```
-
-    If app directory is owned by node user, Seeding would work properly. If it is owned by root user than errors can occur. In that case check Dockerfile for file/directory copy, and ownership operations .
 
 ### pnpm dev ends in infinite loop, FATAL: An unexpected Turbopack error occurred.
 
 Log contains "Next.js package not found"
 
-- [Click](../troubleshoot/frozen-lockfile.md) to see the solution.
+- Apply [troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) for details
 
+### Updates were rejected because the tip of your current branch is behind
+  - Apply [git/git-pull-1](../git/git-pull-1.md) for details 

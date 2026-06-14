@@ -1,7 +1,8 @@
 ## Create a Payload CMS Application
 
-On Developer PC
+https://github.com/payloadcms/payload/tree/main/templates/website
 
+On Developer PC
 
 ```bash
 $ cd < workspace-full-path >
@@ -12,18 +13,20 @@ $ pnpx create-payload-app@latest -t website
 ```
 
 ```bash
-Packages: +93
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Downloading @swc/core-linux-x64-musl@1.15.3: 14.64 MB/14.64 MB, done
-Progress: resolved 101, reused 83, downloaded 10, added 93, done
-╭ Warning ───────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                            │
-│   Ignored build scripts: @swc/core@1.15.3.                                                 │
-│   Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.   │
-│                                                                                            │
-╰────────────────────────────────────────────────────────────────────────────────────────────╯
-Downloading @swc/core-linux-x64-gnu@1.15.3: 12.40 MB/12.40 MB, done
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-11.5.0.tgz
+? Do you want to continue? [Y/n] 
+```
+<kbd>n</kbd> + <kbd>Enter</kbd>
 
+
+```bash
+? The next packages will now be built: @swc/core.
+Do you approve? (y/N)
+```
+
+<kbd>y</kbd> + <kbd>Enter</kbd>
+
+```bash
 ┌   create-payload-app 
 │
 ◇  ────────────────────────────────────────────╮
@@ -55,23 +58,40 @@ Downloading @swc/core-linux-x64-gnu@1.15.3: 12.40 MB/12.40 MB, done
       Mongo URL (public) -> Reveal & Copy
   - Paste Database URL in terminal, DO NOT press Enter 
   - Change IP address with the IP address of the VM. Get the IP from multipass list command 
-  - Press Enter at the end of line to continue
+  - Press Enter to continue
 │
 ◆  Select a coding agent to install the Payload skill for
-│  ● Claude Code
+│  ○ Claude Code
 │  ○ Codex
 │  ○ Cursor
-│  ○ None
+│  ● None
 └
 
 I choosed None, choose as you wish, and continue
 
-│
-◇  Found latest version of Payload 3.84.1
+There is an error at this stage. Payload CMS uses pnpm version 10, but script may install pnpm version 11.
+
+```bash
+◇  Found latest version of Payload 3.85.0
 │
 ◇  Using pnpm.
 │  
-◇  Successfully installed Payload and dependencies
+│
+■  Error installing dependencies: Command failed with exit code 1: pnpm install
+│  [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.onlyBuiltDependencies". See https://pnpm.io/settings for the new home of each setting.
+│  [ERR_PNPM_UNSUPPORTED_ENGINE] Unsupported environment (bad pnpm and/or Node.js version)
+│  
+│  Your pnpm version is incompatible with "< payload-app-full-path >".
+│  
+│  Expected version: ^9 || ^10
+│  Got: 11.5.0
+│  
+│  This is happening because the package's manifest has an engines.pnpm field specified.
+│  To fix this issue, install the required pnpm version globally.
+│  
+│  To install the latest version of pnpm, run "pnpm i -g pnpm".
+│  To check your pnpm version, run "pnpm -v"..
+■  Error installing dependencies
 │
 ◇  Payload project successfully created!
 │
@@ -91,7 +111,6 @@ I choosed None, choose as you wish, and continue
 │  
 │
 └   Have feedback?  Visit us on GitHub.
-
 ```
 
 ```bash
@@ -99,54 +118,16 @@ $ cd payload-app
 ```
 
 ```bash
-$ pnpm approve-builds
-```
-
-```bash
 $ corepack use pnpm@latest-10
 ```
 
 ```bash
-Installing pnpm@10.33.2 in the project...
+Installing pnpm@10.34.1 in the project...
 
 Lockfile is up to date, resolution step is skipped
 Already up to date
-Done in 1s using pnpm v10.33.2
+Done in 1s using pnpm v10.34.1
 ```
-
-```bash
-$ pnpm dev
-```
-
-```bash
-> payload-app@1.0.0 dev < workspace-full-path >/payload-app
-> cross-env NODE_OPTIONS=--no-deprecation next dev
-
-▲ Next.js 16.2.3 (Turbopack)
-- Local:        http://localhost:3000
-- Network:      < dev-pc-local-ip >:3000
-- Environments: .env
-✓ Ready in 374ms
-- Experiments (use with caution):
-  ⨯ turbopackServerFastRefresh
-
-```
-
-- Visit http://localhost:3000
-
-- Visit http://localhost:3000/admin
-
-- Create a new user (admin user) or Login to existing Admin user.
-
-- Payload Dashboard opens.
-
-- Click "Seed your database"
-
-- Wait seeding to finish on terminal, then click visit your website link on browser
-
-- http://localhost:3000/ opens and homepage is rendered with images.
-
-- Switch to terminal, <kbd>CTRL</kbd> + <kbd>C</kbd> to stop service
 
 ---
 

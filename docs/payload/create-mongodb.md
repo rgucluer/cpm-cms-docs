@@ -29,23 +29,27 @@
             - Configuration - General
               - Check : Proxy: Make it publicly available
                 - Wait
+                  - Check Mongo URL (public) is available
               - Save
               - We will use Mongo URL (public) in later steps.
 
-Continue with [Create a Payload CMS Application](create-payload-cms.md)
-
+Continue with [Install nvm, and Node](../nextjs/install-nvm-node.md)
 
 Optional:
 
-## Install MongoDB Compass
+## Install MongoDB Compass (Debian)
+https://www.mongodb.com/docs/compass/install/?operating-system=linux&package-type=.deb
 
-On Developer PC
 ```bash
-paru -S mongodb-compass
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.49.6_amd64.deb
 ```
 
 ```bash
-paru -S simdjson
+sudo apt install ./mongodb-compass_1.49.6_amd64.deb
+```
+
+```bash
+mongodb-compass
 ```
 
 ### Create new connection

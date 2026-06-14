@@ -1,4 +1,8 @@
-## Ubuntu 24.04
+## Ubuntu 24.04, Debian 13
+
+```bash
+sudo apt install lego nano curl python3-pip ncdu
+```
 
 ```bash
 sudo apt install git-all -y

@@ -26,6 +26,7 @@ When you see these variables through the document , enter the values valid for y
   - coolify-app-directory: coolify-dev
   - coolify-app-full-path: /home/< local-user-name >/< local-workspace >/< coolify-app-directory >
     - example: /home/jack/workspace/coolify-dev
+  - payload-app-directory: cpm-cms
   - payload-app-full-path: /home/< local-user-name >/< local-workspace >/< payload-app-directory >
     - example: /home/jack/workspace/cpm-cms
 
@@ -34,10 +35,12 @@ When you see these variables through the document , enter the values valid for y
   - github-username: githubuser
   - github-name-surname: John Doe
   - github-user-email
+  - git-repo-name: cpm-cms
   - git-repo-url : https://github.com/< github-username >/cpm-cms
-  - github-app-name: 
-    - payload-app-123456 ( Used in Virtual Machine )
+  - github-app-name-vm: 
     - cpm-cms ( Used in Virtual Machine)
+  - github-app-name-vps: 
+    - payload-cms-for-vps ( Used in Virtual Machine)
 
 - Virtual Machine
   - vm-user-name: vmuser

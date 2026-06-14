@@ -1,33 +1,18 @@
-## Install nvm and node on Controller PC or VPS
+## Install nvm and node 
 
 On Controller PC
-```bash
-ssh-agent bash
-```
-Add your ssh keys
+- Add your ssh keys
 
-```bash
-ssh-add < vps-user-key >
-```
-
-```bash
-ssh-add < vm-user-key > 
-```
+- Connect to the computer you want to install nvm and node (Local, VM or VPS)
 
 ### Install nvm 
 
 https://nodejs.org/en/download
 
-Get Node.js v22.22.2(LTS) for Linux using nvm with pnpm
+New: Get Node.js v24.16.0(LTS) for Linux using nvm with pnpm
 
-ssh to VM or VPS if you are installing Node on VM on VPS, otherwise skip to curl step (on Developer PC)
-```bash
-ssh < vps-user-name >@< vps-ip-address > -p < vps-ssh-port >
-```
-or
-```bash
-ssh < vm-user-name >@< virtual-m-ip > -p < vm-ssh-port >
-```
+On Developer PC
+
 ```bash
 cd ~
 ```
@@ -44,30 +29,32 @@ command -v nvm
 If the result is "nvm" then nvm installation is complete. Continue with [Install Node](#install-node)
 
 
-Node runs on bash . If command -v nvm comman does not work, then run the following command first. No need to run this command on Ubuntu.
-
 ### Install Node
 
 ```bash
-nvm install v22.22.2
+$ nvm install v24.16.0
 ```
 
 ```bash
-nvm use v22.22.2
+$ nvm use v24.16.0
 ```
 
 ```bash
-nvm alias default v22.22.2
+$ nvm alias default v24.16.0
 ```
 
 ```bash
-node -v
-v22.22.2
+$ node -v
+```
+```bash
+v24.16.0
 ```
 
 ```bash
-nvm which v22.22.2
-/<user-home-directory>/.nvm/versions/node/v22.22.2/bin/node
+$ nvm which v24.16.0
+```
+```bash
+/<user-home-directory>/.config/nvm/versions/node/v24.16.0/bin/node
 ```
 
 ### Install pnpm
@@ -87,18 +74,7 @@ corepack enable
 corepack enable pnpm
 ```
 
-```bash
-pnpm -v
-```
-
-```bash
-10.33.0
-```
-
-Continue with
-- [Set swap](../set_swap.md)
-
-
+Continue with [Create a Payload CMS Application](../development.md#create-a-payload-cms-application)
 
 -----
 References:

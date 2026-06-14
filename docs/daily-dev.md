@@ -1,11 +1,7 @@
 # Daily Operations of Development Environment
 
-After finishing initial development, and production environment setup, we use the development environment as follows.
+After finishing initial development, and production environment setup, we use the development environment daily as follows.
 
-## Change shell to bash
-```bash
-ssh-agent bash
-```
 
 ## Add ssh keys to ssh agent 
 
@@ -47,8 +43,8 @@ Changes for IP
 - /etc/hosts on Developer PC
 ```bash
 .....
-10.9.172.90 www.devserver1.my-domain.com
 10.9.172.90 traefik.devserver1.my-domain.com coolify.devserver1.my-domain.com 
+10.9.172.90 www.devserver1.my-domain.com
 10.9.172.90 devserver1.my-domain.com
 10.9.172.90 devserver1
 ```
@@ -112,6 +108,8 @@ git switch dev
 git branch --show-current
 ```
 
+- Stop Payload service in VM
+
 - Make changes you see fit for your application.
 - Check locally,
   - Mongo URL (public) must be enabled, and DATABASE_URL must be set in .env file.
@@ -119,6 +117,7 @@ git branch --show-current
   cd < payload-app-full-path >
   ```
   - .env file content must be similar to VM Payload CMS Environment Variables
+  
   ```bash
   pnpm install
   ```
@@ -152,14 +151,18 @@ git push origin dev
 
 #### Redeploy on VM
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Project -> < project-name > -> payload -> Redeploy
+  - Project -> < project-name > -> payload 
+    - Stop -> Check "Docker Clean ..."
+      - Wait, see the red "Exited" label
+    - Click "Reload Compose file"
+    - Save
+    - Click Advanced -> Force Deploy
 
 ### Update documentation
 - Update documentation about changes.
 
 Continue to [daily-prod](daily-prod.md) if everything is OK.
 
-### TODO: Write docs for Payload CMS editing
 ### TODO: Add tests
 
 References:

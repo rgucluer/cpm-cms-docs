@@ -6,8 +6,6 @@ https://payloadcms.com/docs/getting-started/what-is-payload
 
 https://payloadcms.com/docs/production/deployment
 
-## On VPS
-
 ## Open Coolify Web UI of Virtual Private Server
 
 - Visit `https://coolify.< domain-name >`
@@ -47,21 +45,33 @@ https://payloadcms.com/docs/production/deployment
 
 ## Create a local copy of Payload CMS Website template
 
-We created the files during development stage. Merge development to main branch.
+We created the files during development stage. Merge development to main branch. Combine with squash merge.
+
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+https://git-scm.com/cheat-sheet
 
 On Developer PC
 ```bash
 cd < workspace-full-path >/payload-app
 ```
 
-https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+```bash
+git branch
+```
 
 ```bash
 git checkout main
 ```
 
 ```bash
-git merge dev
+git merge --squash dev
+```
+
+Fix any conflicts.
+
+```bash
+git commit
 ```
 
 ```bash
@@ -69,7 +79,7 @@ git push origin main
 ```
 
 ## Coolify - Add a new Source ( Virtual Private Server )
-[Click](../coolify/add-new-source-vps.md) for details
+Apply [coolify/add-new-source-vps](../coolify/add-new-source-vps.md)
 
 ## Add Source to the Project (VPS)
 [Click](../coolify/add-source-to-project-vps.md) for details
@@ -78,17 +88,20 @@ git push origin main
 [Click](../coolify/configure-payload-vps.md) for details
 
 ## Deploy / Redeploy Payload Application
+- !ATTENTION! Deploy operation will delete all content. 
+  - TODO: Implement Backup/Restore operations before/after deployment.
 - Coolify UI on VPS (https://coolify.< domain-name >)
   - Projects -> < project-name > (production) -> payload 
-    - Redeploy / Deploy
+    - Stop service if it is already running. 
+    - Deploy / Redeploy
     - Or, Advanced -> Force deploy (without cache)
   - Wait until the message "Container payload-... Started"
     - Click debug icon for more build information
   - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
+  - After deployment node will build Payload CMS. It takes time (3 - 4 minutes).
 
 ## Set Traefik for the new application (VPS)
-[Click](../coolify/set-traefik-for-new-app-vps.md) for details
-
+Apply [coolify/set-traefik-for-new-app-vps](../coolify/set-traefik-for-new-app-vps.md)
 
 ## Check the Application
 - Check `https://www.< domain-name >`
@@ -96,10 +109,11 @@ git push origin main
   - Not working, bad `:(`, try [troubleshooting](#troubleshooting).
 
 - Click `Visit the admin dashboard`
-  - Create your first user
-    - Create or Login
+  - `https://www.< domain-name >/admin`
+  - Create your first user, or login
   - Click "Seed your database", wait ...
     - If successful we get the `Database seeded! You can now visit your website` message.
+      - Or just a "done" prompt right of "Seed your database" link.
     - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
 - Visit `https://www.< domain-name >`
@@ -108,6 +122,10 @@ git push origin main
 
 - Learn more ... [https://payloadcms.com/docs/getting-started/what-is-payload](https://payloadcms.com/docs/getting-started/what-is-payload)
 
+- Back to [README](../../README.md)
+
+- [Daily Production Operations](../daily-prod.md)
+
 ## References
 - https://github.com/coollabsio/coolify-examples/tree/v4.x
 - https://coolify.io/self-hosted/
@@ -115,6 +133,10 @@ git push origin main
 - https://coolify.io/docs/knowledge-base/proxy/traefik/redirects
 - https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/redirectregex/
 - https://payloadcms.com/docs/production/deployment
+
+---
+
+## TODO: Work on better content persistence
 
 ---
 

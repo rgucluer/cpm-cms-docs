@@ -1,41 +1,45 @@
 On Dev PC
 ```bash
-cd < payload-app-full-path >
+$ cd < payload-app-full-path >
 ```
 
 ```bash
-rm -rf ./node_modules/ ./.next pnpm-lock.yaml
+$ rm -rf ./node_modules/ ./.next pnpm-lock.yaml
 ```
 
 ```bash
-pnpm store prune
+$ pnpm store prune
 ```
 
 ```bash
-pnpm install
+$ corepack use pnpm@latest-10
 ```
 
 ```bash
-pnpm build
+$ pnpm install
 ```
 
 ```bash
-git add .
+$ pnpm build
 ```
 
 ```bash
-git commit
+$ git add .
 ```
 
 ```bash
-git push origin dev
-```
-or
-```bash
-git push origin main
+$ git commit
 ```
 
 Depending on your current branch
+```bash
+$ git push origin dev
+```
+or
+```bash
+$ git push origin main
+```
+
 
 
 - Coolify UI (On VM) -> Projects -> cpm-cms (production) -> payload(devserver1) -> Redeploy

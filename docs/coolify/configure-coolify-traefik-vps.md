@@ -131,7 +131,7 @@ name: coolify-proxy
 services:
   traefik:
     container_name: coolify-proxy
-    image: 'traefik:v3.6'
+    image: 'traefik:v3.7'
     restart: unless-stopped
     environment:
       - 'TZ=Universal'
@@ -182,7 +182,7 @@ services:
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=60'
       - '--certificatesresolvers.letsencrypt.acme.storage=/traefik/acme.json'
       - '--certificatesresolvers.letsencrypt.acme.email=< lego-email >'
-      - '--certificatesresolvers.letsencrypt.acme.certificatesDuration=2160'
+      - '--certificatesresolvers.letsencrypt.acme.certificatesDuration=1080'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.disablePropagationCheck=false'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[0]=213.133.100.102:53'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[1]=213.239.204.242:53'
@@ -335,7 +335,7 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
 ---
 
 ## Troubleshooting
-- [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
+- TODO: [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
 
 - After changing Traefik settings get error:
   - "ERR_CONNECTION_REFUSED"

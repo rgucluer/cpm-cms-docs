@@ -1,7 +1,7 @@
 ## Configure the Payload Project
 
 - Coolify Web UI -> Projects -> cpm-cms ( production )
-  - Applications -> cpm-cms:dev-...
+  - Applications -> cpm-cms ...
 
     - Configuration -> General
       - Name: payload
@@ -16,21 +16,27 @@
         - Docker Compose Location : /docker-compose.yml
       - Docker Compose
         - Check : Escape special characters in labels
+      - Pre/Post Deployment Commands
+        - Post-deployment: `/app/after-deploy.sh`
       - Save
         - Success - Application settings updated!
 
     - Configuration -> Advanced
-      - Auto Deploy: Uncheck
-      - Inject Build Args to Dockerfile: Check
-      - Include Source Commit in Build: Uncheck
-      - Force Https: Uncheck
-      - Strip Prefixes: Check
-      - Container Names:
+      - Build
+        - Inject Build Args to Dockerfile: Check
+        - Include Source Commit in Build: Uncheck
+      - Container:
         - Consistent Container Names: Uncheck
         - Custom Container Name: payload
           - Save
+      - Deployment
+        - Auto Deploy: Uncheck
+        - Preview Deployments: Uncheck
       - Docker Compose
         - Connect To Predefined Network : Check
+      - Proxy
+        - Force Https: Uncheck
+        - Strip Prefixes: Check
 
     - Configuration -> Environment Variables
       - Check: Use Docker Build Secrets
@@ -39,8 +45,8 @@
         - For every variable
           - Check: Available at Buildtime , Check: Available at Runtime
           - Save, Close Form, Update
-      - NODE_OPTIONS: --no-deprecation --max-old-space-size=3072
-      - HOSTNAME: 0.0.0.0
+      - NODE_OPTIONS=--no-deprecation --max-old-space-size=3072
+      - HOSTNAME=0.0.0.0
       - DATABASE_URL: Get value from mongodb-payload Mongo URL (public), and paste as value. 
         - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
       - PAYLOAD_SECRET: < copy value from local copy .env file to here >
@@ -72,8 +78,9 @@
         - ( Set Memory values to according to your setup. )
 
     - Configuration -> General
+      - Check Domains for payload
       - Check & Save
 
-Continue with [Deploy Application](../payload/publish-payload-cms-vps.md#deploy--redeploy-payload-application)
+Continue with [Deploy Application](../payload/publish-payload-app.md#deploy--redeploy-payload-application)
 
 Back to [publish-payload-app.md](../payload/publish-payload-app.md#configure-the-payload-project).

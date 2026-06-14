@@ -1,0 +1,45 @@
+
+- Delete and recreate database service
+  - Stop Payload service
+    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Stop
+      - Check "Run Docker Cleanup ..."
+      - Continue -> Confirm
+  - Stop database service
+    - VM -> Coolify -> Projects -> cpm-cms -> mongodb-payload -> Stop
+      - Check "Run Docker Cleanup ..."
+      - Continue -> Confirm
+  - Delete database service
+    - VM -> Coolify -> Projects -> cpm-cms -> mongodb-payload -> Danger Zone -> Delete
+      - Confirm Resource Deletion
+        - Check all
+        - Continue
+      - Confirm Resource Deletion
+        - Enter Resource name: mongodb-payload
+          - Continue
+      - Confirm Resource Deletion
+        - Final Confirmation
+        - Enter your Coolify user password
+        - Confirm
+  - Recreate Database Service
+    - [Click](../payload/create-mongodb.md) for details. (Create a MongoDB using Coolify)
+  - Modify Payload service environment variable DATABASE_URL
+    - Copy value from mongodb-payload Mongo URL (public)
+    - Change the IP address in the URL with the IP address of the virtual machine (multipass list)
+    - Click Update
+  - Deploy Payload Service
+    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Deploy
+  - Check service name in Traefik Dynamic configuration (payload-app.yaml)
+    - service value of payload-https route must be correctly set
+      - payload-abc...yz@docker
+  - Restart Traefik
+    - VM -> Coolify -> Servers -> devserver1 -> Restart Proxy
+  - Redeploy Payload
+    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Deploy
+  - Check https://www.< dev-domain-name >
+    - Click "Visit the admin dashboard"
+    - Create a new Payload admin user
+    - Click "Seed your database"
+     
+      
+- Check ownership of files/directories
+

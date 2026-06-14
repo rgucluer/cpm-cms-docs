@@ -1,5 +1,9 @@
 
-ssh to VM or VPS with root user.
+- Connect to the computer where you want ot set swap
+  - VM, VPS
+    - ssh to VM or VPS with root user.
+  - Local computer
+    - Continue
 
 ## Check swap files
 
@@ -16,7 +20,7 @@ Swap:             0B          0B          0B
 ## Check swappiness
 
 ```bash
-swapon --show
+sudo swapon --show
 ```
 
 No Result, or similar to
@@ -32,6 +36,14 @@ or
 NAME       TYPE       SIZE USED PRIO
 /dev/zram0 partition 31,2G   0B  100
 ```
+
+or
+
+```bash
+NAME      TYPE       SIZE USED PRIO
+/dev/dm-1 partition 21.2G   0B   -2
+```
+
 
 ## Creating a Swap File
 Create a swap file if one does not exist
@@ -63,7 +75,7 @@ ls -lh /swapfile
 ```
 
 ```bash
-mkswap /swapfile
+sudo mkswap /swapfile
 ```
 
 ```bash
@@ -72,11 +84,11 @@ no label, UUID=.....
 ```
 
 ```bash
-swapon /swapfile
+sudo swapon /swapfile
 ```
 
 ```bash
-swapon --show
+sudo swapon --show
 ```
 
 ```bash
@@ -96,11 +108,11 @@ Swap:          4.0Gi          0B       4.0Gi
 
 ## Making the Swap File Permanent
 ```bash
-cp /etc/fstab /etc/fstab.bak
+sudo cp /etc/fstab /etc/fstab.bak
 ```
 
 ```bash
-echo '/dev/zram0 none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
 ## Tuning your Swap Settings

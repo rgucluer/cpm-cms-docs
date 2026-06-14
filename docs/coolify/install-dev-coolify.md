@@ -22,7 +22,7 @@ Save & Exit
 
 Restart SSH Service
 ```bash
-systemctl restart ssh
+sudo systemctl restart ssh
 ```
 
 Update system packages, and restart if necassary.

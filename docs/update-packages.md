@@ -1,4 +1,4 @@
-## Ubuntu
+## Ubuntu, Debian
 We start with updating the Controller PC apt packages.
 ```bash
 sudo apt update

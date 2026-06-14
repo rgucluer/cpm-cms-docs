@@ -29,9 +29,9 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 ### Install Multipass
 
-#### Install packages - Ubuntu
+#### Install packages - Ubuntu, Debian
 ```bash
-sudo apt install lego nano curl python3-pip
+sudo apt install lego nano curl python3-pip snapd
 ```
 
 #### Install packages - CachyOS
@@ -44,6 +44,21 @@ sudo pacman -S lego nano curl python-pip base-devel
 sudo snap install multipass
 ```
 
+```bash
+sudo systemctl restart snapd
+```
+
+```bash
+sudo systemctl daemon-reload
+```
+
+- Add the directory to your shell profile
+  - (~/.bashrc or similar file depends on your distribution)
+
+```bash
+export PATH="$PATH:/snap/bin" 
+```  
+
 Close open terminal windows. Open new terminal window, add ssh-keys, and continue.
 
 ### Create a Virtual Machine with Canonical Multipass
@@ -52,7 +67,7 @@ Close open terminal windows. Open new terminal window, add ssh-keys, and continu
 mkdir -p < coolify-app-full-path >/multipass/cloud-init
 ```
 
-Create multipass/cloud-init/cloud-config.yaml file. Or copy multipass/cloud-init/cloud-config.yaml.example as multipass/cloud-init/cloud-config.yaml and edit the file.
+Copy multipass/cloud-init/cloud-config.yaml.example as multipass/cloud-init/cloud-config.yaml and edit the file.
 
 ```yaml
 #cloud-config
@@ -177,10 +192,36 @@ timed out waiting for initialization to complete", but still work.
 ```bash
 multipass list
 ```
-![ip address](images/vm_ip_address.png)
-
 Note the IP address in the output ( IPv4 ) . We will use it in the following steps. It takes some time for VM to start. If VM state is "Restarting" then wait a few seconds, and run the command again.
 
 Continue from: [Test Virtual Machine ssh login](test-ssh-dev.md)
 
 Back to [Development Environment Installation](development.md)
+
+## Troubleshooting
+
+### bash: multipass: command not found
+
+```bash
+$ snap list multipass
+```
+
+```bash
+Name       Version  Rev    Tracking       Publisher   Notes
+multipass  1.16.2   17096  latest/stable  canonical✓  -
+```
+
+```bash
+ls -la /snap/bin
+```
+
+It lists multipass
+
+- Add the directory to your shell profile
+  - (~/.bashrc or similar file depends on your distribution)
+
+```bash
+export PATH="$PATH:/snap/bin" 
+```  
+
+Close open terminal windows, reopen terminal windows.

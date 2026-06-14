@@ -41,7 +41,7 @@ ICMP    ICMP  Any IPv4, Any IPv6
   - Instance Timezone: UTC
   - Do not change Instance's Public IPv4
   - Save
-  You IPv4 may not be reachable from public internet because of network structure.
+  - Your IPv4 may not be reachable from public internet because of network structure.
 
 ### Setup General Settings for the Virtual Machine
 - Coolify Web User Interface:
@@ -131,7 +131,7 @@ name: coolify-proxy
 services:
   traefik:
     container_name: coolify-proxy
-    image: 'traefik:v3.6'
+    image: 'traefik:v3.7'
     restart: unless-stopped
     environment:
       - 'TZ=Universal'
@@ -182,7 +182,7 @@ services:
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=60'
       - '--certificatesresolvers.letsencrypt.acme.storage=/traefik/acme.json'
       - '--certificatesresolvers.letsencrypt.acme.email=< lego-email >'
-      - '--certificatesresolvers.letsencrypt.acme.certificatesDuration=2160'
+      - '--certificatesresolvers.letsencrypt.acme.certificatesDuration=1080'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.disablePropagationCheck=false'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[0]=213.133.100.102:53'
       - '--certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers[1]=213.239.204.242:53'
@@ -197,6 +197,7 @@ services:
       - coolify.proxy=true
 ```  
 Save
+
 
 Lego Dns Provider list: https://go-acme.github.io/lego/dns/
 

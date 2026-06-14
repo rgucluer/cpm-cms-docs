@@ -1,57 +1,16 @@
-## Coolify - Add a new Source
-
-Following Coolify documentation https://coolify.io/docs/applications/ci-cd/github/setup-app
-
-Visit `https://coolify.< domain-name >`
-
-- Coolify Web UI -> Sources -> Add+
-  - New GitHub App
-    - Name: < github-app-name >  ( payload-cms-for-vps, cpm-cms, etc)
-    - Continue
-    - There are two options:
-      - Automated Installation
-        - Use this for creating a new GitHub App for your source repository
-      - [Manual Installation](#manual-installation)
-        - If GitHub App already exists, you can add it to Coolify with Manual Installation.
-
-### Automated Installation
-
-- Automated Installation
-  - Webhook Endpoint
-    - Select from select box
-      - Select  https://coolify.< my-domain.com >
-    - Register Now
-    - Confirm access ( GitHub Authentication )        
-      - Authenticate
-    - Create App name
-      - GitHub App Name : < github-app-name-vps >
-      - Click "Create GitHub App for `< my-github-username >`"
-  - Click Install Repositories on GitHub
-  - Authorization Request for GitHub - Install `< github-app-name-vps >`
-    - Click: Only select repositories
-      - Select from "Select repositories"
-        - `< my-github-username >`/`< git-repo-name >`
-    - Click Install
-  - We are back in Coolify UI Sources - GitHub App Form -> 
-    - App Name: < github-app-name-vps >
-    - Save
-
-
-### Manual Installation
-
-#### How to get GitHub App information
+## How to get GitHub App information
 
 - Open your GitHub Account
-  - Open your private git repository
+  - Open your git repository
   - Settings
     - Integrations -> GitHub Apps (Bottom of Left Menu)
-      - `< my-github-app >` -> Configure ( Hover over button and get the link)
+      - cpm-cms -> Configure ( Hover over button and get the link)
         - Right most of the link is Installation ID
         - https://github.com/settings/installations/< installation_id >
-      - Click `< my-github-app >` -> Configure 
+      - Click cpm-cms -> Configure 
         - Confirm access: Authenticate, and continue
-      - Click App Settings (Right of `< my-github-app >` title )
-        - This is application settings page (GitHub Web - GitHub App Settings), We can get/set information in this page, and fill the Coolify form.
+      - Click App Settings (Right of cpm-cms title )
+        - This is application settings page (GitHub Web - GitHub App Settings), We can get/set information about GitHub App in this page, and fill the Coolify form.
 
 - On GitHub Web - GitHub App Settings
   - Permissions & Events
@@ -63,8 +22,8 @@ Visit `https://coolify.< domain-name >`
     - Account permissions
       - Email addresses: Read-only
   - Subscribe to events
-    - Checked: Pull request
-    - Checked: Push
+    - Check: Pull request
+    - Check: Push
   - Save changes
 
 - On GitHub Web - GitHub App Settings - General
@@ -77,43 +36,36 @@ Visit `https://coolify.< domain-name >`
     - If you have the current Private Key at hand, ready it for later use
     - If not , Click Generate a private and save the secret for later use.
 
-- Coolify Web UI - https://coolify.`< domain-name >`
+- Coolify Web UI
   - Do not close GitHub App page, open a new webpage of Coolify and continue
   - Add the related private key to Coolify Keys & Tokens
   - Keys & Tokens
     - Private Keys -> +Add
       - New Private Key Form
-        - Name: github-app-`< my-github-app >`
+        - Name: github-app-cpm-cms
         - Private Key: Copy content of the private key(.pem file) on previous step and paste it here.
         - Form will fill the Public Key value itself. 
         - Save
-
-- Coolify Web UI -> Sources -> Add+
-  - New GitHub App
-    - Name: `< my-github-app >`
-    - Continue
-    - Manual Installation
-      - Continue
 
 - Coolify Web UI -> Sources -> GitHub App :
   - Take note of Source ID
     - Step 6 of Manual Installation: 
       - https://coolify.io/docs/applications/ci-cd/github/setup-app#manual-installation
       - The last section of the Coolify GitHub App Page URL
-        - https://coolify.`< domain-name >`/source/github/`< Source ID >`
+        - https://coolify.`< dev-domain-name >`/source/github/`< Source ID >`
 
 - On GitHub Web - GitHub App Settings - General
-  - Set Post installation Setup URL
+  - Set Post installation -> Setup URL
     - Edit URL, paste Source ID as last part of the URL
-    - https://`< domain-name >`/webhooks/source/github/install?source=`< Source ID >`
+    - https://`< dev-domain-name >`/webhooks/source/github/install?source=`< Source ID >`
 
 - Coolify Web UI -> Sources -> GitHub App Page
-  - App Name: payload-app-123456
+  - App Name: cpm-cms
   - HTML Url: https://github.com
   - API Url: https://api.github.com
   - User: git
   - Port: 22
-  - App Id: `< Get information from GitHub App Page >`  
+  - App Id: `< Get information from GitHub App Page >`
   - Installation Id: 
     - Installation Id: It is the right most part of GitHub App configure button link
       - https://github.com/settings/installations
@@ -127,20 +79,15 @@ Visit `https://coolify.< domain-name >`
   - Set Private Key
     - You must add the private key created on GitHub to Coolify Keys && Tokens section first, then select this key . 
     - Private Key: Select from list: `< coolify-github-private-ssh-key-name >`
-      - github-app-`< my-github-app >`
-      - If you can not see the key in select box, save page then refresh the page
+      - If you can not see the key in select box, Save, refresh the page
   - Save
   - Click Sync Name
     - "GitHub App name and SSH key name synchronized successfully."
-
-### Continue with [Add Source to the Project](../coolify/add-source-to-project-vps.md)
-
----
-
-On GitHub Web -> GitHub App
-- https://github.com/settings/apps/`< github-app-name >`
-
-Coolify Web UI -> GitHub App
-- https://coolify.`< domain-name >`/source/github/`< Source ID >`
-
-
+    - Error:
+      - Failed to fetch GitHub App information: A JSON web token could not be decoded 
+        - Check GitHub Apps -> Settings Developer settings GitHub Apps < github-app-name >
+          - Recent Deliveries
+            - Click the latest one
+              - `We couldn't deliver this payload: tls: failed to verify certificate: x509: certificate is valid for < something >, not coolify.< dev-domain-name >`
+        - Change the private key you added to GitHub App on Coolify 
+          - With the right private key, this error does not occur.
