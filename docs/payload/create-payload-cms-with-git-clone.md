@@ -9,7 +9,7 @@ $ cd < workspace-full-path >
 Check a directory does not exist with the same name as the repository name.
 
 ```bash
-$ git clone git@github.com:< github-username >/< git-repo-name >.git
+$ git clone https://github.com/rgucluer/cpm-cms.git
 ```
 
 ```bash
@@ -42,6 +42,7 @@ $ cp .env.example .env
     - Configuration -> General -> Network -> Mongo URL(public)
     - Reveal, and copy value, paste into .env file as value of DATABASE_URL
     - Change IP address to the IP of the VM
+      - Get IP of VM from `multipass list` command
   - PAYLOAD_SECRET= Enter a value at least 25 characters (uppercase letters, lowercase letters, digits)
   - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
   - CRON_SECRET= Enter a value at least 25 characters (uppercase letters, lowercase letters, digits)

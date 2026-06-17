@@ -32,9 +32,6 @@ Apply [nextjs/install-nvm-node](nextjs/install-nvm-node.md)
 - Method Two: If you already have a git repository you created before, use this method.
   - [Clone an existing git repository](create-payload-cms-with-git-clone.md) .
 
-## Create a new private respository on GitHub
-Read [Github creating-a-new-repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) for details
-
 ## Make some changes in source code
 Apply [change-source-code](change-source-code.md)
 
@@ -88,7 +85,10 @@ pnpm build
 ```
 ---
 
-## Add a new remote for cpm-cms
+## Create a new private respository on GitHub
+Read [Github creating-a-new-repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) for details
+
+## Add a new remote for payload-app
 
 ```bash
 cd < workspace-full-path >/payload-app

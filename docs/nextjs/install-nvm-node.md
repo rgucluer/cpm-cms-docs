@@ -9,7 +9,7 @@ On Controller PC
 
 https://nodejs.org/en/download
 
-New: Get Node.js v24.16.0(LTS) for Linux using nvm with pnpm
+Get Node.js v24.16.0(LTS) for Linux using nvm with pnpm
 
 On Developer PC
 

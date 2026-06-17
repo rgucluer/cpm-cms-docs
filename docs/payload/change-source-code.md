@@ -18,9 +18,6 @@
 
 < payload-app-full-path >/src/payload.config.ts
 ```javascript
-  const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
-    ? process.env.NEXT_PUBLIC_SERVER_URL
-    : 'http://localhost:3000'
   .....
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
   collections: [

@@ -10,6 +10,15 @@ ssh root@< virtual-m-ip >
 ```
 
 ```bash
+The authenticity of host '.....)' can't be established.
+ED25519 key fingerprint is SHA256:......
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
+Enter `yes` <kbd>ENTER</kbd>
+
+
+```bash
 nano /etc/ssh/sshd_config
 ```
 Ensure these settings are present:
@@ -39,6 +48,8 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 
 Result
 ```bash
+ - Coolify is ready!
+
    ____                            _         _       _   _                 _
   / ___|___  _ __   __ _ _ __ __ _| |_ _   _| | __ _| |_(_) ___  _ __  ___| |
  | |   / _ \| '_ \ / _` | '__/ _` | __| | | | |/ _` | __| |/ _ \| '_ \/ __| |
@@ -58,11 +69,21 @@ http://10.0.1.1:8000
 < another-ip-here >
 
 WARNING: It is highly recommended to backup your Environment variables file (/data/coolify/source/.env) to a safe location, outside of this server (e.g. into a Password Manager).
+
+
+============================================================
+[< Date     Time   >] Installation Complete
+============================================================
+[< Date     Time   >] Coolify installation completed successfully
+[< Date     Time   >] Version: 4.1.2
+[< Date     Time   >] Log file: /data/coolify/source/installation-< date >-< time >.log
+
 ```
 
 - Backup your /data/coolify/source/.env file on VM to a safe place
 - Open a web browser, and browse to `http://< virtual-m-ip >:8000`
-  - Fill in the Coolify "Create an account" form, and register your Coolify root user.
+  - If a warning appears, Choose to continue to http site.
+  - Fill in the Coolify "Create an account" form, and create your Coolify root user.
 
 - After registration we see
   - Welcome to Coolify - Connect your first server and start deploying in minutes
@@ -74,4 +95,4 @@ WARNING: It is highly recommended to backup your Environment variables file (/da
     - Click Skip Setup
   - Close pop up forms
 
-### Continue with [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](coolify/configure-coolify-traefik.md)
+### Continue with [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](configure-coolify-traefik.md)

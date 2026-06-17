@@ -10,7 +10,7 @@
 
 ### [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](coolify/configure-coolify-traefik.md)
 
-### [Set e-mail with Resend](coolify-email-resend.md)
+### [Set e-mail with Resend](coolify/coolify-email-resend.md)
 
 ### [Create a snapshot of the virtual machine](coolify/create-snapshot.md)
 

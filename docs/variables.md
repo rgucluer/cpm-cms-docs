@@ -43,6 +43,7 @@ When you see these variables through the document , enter the values valid for y
     - payload-cms-for-vps ( Used in Virtual Machine)
 
 - Virtual Machine
+  - vm-name: coolvm
   - vm-user-name: vmuser
   - vm-user-key: vmuser-ssh-key
   - vm-ssh-port: 22

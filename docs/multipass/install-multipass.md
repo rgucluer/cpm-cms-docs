@@ -34,11 +34,6 @@ sudo ln -s /var/lib/snapd/snap /snap
 sudo apt install lego nano curl python3-pip snapd
 ```
 
-#### Install packages - CachyOS
-```bash
-sudo pacman -S lego nano curl python-pip base-devel
-```
-
 #### Install Multipass
 ```bash
 sudo snap install multipass
@@ -62,10 +57,6 @@ export PATH="$PATH:/snap/bin"
 Close open terminal windows. Open new terminal window, add ssh-keys, and continue.
 
 ### Create a Virtual Machine with Canonical Multipass
-
-```bash
-mkdir -p < coolify-app-full-path >/multipass/cloud-init
-```
 
 Copy multipass/cloud-init/cloud-config.yaml.example as multipass/cloud-init/cloud-config.yaml and edit the file.
 

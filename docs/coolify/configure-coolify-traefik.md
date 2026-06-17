@@ -7,7 +7,7 @@ https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs
 - You need to use [dnsChallenge](https://doc.traefik.io/traefik/https/acme/#dnschallenge) in Traefik to get wildcard certificates from Let's Encrypt.
 - You need to use one of the supported DNS providers.
   - Each provider needs environment variables to be set in the Traefik configuration.
-  - You can find the required variables in the [official documentation](https://doc.traefik.io/traefik/https/acme/#providers) .
+  - You can find the required variables in the [official Traefik documentation](https://doc.traefik.io/traefik/https/acme/#providers) .
 
 ---
 
@@ -106,7 +106,11 @@ cd ~
 ```
 
 ```bash
-htpasswd users.txt traefikuser
+sudo apt install apache2-utils
+```
+
+```bash
+htpasswd -c users.txt traefikuser
 ```
 
 Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as  `Traefik Dynamic Configuration` value for `traefik.http.middlewares.traefik-basic-auth.basicauth.users` in single quotes .
@@ -133,27 +137,27 @@ services:
     container_name: coolify-proxy
     image: 'traefik:v3.7'
     restart: unless-stopped
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     environment:
       - 'TZ=Universal'
       - 'EMAIL=< lego-email >'
       - 'DNS=hetzner'
       - '< lego-service-provider-env-var >=< lego-service-provider-api-token >'
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
     security_opt:
       - 'no-new-privileges=true'
-    healthcheck:
-      test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
-      interval: 4s
-      timeout: 2s
-      retries: 5
-      start_period: 6s
     ports:
       - '80:80'
       - '443:443'
       - '443:443/udp'
       - '8080:8080'
       - '3000:3000'
+    healthcheck:
+      test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
+      interval: 4s
+      timeout: 2s
+      retries: 5
+      start_period: 6s
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
       - '/data/coolify/proxy/:/traefik'
