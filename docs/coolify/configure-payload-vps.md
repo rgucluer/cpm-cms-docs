@@ -48,7 +48,6 @@
       - NODE_OPTIONS: --no-deprecation --max-old-space-size=2048
       - HOSTNAME: 0.0.0.0
       - DATABASE_URL: Get value from mongodb-payload Mongo URL (internal), and paste as value. 
-          - If you do not see public URL then click Proxy -> Make it publicly available
       - PAYLOAD_SECRET: < copy value from local copy .env file, or enter a different one >
       - NEXT_PUBLIC_SERVER_URL : `https://www.< domain-name >`    
       - CRON_SECRET: < Enter_your_password_here >
@@ -62,7 +61,6 @@
       - Commit SHA
         - HEAD
       - Save
-
 
     - Configuration -> Resource Limits
       - Limit CPUs ( https://docs.docker.com/engine/containers/run/#cpu-share-constraint )

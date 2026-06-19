@@ -172,7 +172,7 @@ keyboard:
 ### Create the Virtual Machine
 
 ```bash
-cd < coolify-app-full-path >/multipass/cloud-init
+cd < workspace-full-path >/cpm-cms-docs/multipass/cloud-init
 ```
 ```bash
 multipass launch 24.04 --name coolvm --cpus 2 --disk 40G --memory 8G --cloud-init cloud-config.yaml

@@ -2,7 +2,6 @@
 
 On Controller PC
 - Add your ssh keys
-
 - Connect to the computer you want to install nvm and node (Local, VM or VPS)
 
 ### Install nvm 
@@ -75,6 +74,10 @@ corepack enable pnpm
 ```
 
 Continue with [Create a Payload CMS Application](../development.md#create-a-payload-cms-application)
+
+Note:
+- In any of your computers there must NOT be a package.json file in your user's home directory. It can exist if you run `npm install` or `pnpm install` command while you are in your home directory. So before executing these commands first check your current directory.
+- Existence of `package.json` file in your home directory can lead to unexpected errors.
 
 -----
 References:

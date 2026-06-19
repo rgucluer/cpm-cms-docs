@@ -58,11 +58,10 @@ ICMP    ICMP  Any IPv4, Any IPv6
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
   - Refresh Page
 
-  - Servers -> < servername > -> Configuration -> Sentinel
+  - Servers -> < servername > -> Sentinel
     - Coolify URL
       - http://coolify.devserver1.my-domain.com
-      - Check: Enable Sentinel
-      - UnCheck: Enable Metrics
+      - Sentinel Enabled (OK if Disable Sentinel buton is visible)
     - Save
 
   - Servers -> < servername > -> Proxy -> Configuration -> Advanced
@@ -137,27 +136,27 @@ services:
     container_name: coolify-proxy
     image: 'traefik:v3.7'
     restart: unless-stopped
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
     environment:
       - 'TZ=Universal'
       - 'EMAIL=< lego-email >'
       - 'DNS=hetzner'
       - '< lego-service-provider-env-var >=< lego-service-provider-api-token >'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     security_opt:
       - 'no-new-privileges=true'
+    healthcheck:
+      test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
+      interval: 10s
+      timeout: 4s
+      retries: 5
+      start_period: 6s
     ports:
       - '80:80'
       - '443:443'
       - '443:443/udp'
       - '8080:8080'
       - '3000:3000'
-    healthcheck:
-      test: 'wget -qO- https://traefik.< dev-domain-name >/ping || exit 1'
-      interval: 4s
-      timeout: 2s
-      retries: 5
-      start_period: 6s
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
       - '/data/coolify/proxy/:/traefik'
@@ -336,8 +335,6 @@ Asks for username and password. Enter username (traefikuser) & password you crea
 ---
 
 Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs#normal for setting up Traefik settings for your application.
-
-### Continue with [Create Private Key](create-private-key.md)
 
 ## Troubleshooting
 

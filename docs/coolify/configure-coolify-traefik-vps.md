@@ -57,11 +57,10 @@ ICMP    ICMP  Any IPv4, Any IPv6
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
   - Refresh Page
 
-  - Servers -> < servername > -> Configuration -> Sentinel
+  - Servers -> < servername > -> Sentinel
     - Coolify URL
       - http://coolify.my-domain.com
-      - Check: Enable Sentinel
-      - UnCheck: Enable Metrics
+      - Sentinel Enabled (OK if Disable Sentinel buton is visible)
     - Save
 
   - Servers -> < servername > -> Proxy -> Configuration -> Advanced
@@ -106,6 +105,10 @@ cd ~
 ```
 
 ```bash
+sudo apt install apache2-utils
+```
+
+```bash
 htpasswd users.txt traefikuser
 ```
 
@@ -144,8 +147,8 @@ services:
       - 'no-new-privileges=true'
     healthcheck:
       test: 'wget -qO- https://traefik.< domain-name >/ping || exit 1'
-      interval: 4s
-      timeout: 2s
+      interval: 10s
+      timeout: 4s
       retries: 5
       start_period: 6s
     ports:
@@ -282,7 +285,6 @@ http:
   - API Settingss
     - Allowed IPs for API Access
       - < vps-ip >
-      - < virtual-m-ip >
       - seperated with a comma
     - API Access: Check
   - Save

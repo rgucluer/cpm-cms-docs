@@ -13,10 +13,6 @@ cd ~/.ssh
 ```
 
 ```bash
-ssh-agent bash
-```
-
-```bash
 ssh-keygen -C < vps-user-name > -f < vps-user-key >
 ```
 

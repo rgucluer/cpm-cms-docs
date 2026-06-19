@@ -11,7 +11,7 @@
           ```bash
           Container payload-abcdefghijklmabcdefghi-012345678901 Started
           ```
-  - Or use `docker ps` command
+  - Or use `docker ps` command in virtual machine
     - ssh to VM
     ```bash
     docker ps
@@ -65,11 +65,12 @@ Use payload-abcdefghijklmabcdefghi@docker in payload-app.yaml in Dynamic Configu
               service: payload-.....@docker
         ```
 
-      - Paste the Payload service name as value to service (payload-abcdefghijklmabcdefghid@docker)
+      - Paste the Payload service name + "@docker" as value to service (payload-abcdefghijklmabcdefghid@docker)
         - Use only the first two sections of the container name
           - payload-y....d-123...234
           - payload-y....d@docker
       - Check domain names, change them to your according to your setup.
+      - Check spaces, do not use tabs, use only spaces. Indentation is important.
       - Save
       - Close Form
       - Restart Proxy

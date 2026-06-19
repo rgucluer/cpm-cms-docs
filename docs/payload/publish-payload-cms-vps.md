@@ -82,10 +82,10 @@ git push origin main
 Apply [coolify/add-new-source-vps](../coolify/add-new-source-vps.md)
 
 ## Add Source to the Project (VPS)
-[Click](../coolify/add-source-to-project-vps.md) for details
+Apply [coolify/add-source-to-project-vps](../coolify/add-source-to-project-vps.md)
 
 ## Configure the Payload Project (VPS)
-[Click](../coolify/configure-payload-vps.md) for details
+Apply [coolify/configure-payload-vps](../coolify/configure-payload-vps.md)
 
 ## Deploy / Redeploy Payload Application
 - !ATTENTION! Deploy operation will delete all content. 
@@ -159,5 +159,18 @@ Bind for 0.0.0.0:27017 failed: port is already allocated
     - Remove 27017 port from ports
     - Save
   - Restart Proxy
+
+### Error: #1 [internal] load local bake definitions
+
+```bash
+corepack enable pnpm && pnpm install --frozen-lockfile;
+.....
+Error type: App\Exceptions\DeploymentException
+Error code: 0
+Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
+```
+
+- [Apply troubleshoot/vps-disk-space](../troubleshoot/vps-disk-space.md) 
+- [Apply troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) 
 
 

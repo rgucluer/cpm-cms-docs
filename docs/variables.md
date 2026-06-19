@@ -23,9 +23,6 @@ When you see these variables through the document , enter the values valid for y
   - workspace: workspace
     - The directory to store software source code.
   - workspace-full-path: /home/< local-user-name >/<workspace>
-  - coolify-app-directory: coolify-dev
-  - coolify-app-full-path: /home/< local-user-name >/< local-workspace >/< coolify-app-directory >
-    - example: /home/jack/workspace/coolify-dev
   - payload-app-directory: cpm-cms
   - payload-app-full-path: /home/< local-user-name >/< local-workspace >/< payload-app-directory >
     - example: /home/jack/workspace/cpm-cms
@@ -40,7 +37,7 @@ When you see these variables through the document , enter the values valid for y
   - github-app-name-vm: 
     - cpm-cms ( Used in Virtual Machine)
   - github-app-name-vps: 
-    - payload-cms-for-vps ( Used in Virtual Machine)
+    - payload-cms-for-vps ( Used in Virtual Private Server)
 
 - Virtual Machine
   - vm-name: coolvm

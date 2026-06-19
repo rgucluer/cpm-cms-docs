@@ -2,7 +2,6 @@
 
 - Coolify Web UI -> Projects -> cpm-cms ( production )
   - Applications -> cpm-cms ...
-
     - Configuration -> General
       - Name: payload
       - Description: Payload template (website) for Coolify
@@ -51,8 +50,8 @@
         - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
       - PAYLOAD_SECRET: < copy value from local copy .env file to here >
       - NEXT_PUBLIC_SERVER_URL : https://www.devserver1.< domain-name >
-      - CRON_SECRET: < Enter_your_password_here >
-      - PREVIEW_SECRET: < Enter_your_password_here >
+      - CRON_SECRET: < copy value from local copy .env file to here , or Enter_your_password_here >
+      - PREVIEW_SECRET: < copy value from local copy .env file to here , or Enter_your_password_here >
       
     - Configuration -> Git Source
       - Repository:

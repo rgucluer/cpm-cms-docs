@@ -104,6 +104,12 @@ If it is not dev, switch to dev branch
 ```bash
 git switch dev
 ```
+
+If dev branch does not exist, create one:
+```bash
+git switch -c dev
+```
+
 ```bash
 git branch --show-current
 ```

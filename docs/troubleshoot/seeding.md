@@ -1,45 +1,63 @@
 
-- Delete and recreate database service
-  - Stop Payload service
-    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Stop
-      - Check "Run Docker Cleanup ..."
-      - Continue -> Confirm
-  - Stop database service
-    - VM -> Coolify -> Projects -> cpm-cms -> mongodb-payload -> Stop
-      - Check "Run Docker Cleanup ..."
-      - Continue -> Confirm
+- Check ownership of files/directories in payload container
+
+- Last resort:
+- Wipe & start over
+  - ATTENTION, all data will be deleted.
+  - Delete payload service
+    - Stop payload service
+    - Delete payload service (Danger Zone)
   - Delete database service
-    - VM -> Coolify -> Projects -> cpm-cms -> mongodb-payload -> Danger Zone -> Delete
-      - Confirm Resource Deletion
-        - Check all
+    - Stop mongodb-payload service
+    - Delete mongodb-payload service (Danger Zone)
+  - Recreate database service
+    - Apply [payload/create-mongodb.md](../payload/create-mongodb.md)
+  - Recreate payload service
+    - Add Source to the Project
+      - Apply [coolify/add-source-to-project](../coolify/add-source-to-project.md)
+        - Project: cpm-cms
+        - GitHub App: payload-cms-for-vps
+        - Repository: cpm-cms
+        - Docker Compose, /docker-compose.yml, dev branch
         - Continue
-      - Confirm Resource Deletion
-        - Enter Resource name: mongodb-payload
-          - Continue
-      - Confirm Resource Deletion
-        - Final Confirmation
-        - Enter your Coolify user password
-        - Confirm
-  - Recreate Database Service
-    - [Click](../payload/create-mongodb.md) for details. (Create a MongoDB using Coolify)
-  - Modify Payload service environment variable DATABASE_URL
-    - Copy value from mongodb-payload Mongo URL (public)
-    - Change the IP address in the URL with the IP address of the virtual machine (multipass list)
-    - Click Update
-  - Deploy Payload Service
-    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Deploy
-  - Check service name in Traefik Dynamic configuration (payload-app.yaml)
+        - Set Name: personal-blog-dev
+        - Save
+
+    - Configure the Payload Project
+      - Apply [coolify/configure-payload-dev](../coolify/configure-payload-dev.md)
+        - Name: payload
+        - Description: Payload template (website) for Coolify
+        - Domains for payload: https://www.devserver1.my-domain.com,https://devserver1.my-domain.com
+        - Different entries from the document
+          - NEXT_PUBLIC_SERVER_URL=https://www.devserver1.my-domain.com
+          - DATABASE_URL=< Mongo URL (internal) from Coolify UI >
+
+    - Enter Mongo URL (public) to local .env file DATABASE_URL , save
+      - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
+
+    - Deploy Payload Project
+      - VM -> Coolify -> Projects -> cpm-cms -> payload ->
+        - Advanced -> Force Deploy
+
+  - Check/Set service name in Traefik Dynamic configuration for payload service
     - service value of payload-https route must be correctly set
       - payload-abc...yz@docker
-  - Restart Traefik
+      - Save
+
+  - Restart Proxy - Traefik
     - VM -> Coolify -> Servers -> devserver1 -> Restart Proxy
-  - Redeploy Payload
-    - VM -> Coolify -> Projects -> cpm-cms -> payload -> Deploy
-  - Check https://www.< dev-domain-name >
+
+  - Check https://www.devserver1.< domain-name >
     - Click "Visit the admin dashboard"
     - Create a new Payload admin user
-    - Click "Seed your database"
-     
-      
-- Check ownership of files/directories
+      - Welcome to your dashboard!
+        - Click "Seed your database"
+          - Seeding with data
+            - Message: `Database seeded! You can now visit your website`
+            - OK, we are good.
+            - Click `visit your website`
+            - Homepage renders with images. 
+          - Message: "An error ocurred during seeding"
+            - Problem continues
+            - Hımm, not so good. ( Did not happen in my setup after applying the steps above )
 

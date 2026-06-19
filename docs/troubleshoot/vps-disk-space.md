@@ -16,15 +16,7 @@ reboot
 
 Wait nearly a minute, than ssh to VPS, and continue.
 
-```bash
-docker ps
-```
-
-If all containers are healthy check https://coolify.`< domain-name >`
-
 ---
-
-If problem continues,
 
 ```bash
 cd /
@@ -36,7 +28,7 @@ ncdu
 
 ncdu ( NCurses Disk Usage ) utility provides easy listing of file and directory sizes
 
-Use ncdu to find cause of disk usage. Delete where possible
+Use ncdu to find the cause of disk usage. Delete where possible. (d: delete, q: exit)
 
 ---
 
@@ -83,7 +75,7 @@ docker volume rm < volume-name >
 docker ps
 ```
 
-Find payload service copy it's name
+Find payload service, copy it's name
 
 ```bash
 docker stop < payload_container_name >

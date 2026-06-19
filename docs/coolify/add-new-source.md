@@ -6,7 +6,7 @@ Visit `https://coolify.< dev-domain-name >`
 
 - Coolify Web UI -> Sources -> Add+
   - New GitHub App
-    - Name: < github-app-name >
+    - Name: < github-app-name-vm >
     - Continue
     - There are two options:
       - Automated Installation
@@ -17,24 +17,25 @@ Visit `https://coolify.< dev-domain-name >`
 ### Automated Installation
 
 - Automated Installation
-  - Webhook Endpoint
+  - Selected Endpoint
     - Select from select box
-      - Select  https://coolify.devserver1.< my-domain.com >
+      - Select https://coolify.devserver1.< domain-name >
     - Register Now
+    - Create Github App for < github-username >
     - Confirm access ( GitHub Authentication )        
       - Authenticate
     - Create App name
       - GitHub App Name : cpm-cms
       - Click "Create GitHub App for < my-github-username >"
-- Click Install Repositories on GitHub
-- Authorization Request for GitHub - Install `< github-app-name-vm >`
-  - Click: Only select repositories
-    - Select from "Select repositories"
-      - `< my-github-username >`/`< git-repo-name >`
-  - Click Install
-- We are back in Coolify UI Sources - GitHub App Form -> 
-  - App Name: < github-app-name-vm >
-  - Save
+    - Click Install Repositories on GitHub
+    - Authorization Request for GitHub - Install `< github-app-name-vm >`
+      - Click: Only select repositories
+        - Select from "Select repositories"
+          - `< my-github-username >`/`< git-repo-name >`
+      - Click Install
+    - We are back in Coolify UI Sources - GitHub App Form -> 
+      - App Name: < github-app-name-vm >
+      - Save
 
 
 ### Manual Installation
@@ -49,7 +50,7 @@ Visit `https://coolify.< dev-domain-name >`
 
 ---
 
-### Continue with [Add Source to the Project](../coolify/add-source-to-project.md)
+### Continue with [Add Source to the Project](add-source-to-project.md)
  
 ---
 

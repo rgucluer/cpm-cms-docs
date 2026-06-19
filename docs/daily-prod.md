@@ -36,6 +36,8 @@ If there are packages to upgrade:
 apt upgrade
 ```
 
+Disconnect
+
 After completing [development](daily-dev.md), let's see production steps
 
 ## Merge dev branch to main branch

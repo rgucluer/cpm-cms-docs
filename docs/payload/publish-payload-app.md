@@ -80,6 +80,8 @@ Wait for results ...
 
 ---
 
+### Build application
+
 ```bash
 pnpm build
 ```
@@ -153,7 +155,7 @@ Apply [coolify/configure-payload-dev](../coolify/configure-payload-dev.md) for d
   - Wait until the message "Container payload-... Started"
     - Click debug icon for more build information
   - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
-  - After deployment node will build Payload CMS. It takes time (3 - 4 minutes).
+  - After deployment, node will build Payload CMS. It takes time (3 - 4 minutes).
   
 
 ## Set Traefik for the new application
@@ -170,7 +172,7 @@ Apply [coolify/set-traefik-for-new-app](../coolify/set-traefik-for-new-app.md)
   - Click "Seed your database", wait ...
     - If successful we get the `Database seeded! You can now visit your website` message.
       - Or just a "done" prompt right of "Seed your database" link.
-    - If process fails check for file permissions and ownership in payload service container. For more information read troubleshooting below.
+    - If process fails "An error occured while seeding", check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
 - Visit `https://www.devserver1.< domain-name >`
 
@@ -221,12 +223,7 @@ Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
 
 ### Error during seeding
 - An error occured while seeding
-  - Check Dockerfile for proper file/directory ownership
-    - Example
-      ```Dockerfile
-      COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-      ```
-      fixed my current error
+  - Check for proper file/directory ownership in payload container
 
 ### An error occured while seeding
 - Apply [troubleshoot/seeding](../troubleshoot/seeding.md) for details

@@ -31,45 +31,46 @@ Use payload-abcdefghijklmabcdefghi@docker in payload-app.yaml in Dynamic Configu
     - +Add/edit
       - Filename: payload-app.yaml
       - Configuration: 
-        ```yaml
-        http:
-          middlewares:
-            root-to-www:
-              redirectRegex:
-                regex: '^((https?:\/\/)|).my-domain.com'
-                replacement: 'https://www.my-domain.com'
-                permanent: true
-          routers:
-            redirect-root:
-              rule: Host(`my-domain.com`)
-              entryPoints:
-                - http
-                - https
-              middlewares:
-                - root-to-www
-              tls:
-                certResolver: letsencrypt
-                domains:
-                  main: my-domain.com
-              service: noop@internal
-            payload-https:
-              rule: Host(`www.my-domain.com`)
-              entryPoints:
-                - https
-              tls:
-                certResolver: letsencrypt
-                domains:
-                  main: my-domain.com
-                  sans:
-                    - '*.my-domain.com'
-              service: payload-.....@docker
-        ```
+```yaml
+http:
+  middlewares:
+    root-to-www:
+      redirectRegex:
+        regex: '^((https?:\/\/)|).my-domain.com'
+        replacement: 'https://www.my-domain.com'
+        permanent: true
+  routers:
+    redirect-root:
+      rule: Host(`my-domain.com`)
+      entryPoints:
+        - http
+        - https
+      middlewares:
+        - root-to-www
+      tls:
+        certResolver: letsencrypt
+        domains:
+          main: my-domain.com
+      service: noop@internal
+    payload-https:
+      rule: Host(`www.my-domain.com`)
+      entryPoints:
+        - https
+      tls:
+        certResolver: letsencrypt
+        domains:
+          main: my-domain.com
+          sans:
+            - '*.my-domain.com'
+      service: payload-.....@docker
+```
         
       - Paste the Payload service name + "@docker" as value to service (payload-abcdefghijklmabcdefghid@docker)
         - Use only the first two sections of the container name
           - payload-y....d-123...234
           - payload-y....d@docker
       - Check domain names, change them to your according to your setup.
+      - Check spaces, do not use tabs, use only spaces. Indentation is important.
       - Save
       - Close Form
       - Restart Proxy

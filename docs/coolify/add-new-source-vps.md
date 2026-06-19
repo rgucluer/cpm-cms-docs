@@ -36,6 +36,7 @@ Visit `https://coolify.< domain-name >`
     - App Name: < github-app-name-vps >
     - Save
 
+#### Continue with [Add Source to the Project](../coolify/add-source-to-project-vps.md)
 
 ### Manual Installation
 

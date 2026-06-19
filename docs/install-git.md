@@ -8,9 +8,6 @@ sudo apt install lego nano curl python3-pip ncdu
 sudo apt install git-all -y
 ```
 
-## CachyOS  ( systemd / KDE Plasma )
-git is already installed.
-
 ## Set options for git:
 ```bash
 git config --global user.name "< github-name-surname >"

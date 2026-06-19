@@ -7,29 +7,27 @@
       - Mongo DB 
           - Configuration:
             - Name: mongodb-payload
-              - Name keeps refreshing. Copy "mongodb-payload", paste into Name input, press Save.
             - Proxy
               - Public Port: 27017
-                - Same problem here, it keeps refreshing.
             - Save
           - Resource Limits
             - Number of CPUs: 0.25
             - CPU Weight: 256
             - Limit Memory:
               - Soft Memory Limit: 1g
-              - Maximum Memory Limit: 1g
               - Swappiness: 1
+              - Maximum Memory Limit: 1g
               - Maximum Swap Limit: 1g
             - Save
         - Start/Restart
           - Close "Database Startup" form after "Database started." message
           - Check for green Running (healthy) label
+          - Save
         - Coolify UI -> Projects -> cpm-cms (production) 
           - mongodb-payload
             - Configuration - General
               - Check : Proxy: Make it publicly available
                 - Wait
-                  - Check Mongo URL (public) is available
               - Save
               - We will use Mongo URL (public) in later steps.
 
