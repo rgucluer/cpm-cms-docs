@@ -40,9 +40,17 @@ or
 $ git push origin main
 ```
 
-
-
 - Coolify UI (On VM) -> Projects -> cpm-cms (production) -> payload(devserver1) -> Redeploy
 or
 - Coolify UI (On VM) -> Projects -> cpm-cms (production) -> payload(devserver1) -> Advanced Forced Deploy
+
+- Wait 3-4 minutes after deployment finishes.
+
+- Open https://www.< dev-domain-name >/admin
+  - Login
+  - Click Seed your database
+    - We do this after a deployment
+    - TODO: Implement a backup/restore process to persist existing content between deployments.
+    - Open https://www.< dev-domain-name >
+    - Home page renders with images and default theme
 

@@ -40,7 +40,7 @@ Disconnect
 
 After completing [development](daily-dev.md), let's see production steps
 
-## Merge dev branch to main branch
+## On Development PC: Merge dev branch to main branch
 
 On Development PC. Switch to main branch
 ```bash
@@ -58,20 +58,38 @@ git merge dev
 git push origin main
 ```
 
-## Redeploy on Virtual Private Server
+## Stop & Deploy on Virtual Private Server
 - Coolify Dev UI ( https://coolify.< domain-name > ) 
   - Projects -> < project-name > 
     - Applications -> payload
-      - Redeploy
+      - Stop -> Continue -> Confirm
+        - Wait for `Exited` label
+      - Deploy
+      - Wait 3-4 minutes after deployment finishes.
 
-## Git pull dev branch to current state
+      - Open https://www.< dev-domain-name >/admin
+        - Login
+        - Click Seed your database
+          - We do this after a deployment
+          - TODO: Implement a backup/restore process to persist existing content between deployments.
+          - Open https://www.< dev-domain-name >
+          - Home page renders with images and default theme
+
+
+## Sync dev branch to current state of main branch
 
 ```bash
 git switch dev
 ```
 
+Create the branch if it does not exist
+
 ```bash
-git pull origin main
+git switch -c dev
+```
+
+```bash
+git pull --rebase origin main
 ```
 
 ```bash
