@@ -27,16 +27,16 @@
       - Apply [coolify/configure-payload-dev](../coolify/configure-payload-dev.md)
         - Name: payload
         - Description: Payload template (website) for Coolify
-        - Domains for payload: https://www.devserver1.my-domain.com,https://devserver1.my-domain.com
+        - Domains for payload: https://www.< dev-domain-name >,https://< dev-domain-name >
         - Different entries from the document
-          - NEXT_PUBLIC_SERVER_URL=https://www.devserver1.my-domain.com
+          - NEXT_PUBLIC_SERVER_URL=https://www.< dev-domain-name >
           - DATABASE_URL=< Mongo URL (internal) from Coolify UI >
 
     - Enter Mongo URL (public) to local .env file DATABASE_URL , save
       - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
 
     - Deploy Payload Project
-      - VM -> Coolify -> Projects -> cpm-cms -> payload ->
+      - VM -> Coolify -> Projects -> < project-name > -> < application-name >
         - Advanced -> Force Deploy
 
   - Check/Set service name in Traefik Dynamic configuration for payload service
@@ -45,9 +45,9 @@
       - Save
 
   - Restart Proxy - Traefik
-    - VM -> Coolify -> Servers -> devserver1 -> Restart Proxy
+    - VM -> Coolify -> Servers -> < coolify-server-name > -> Restart Proxy
 
-  - Check https://www.devserver1.< domain-name >
+  - Check https://www.< dev-domain-name >
     - Click "Visit the admin dashboard"
     - Create a new Payload admin user
       - Welcome to your dashboard!

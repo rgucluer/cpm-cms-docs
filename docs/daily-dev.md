@@ -84,6 +84,7 @@ Check https://www.devserver1.my-domain.com/admin
 
 ## Development steps
 - git-repo-url : https://github.com/< github-username >/< github-app-name >
+  - Or other git providers
 - payload-app-full-path : /home/< local-user-name >/< local-workspace >/< payload-app-directory >
 ```bash
 cd < payload-app-full-path >

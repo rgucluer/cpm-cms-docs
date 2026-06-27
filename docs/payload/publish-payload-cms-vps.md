@@ -1,4 +1,4 @@
-# Publish a Payload CMS on a Virtual Private Server
+# Publish Payload CMS on a Virtual Private Server
 
 We will use the Payload Website template, https://github.com/payloadcms/payload/tree/main/templates/website .
 
@@ -52,6 +52,9 @@ https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 https://git-scm.com/cheat-sheet
 
 On Developer PC
+
+Merge dev branch to main branch
+
 ```bash
 cd < workspace-full-path >/payload-app
 ```
@@ -69,6 +72,8 @@ git merge --squash dev
 ```
 
 Fix any conflicts.
+
+Commit and push your changes to Git repo
 
 ```bash
 git commit
@@ -89,7 +94,7 @@ Apply [coolify/configure-payload-vps](../coolify/configure-payload-vps.md)
 
 ## Deploy / Redeploy Payload Application
 - !ATTENTION! Deploy operation will delete all content. 
-  - TODO: Implement Backup/Restore operations before/after deployment.
+- TODO: Implement Backup/Restore operations before/after deployment.
 - Coolify UI on VPS (https://coolify.< domain-name >)
   - Projects -> < project-name > (production) -> payload 
     - Stop service if it is already running. 

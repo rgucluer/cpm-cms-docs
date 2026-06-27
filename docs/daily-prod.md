@@ -44,29 +44,35 @@ After completing [development](daily-dev.md), let's see production steps
 
 On Development PC. Switch to main branch
 ```bash
-git switch main
+git checkout main
 ```
 
 Merge dev branch to main branch
 ```bash
-git merge dev
+git merge --squash dev
 ```
 
 ## Commit and push your changes to Git repo
+
+```bash
+git commit
+```
 
 ```bash
 git push origin main
 ```
 
 ## Stop & Deploy on Virtual Private Server
-- Coolify Dev UI ( https://coolify.< domain-name > ) 
+- !ATTENTION! Deploy operation will delete all content. 
+- TODO: Implement Backup/Restore operations before/after deployment.
+- Coolify UI on VPS ( https://coolify.< domain-name > ) 
   - Projects -> < project-name > 
     - Applications -> payload
       - Stop -> Continue -> Confirm
         - Wait for `Exited` label
       - Deploy
-      - Wait 3-4 minutes after deployment finishes.
-
+        - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
+      - After deployment, node will build Payload CMS. It takes time (3 - 4 minutes).
       - Open https://www.< dev-domain-name >/admin
         - Login
         - Click Seed your database
@@ -78,23 +84,20 @@ git push origin main
 
 ## Sync dev branch to current state of main branch
 
+Delete already merged local dev branch
 ```bash
-git switch dev
+git branch -d dev
 ```
 
-Create the branch if it does not exist
+To force delete we can use -D option
+
+Create dev branch
 
 ```bash
 git switch -c dev
 ```
 
-```bash
-git pull --rebase origin main
-```
+We can continue to daily-dev
 
-```bash
-git push origin dev
-```
 
-- Repeat
 

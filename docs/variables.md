@@ -15,6 +15,7 @@ When you see these variables through the document , enter the values valid for y
     - Name of a specific server computer
       - server1
       - devserver1
+      - devblogserver
 
 - Host Machine (Developer PC, Controller PC)
   - dev-pc-local-ip: Developer PC local ip address
@@ -64,10 +65,17 @@ When you see these variables through the document , enter the values valid for y
   - resource-name : `< github-username >/< github-repo >:< branch >-< a-generated-string >`
   - project-name:
     - cpm-cms
-    - Applications
-      - payload
-    - Databases
-      - mongodb-payload    
+    - payload-project
+  - application-name
+    - payload
+    - personal-blog-prod
+    - personal-blog-dev
+  - coolify-server-name
+    - devserver1
+    - server1
+    - cpm-cms
+  - Databases
+    - mongodb-payload    
   - Traefik ( Coolify Proxy )
     - traefik-user : traefikuser
     - traefik-password
