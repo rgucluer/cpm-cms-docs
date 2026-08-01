@@ -5,9 +5,9 @@ cd < payload-app-full-path >
 ```
 ```bash
 $ git push origin dev
-To github.com:< github-username >/< git-repo-name >.git
+To github.com:< github-username >/< github-repo-name >.git
  ! [rejected]        dev -> dev (non-fast-forward)
-error: failed to push some refs to 'github.com:< github-username >/< git-repo-name >.git'
+error: failed to push some refs to 'github.com:< github-username >/< github-repo-name >.git'
 hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. If you want to integrate the remote changes,
 hint: use 'git pull' before pushing again.

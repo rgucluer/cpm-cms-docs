@@ -4,7 +4,7 @@
   - Click Resources +New
     - Applications -> Git Based
       - Click Private Repository ( with GitHub App )
-        - Select a GitHub App: Click cpm-cms button
+        - Select a GitHub App: Click < github-app-name-vm > button
           - Repository: cpm-cms
           - Click Load Repository
             - Branch: dev
@@ -18,4 +18,4 @@
               - < Coolify Application Name >
             - Save
 
-### Continue with ... [Configure the Payload Project](configure-payload-dev.md)
+## Continue with : Configure the Payload Project [coolify/configure-payload-dev](../payload/publish-payload-app.md#configure-the-payload-project-coolifyconfigure-payload-dev)

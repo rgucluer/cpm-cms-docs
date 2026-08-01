@@ -1,23 +1,14 @@
 # Daily Operations of Production Environment
 
 ## Add ssh keys to ssh agent 
-```bash
-ssh-agent bash
-```
 
 ```bash
-ssh-add ~/.ssh/< vps-user-key >
-```
-
-```bash
-ssh-add ~/.ssh/coolifyrootkey
+ssh-add ~/.ssh/< vps-root-key >
 ```
 
 ```bash
 ssh-add ~/.ssh/< github-user-key >
 ```
-
-Open a second terminal, do those above. Use one to ssh to VM/VPS, the other for local operations.
 
 ## ssh to VPS
 ```bash
@@ -47,7 +38,7 @@ On Development PC. Switch to main branch
 git checkout main
 ```
 
-Merge dev branch to main branch
+Merge dev branch to main branch. ( Up to date branch is dev branch. )
 ```bash
 git merge --squash dev
 ```
@@ -66,21 +57,23 @@ git push origin main
 - !ATTENTION! Deploy operation will delete all content. 
 - TODO: Implement Backup/Restore operations before/after deployment.
 - Coolify UI on VPS ( https://coolify.< domain-name > ) 
-  - Projects -> < project-name > 
+  - Projects -> < coolify-project-name > 
     - Applications -> payload
-      - Stop -> Continue -> Confirm
+      - Stop -> 
+        - Confirm Application Stopping -> Continue 
+        - Confirm Application Stopping -> Confirm
         - Wait for `Exited` label
+      - Configuration -> General -> Reload Compose File
+      - Save
       - Deploy
         - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
       - After deployment, node will build Payload CMS. It takes time (3 - 4 minutes).
-      - Open https://www.< dev-domain-name >/admin
+      - Open https://www.< prod-domain-name >/admin
         - Login
         - Click Seed your database
           - We do this after a deployment
-          - TODO: Implement a backup/restore process to persist existing content between deployments.
-          - Open https://www.< dev-domain-name >
+          - Open https://www.< prod-domain-name >
           - Home page renders with images and default theme
-
 
 ## Sync dev branch to current state of main branch
 
@@ -99,5 +92,8 @@ git switch -c dev
 
 We can continue to daily-dev
 
+---
+
+### [Back to README](../README.md)
 
 

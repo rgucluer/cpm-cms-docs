@@ -1,6 +1,6 @@
 # Create a MongoDB using Coolify
 
-- Coolify UI -> Projects -> cpm-cms (production) 
+- Coolify UI -> Projects -> payload-project (production) 
   - Resources
     - +Add Resource (or +New )
     - Databases
@@ -23,17 +23,13 @@
           - Close "Database Startup" form after "Database started." message
           - Check for green Running (healthy) label
           - Save
-        - Coolify UI -> Projects -> cpm-cms (production) 
+        - Coolify UI -> Projects -> payload-project (production) 
           - mongodb-payload
             - Configuration - General
               - Check : Proxy: Make it publicly available
                 - Wait
               - Save
               - We will use Mongo URL (public) in later steps.
-
----
-
-### Continue with : Install nvm, and Node [nextjs/install-nvm-node](publish-payload-app.md#install-nvm-and-node-on-development-pc-nextjsinstall-nvm-node)
 
 ---
 
@@ -52,6 +48,7 @@ sudo dpkg -i mongodb-compass_1.49.6_amd64.deb
 ```bash
 mongodb-compass
 ```
+---
 
 ### Create new connection
 - Start MongoDB service in Coolify
@@ -60,4 +57,7 @@ mongodb-compass
   - Delete IP address ,and enter IP address of Virtual Machine
   - Save & Connect
   - Disconnect
-  
+
+---
+
+### Continue with: Create a local copy of Payload CMS Website template [publish-payload-cms-vps](publish-payload-cms-vps.md#create-a-local-copy-of-payload-cms-website-template)

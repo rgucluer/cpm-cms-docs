@@ -1,19 +1,22 @@
 ## Configure the Project
 
 - Coolify Web UI -> Projects -> payload-project ( production )
-  - Applications -> < github-app-name-vm > ...
+  - Applications -> < coolify-application-name > ...
 
     - Configuration -> General
-      - Name: payload
+      - Click Reload Compose File
+      - Name: < coolify-application-name >
       - Description: Payload template (website) for Coolify
       - Build Pack: Docker Compose
       - Domains -> Domains for payload:
         - https://www.my-domain.com,https://my-domain.com
+        - https://www.subdomain.my-domain.com,https://subdomain.my-domain.com
         - Save
       - Build
         - Base Directory: /
         - Check: Preserve Repository During Deployment
         - Docker Compose Location : /docker-compose.yml
+        - Save
       - Docker Compose
         - Check : Escape special characters in labels
       - Pre/Post Deployment Commands
@@ -27,7 +30,7 @@
         - Include Source Commit in Build: Uncheck
       - Container:
         - Consistent Container Names: Uncheck
-        - Custom Container Name: payload
+        - Custom Container Name: < coolify-application-name >
           - Save
       - Deployment
         - Auto Deploy: Uncheck
@@ -55,7 +58,7 @@
 
     - Configuration -> Git Source
       - Repository:
-        - < github-username >/cpm-cms
+        - < github-username >/< github-repo-name >
       - Branch: 
         - main
       - Commit SHA
@@ -79,6 +82,5 @@
       - Check Domains for payload
       - Check & Save
 
-Continue with [Deploy Application](../payload/publish-payload-cms-vps.md#deploy--redeploy-payload-application)
+### Continue with: Deploy Application [payload/publish-payload-cms-vps](../payload/publish-payload-cms-vps.md#deploy--redeploy-payload-application)
 
-Back to [publish-payload-vps](../payload/publish-payload-cms-vps.md#configure-the-payload-vps).

@@ -6,44 +6,50 @@ From documentation: The SSH key must not have a passphrase or 2FA enabled for th
 
 But I used a ssh key protected by a passphraze, and run the script. It did not fail. But I added the ssh key to ssh agent before I run the installation script.
 
-
 ```bash
 cd ~/.ssh
 ```
 
 ```bash
-ssh-keygen -C vmuser -f vmuserkey
+# ssh-keygen -C < vm-user-name > -f < vm-user-key >
+ssh-keygen -C vmuser -f < vm-user-key >
 ```
 
 It will ask for a passphraze, you can enter one, or skip it by pressing <kbd>ENTER</kbd> . ( You will need this passphraze later, keep it safe. )
 
 Make key pair readable/writable only by the user: 
 ```bash
-chmod u=wr-,g=---,o=--- ~/.ssh/vmuserkey*
+chmod u=wr-,g=---,o=--- ~/.ssh/< vm-user-key >*
 ```
 Don't forget the "*" at the end.
 
 
 ### Add ssh key to ssh agent:
 ```bash
-ssh-add ~/.ssh/vmuserkey
+ssh-add ~/.ssh/< vm-user-key >
 ```
 
 
 ### create an ssh key for VM root user
 ```bash
-ssh-keygen -C root -f coolifyrootkey
+ssh-keygen -C root -f < vm-coolify-rootkey >
 ```
 
 It will ask for a passphraze, you can enter one, or skip it by pressing <kbd>ENTER</kbd> . ( You will need this passphraze later, keep it safe. )
 
 Make key pair readable/writable only by the user: 
 ```bash
-chmod u=wr-,g=---,o=--- ~/.ssh/coolifyrootkey*
+chmod u=wr-,g=---,o=--- ~/.ssh/< vm-coolify-rootkey >*
 ```
 Don't forget the "*" at the end.
 
 ### Add ssh key to ssh agent for Coolify VM root user
 ```bash
-ssh-add ~/.ssh/coolifyrootkey
+ssh-add ~/.ssh/< vm-coolify-rootkey>
 ```
+
+---
+
+### Continue with - Install Canonical Multipass [multipass/install-multipass](multipass/install-multipass-create-vm.md#install-canonical-multipass-multipassinstall-multipass)
+
+

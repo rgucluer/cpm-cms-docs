@@ -1,23 +1,23 @@
-## Self Host a Payload CMS Application with Coolify
+# Self Host a Payload CMS Application with Coolify
 
-Operations below may destroy content, and databases. Backup before any operation. 
+cpm-cms is a modified version of Payload CMS Website Template. 
 
-### [Development Environment](docs/development.md)
-Run Coolify in a Virtual Machine.
+cpm-cms-docs is the documentation on how to implement Payload CMS on a Coolify instance.
 
-### [Production Environment](docs/production.md)
-Run Coolify on a Virtual Private Server.
+## Development Environment [development](docs/development.md)
 
-### [Variables](docs/variables.md)
-
-### [Uninstall Coolify](docs/coolify/uninstall-coolify.md)
-
-cpm-cms-docs v0.2.2
+## Production Environment [production](docs/production.md)
 
 ### LICENSE
-Copyright 2026 Recep GÜÇLÜER rgucluer@gmail.com
+Copyright 2026 Recep GÜÇLÜER `rgucluer@gmail.com`
 
-cpm-cms-docs is [MIT licensed](LICENSE).
+cpm-cms-docs is [MIT licensed](LICENSE.md).
+
+https://github.com/rgucluer/cpm-cms-docs
+
+https://github.com/rgucluer/cpm-cms
+
+---
 
 ### Notice
 

@@ -7,12 +7,13 @@
       - Description: Payload template (website) for Coolify
       - Build Pack: Docker Compose
       - Domains -> Domains for payload:
-        - https://www.devserver1.my-domain.com,https://devserver1.my-domain.com
+        - ```https://www.< dev-domain-name >,https://< dev-domain-name >```
         - Save
       - Build
         - Base Directory: /
         - Check: Preserve Repository During Deployment
         - Docker Compose Location : /docker-compose.yml
+        - Save
       - Docker Compose
         - Check : Escape special characters in labels
       - Pre/Post Deployment Commands
@@ -26,7 +27,8 @@
         - Include Source Commit in Build: Uncheck
       - Container:
         - Consistent Container Names: Uncheck
-        - Custom Container Name: payload
+        - Custom Container Name: < coolify-application-name >
+          - payload
           - Save
       - Deployment
         - Auto Deploy: Uncheck
@@ -44,18 +46,17 @@
         - For every variable
           - Check: Available at Buildtime , Check: Available at Runtime
           - Save, Close Form, Update
-      - NODE_OPTIONS=--no-deprecation --max-old-space-size=3072
+      - NODE_OPTIONS=--no-deprecation --max-old-space-size=2048
       - HOSTNAME=0.0.0.0
-      - DATABASE_URL: Get value from mongodb-payload Mongo URL (public), and paste as value. 
-        - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
+      - DATABASE_URL: Get value from mongodb-payload Mongo URL (internal), and paste as value. 
       - PAYLOAD_SECRET: < copy value from local copy .env file to here >
-      - NEXT_PUBLIC_SERVER_URL : https://www.devserver1.< domain-name >
+      - NEXT_PUBLIC_SERVER_URL : https://www.< dev-domain-name >
       - CRON_SECRET: < copy value from local copy .env file to here , or Enter_your_password_here >
       - PREVIEW_SECRET: < copy value from local copy .env file to here , or Enter_your_password_here >
       
     - Configuration -> Git Source
       - Repository:
-        - < github-username >/cpm-cms
+        - < github-username >/< github-repo-name >
       - Branch: 
         - dev
       - Commit SHA
@@ -68,10 +69,10 @@
           - Number is a fractional number. 0.000 means no limit.
         - CPU sets to use: Empty
         - CPU Weight: 512
-        - Soft Memory Limit: 3g
-        - Maximum Memory Limit: 3g
+        - Soft Memory Limit: 2g
+        - Maximum Memory Limit: 2g
         - Swappiness: 1
-        - Maximum Swap Limit: 3g
+        - Maximum Swap Limit: 2g
         - Save
           - Resource limits updated.
         - ( Set Memory values to according to your setup. )
@@ -79,7 +80,7 @@
     - Configuration -> General
       - Check Domains for payload
       - Check & Save
+---
 
-Continue with [Deploy Application](../payload/publish-payload-app.md#deploy--redeploy-payload-application)
+## Continue with : Deploy Application [payload/publish-payload-app](../payload/publish-payload-app.md#deploy--redeploy-payload-application)
 
-Back to [publish-payload-app.md](../payload/publish-payload-app.md#configure-the-payload-project).

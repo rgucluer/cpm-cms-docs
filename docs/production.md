@@ -1,43 +1,15 @@
 # Production Environment
 
-Please follow this documentation after reading and applying Development Environment documentation.
+```text
+servername: server1
+prod-domain-name: cpm-cms.my-domain.com
+domain-name: my-domain.com
+```
 
-## Install Production Environment
+## Install cpm-cms Production Environment [install-cpm-cms-prod](install-cpm-cms-prod.md)
 
-We already created a git repository. We will use it.
+## Daily Operations of Production Environment [daily-prod](daily-prod.md)
 
-### [Initial Setup of a Virtual Private Server](production/initial_setup.md)
+## Uninstall Coolify [coolify/uninstall-coolify-vps](coolify/uninstall-coolify-vps.md)
 
-### [Install nvm, and Node](nextjs/install-nvm-node.md)
-
-### [Set swap](set_swap.md)
-
-### [Install & run Coolify on a Virtual Private Server](coolify/install-prod-coolify.md)
-
-### [Configure Coolify - Set Hetzner API Key if you use Hetzner](coolify/set_hetzner_api_key.md)
-
-### [Configure Coolify - Setup Wildcard SSL Certificates with Traefik](coolify/configure-coolify-traefik-vps.md)
-
-### [Set e-mail with Resend](coolify/coolify-email-resend.md)
-
-Take a snapshot of the VPS. Can be handy later.
-
-### [Implement a Payload CMS with Coolify on a Virtual Private Server](payload/publish-payload-cms-vps.md)
-
----
-
-## [Daily Operations of Production Environment](daily-prod.md)
-
----
-
-## [Uninstall Coolify](coolify/uninstall-coolify-vps.md)
-
----
-
-## Incomplete Ones
-
-### [Configure Coolify - Get rid of zombies](troubleshoot/get-rid-of-zombies.md)
-
-## Other
-
-### [Configure Coolify - Create a private key](coolify/create-private-key.md)
+## Back to [README](../README.md)

@@ -1,44 +1,43 @@
 ## Variables:
 When you see these variables through the document , enter the values valid for your setup. Do not enter the angle brackets ( < > ).
 
-- General
-  - timezone : Universal
-    - Utc
-    - Europe/Istanbul
+- Host Machine (Developer PC, Controller PC)
+  - local-user-name: System user name
+  - workspace: workspace
+    - The directory to store software source code.
+  - workspace-full-path: /home/< local-user-name >/< workspace >
+  - dev-pc-local-ip: Developer PC local IP
+  - dev-pc-global-ip: Global IP address that Developer PC connects to internet.
 
 - Domain information
   - domain-name: my-domain.com
     - The domain name registered to you. 
     - fqdn.tld
   - dev-domain-name: devserver1.my-domain.com
+  - prod-domain-name: cpm-cms.my-domain.com
   - servername : 
     - Name of a specific server computer
       - server1
       - devserver1
       - devblogserver
 
-- Host Machine (Developer PC, Controller PC)
-  - dev-pc-local-ip: Developer PC local ip address
-  - dev-pc-global-ip: Global IP address that Developer PC connects to internet.
-  - local-username
-  - workspace: workspace
-    - The directory to store software source code.
-  - workspace-full-path: /home/< local-user-name >/<workspace>
+- Payload App
   - payload-app-directory: cpm-cms
   - payload-app-full-path: /home/< local-user-name >/< local-workspace >/< payload-app-directory >
     - example: /home/jack/workspace/cpm-cms
 
 - GitHub
-  - github-user-key: github-ssh-key
   - github-username: githubuser
+  - github-repo-name: cpm-cms
+  - github-user-key: github-ssh-key
   - github-name-surname: John Doe
   - github-user-email
-  - git-repo-name: cpm-cms
   - git-repo-url : https://github.com/< github-username >/cpm-cms
   - github-app-name-vm: 
     - cpm-cms ( Used in Virtual Machine)
   - github-app-name-vps: 
-    - payload-cms-for-vps ( Used in Virtual Private Server)
+    - cpm-cms-vps ( Used in Virtual Private Server)
+    - payload-app-vps ( Used in Virtual Private Server)
 
 - Virtual Machine
   - vm-name: coolvm
@@ -49,12 +48,12 @@ When you see these variables through the document , enter the values valid for y
   - vm-root-key: root-ssh-key
   - virtual-m-ip: IP of Virtual Machine. Lear from the result of multipass list command.
   - vm-server-name : devserver1  
-  - vm-coolify-server-name: devserver1
 
 - Virtual Private Server
   - vps-user-name
   - vps-user-key: vps-user-ssh-key
   - vps-ssh-port: 22
+  - vps-root-key: root-ssh-key
   - vps-ip-address:
   - server-name : server1  
   - vps-coolify-server-name: server1
@@ -63,13 +62,13 @@ When you see these variables through the document , enter the values valid for y
 
 - Coolify
   - resource-name : `< github-username >/< github-repo >:< branch >-< a-generated-string >`
-  - project-name:
+  - vm-coolify-rootkey: SSH key for VM root user
+    - my-coolify-root-key
+  - coolify-project-name:
     - cpm-cms
     - payload-project
-  - application-name
+  - coolify-application-name
     - payload
-    - personal-blog-prod
-    - personal-blog-dev
   - coolify-server-name
     - devserver1
     - server1
@@ -96,6 +95,12 @@ When you see these variables through the document , enter the values valid for y
         - Click the related App Name (cpm-cms)
           - Source ID is the last section of the URL of this web page.
             - https://`< dev-domain-name >`/source/github/`< Source ID >`
+
+- General
+  - timezone : Universal
+    - Utc
+    - Europe/Istanbul
+
 
 Conventions:
 

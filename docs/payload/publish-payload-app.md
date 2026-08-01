@@ -1,15 +1,9 @@
 # Publish a Payload CMS on a Virtual Machine
 
-We will use the Payload Website template, https://github.com/payloadcms/payload/tree/main/templates/website .
-
-https://payloadcms.com/docs/getting-started/what-is-payload
-
-https://payloadcms.com/docs/production/deployment
-
 ## Open Coolify Web UI of Virtual Machine
 
 - Start Virtual Machine
-- Visit `https://coolify.devserver1.< domain-name >`
+- Visit `https://coolify.< dev-domain-name >`
 
 ## Coolify - Add a new Project
 
@@ -19,175 +13,67 @@ https://payloadcms.com/docs/production/deployment
     - Description: Payload website template for Coolify
     - Continue
 
-## Create a MongoDB using Coolify
-Apply [create-mongodb](create-mongodb.md)
+## Create a MongoDB using Coolify [payload/create-mongodb](create-mongodb.md)
 
-## Install nvm, and Node
-Apply [nextjs/install-nvm-node](nextjs/install-nvm-node.md)
+## Install nvm, and Node on Development PC [nextjs/install-nvm-node](../nextjs/install-nvm-node.md)
 
 ## Create a Payload CMS Application
-- Method One:
-  - If you are creating a new Payload CMS application, and do not committed to a git repository yet, use this method.
-  - [Create app with pnpx](create-payload-cms.md)
-- Method Two: If you already have a git repository you created before, use this method.
-  - [Clone an existing git repository](create-payload-cms-with-git-clone.md) .
 
-## Make some changes in source code
-Apply [change-source-code](change-source-code.md)
+### Option One: Create app with pnpx [payload/method-one/create-payload-cms-m1](method-one/create-payload-cms-m1.md)
+If you are creating a new Payload CMS application, and did not committed to a git repository yet, use this method.
 
-## Install npm packages & build the project
+### Option Two: Create app with cloning a git repository [payload/method-two/create-payload-cms-m2](method-two/create-payload-cms-m2.md)
+If you already have a git repository, use this method.
 
-On Developer PC
-```bash
-cd < payload-app-full-path >
-```
+## Add a new source ( GitHub App ) to Coolify [coolify/add-new-source](../coolify/add-new-source.md)
 
-Check values in .env file, if it fits your current setup.
+## Add Source to the Project [coolify/add-source-to-project](../coolify/add-source-to-project.md)
+We added the source (GitHub App) to Coolify Sources section in previous step. Now we will connect that to our Coolify Project . 
 
-```bash
-pnpm install
-```
-
-### Run application in development mode
-
-```bash
-pnpm dev
-```
-
-This command uses the .env file for environment variables. When we use Coolify inside a VM or VPS we define each variable in the Coolify UI Environment Variables page.
-
-Wait for results ...
-
-```bash
-> payload-app@0.1.0 dev < workspace-full-path >/payload-app
-> cross-env NODE_OPTIONS=--no-deprecation next dev
-
-▲ Next.js 16.2.3 (Turbopack)
-- Local:        http://localhost:3000
-- Network:      < dev-pc-local-ip >:3000
-- Environments: .env
-✓ Ready in 374ms
-- Experiments (use with caution):
-  ⨯ turbopackServerFastRefresh
-  ✓ webpackMemoryOptimizations
-
-```
-- Check, and fix any errors.
-- Open http://localhost:3000 in a browser
-  - This renders Payload CMS 
-
-<kbd>CTRL</kbd> + <kbd>C</kbd> in terminal to stop the server
-
----
-
-### Build application
-
-```bash
-pnpm build
-```
----
-
-## Create a new private respository on GitHub
-Read [Github creating-a-new-repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) for details
-
-## Add a new remote for payload-app
-
-```bash
-cd < workspace-full-path >/payload-app
-```
-
-Check if a remote is defined:
-```bash
-git config list
-```
-
-Look for `remote.origin.url`
-
-If a remote does not exist, set a GitHub repository as the remote for cpm-cms
-
-https://docs.github.com/en/get-started/git-basics/managing-remote-repositories
-
-
-```bash
-git remote add origin git@github.com:< github-username >/cpm-cms.git
-```
-
-## git push code to GitHub repository
-[Click](../git/git-push.md) for details
-
-## Create a new branch "dev" on Github
-
-https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository
-
-
-### Git push to dev branch
-
-```bash
-git checkout -b dev
-```
-
-After we make changes to source code, and commit the changes we can push the code to the original repo on GitHub.
-
-https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
-
-
-```bash
-git push origin dev
-```
-
-## Coolify - Add a new Source ( Virtual Machine )
-Apply [coolify/add-new-source](../coolify/add-new-source.md)
-
-## Add Source to the Project
-Apply [coolify/add-source-to-project](../coolify/add-source-to-project.md) for details
-
-## Configure the Payload Project
-Apply [coolify/configure-payload-dev](../coolify/configure-payload-dev.md) for details
+## Configure the Payload Project [coolify/configure-payload-dev](../coolify/configure-payload-dev.md)
 
 ## Deploy / Redeploy Payload Application
 - !ATTENTION! Deploy operation will delete all content. 
   - TODO: Implement Backup/Restore operations before/after deployment.
-- Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Projects -> < project-name (production) -> payload
+- Coolify UI on VM (https://coolify.< dev-domain-name >)
+  - Projects : < coolify-project-name > -> Applications : < coolify-application-name >
     - Stop service if it is already running. 
-    - Deploy / Redeploy
-    - Or, Advanced -> Force deploy (without cache)
+    - Reload Compose File
+    - Save
+    - Advanced -> Force deploy (without cache)
   - Wait until the message "Container payload-... Started"
     - Click debug icon for more build information
-  - Check the green label above stays green "Running(healthy) for a couple of ten seconds...
+  - Check the green label above, if it stays green "Running(healthy) for a couple of ten seconds...
   - After deployment, node will build Payload CMS. It takes time (3 - 4 minutes).
-  
 
-## Set Traefik for the new application
-Apply [coolify/set-traefik-for-new-app](../coolify/set-traefik-for-new-app.md)
+## Set Traefik for the new application [coolify/set-traefik-for-new-app](../coolify/set-traefik-for-new-app.md)
 
 ## Check the Application
-- Check `https://www.devserver1.< domain-name >`
+- Check `https://www.< dev-domain-name >`
   - Works, good `:)` .
   - Not working, bad `:(`, try [troubleshooting](#troubleshooting).
 
 - Click `Visit the admin dashboard`
-  - `https://www.< domain-name >/admin`
+  - `https://www.< dev-domain-name >/admin`
   - Create your first user, or login
   - Click "Seed your database", wait ...
     - If successful we get the `Database seeded! You can now visit your website` message.
       - Or just a "done" prompt right of "Seed your database" link.
     - If process fails "An error occured while seeding", check for file permissions and ownership in payload service container. For more information read troubleshooting below.
 
-- Visit `https://www.devserver1.< domain-name >`
+- Visit `https://www.< dev-domain-name >` , or click "visit your website" link
 
 - Page renders with images.
 
 - Learn more ... [https://payloadcms.com/docs/getting-started/what-is-payload](https://payloadcms.com/docs/getting-started/what-is-payload)
 
+## Continue with: 
 
-## Continue with
-- [Production Environment](docs/production.md)
+### Production Environment [production](../../README.md#production-environment-production)
 
-- Back to [README](../../README.md)
+### Daily Development Operations [daily-dev.md](../development.md#daily-operations-of-development-environment-daily-dev)
 
-- [Daily Development Operations](../daily-dev.md)
-
+---
 
 ## References
 - https://payloadcms.com/docs/production/deployment
@@ -199,34 +85,59 @@ Apply [coolify/set-traefik-for-new-app](../coolify/set-traefik-for-new-app.md)
 - https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
 
 
-## TODO: Work on better content persistence
+## TODO: 
+- Add backup/restore documentation
+- Implement Payload CMS as a Coolify Service
 
 ---
 
 ## Troubleshooting
 
+### 404 page not found
+
+[404 page not found](../troubleshoot/t404-page-not-found.md)
+
+---
+
 ### Error: #1 [internal] load local bake definitions
 
 ```bash
-corepack enable pnpm && pnpm install --frozen-lockfile;
-.....
-Error type: App\Exceptions\DeploymentException
-Error code: 0
-Location: /var/www/html/app/Traits/ExecuteRemoteCommand.php:242
+$ corepack enable pnpm && pnpm install --frozen-lockfile;
+
+ Error: #1 [internal] load local bake definitions
 
 ```
-- [Apply troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) 
+- Apply [troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) 
 
 ### Payload does not render images
 - In progress
 - Apply [troubleshoot/render-images](../troubleshoot/render-images.md) 
 
+### Deployment Error [ERR_PNPM_IGNORED_BUILDS]
+
+During VM or VPS Payload CMS deployment
+
+```bash
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.28.1, sharp@0.34.2, sharp@0.34.5, unrs-resolver@1.12.2
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+```
+
+Run `pnpm approve-builds` command on development machine locally, it will create a pnpm-workspace.yaml file. Add this file name to Dockerfile initial copy command
+
+```Dockerfile
+# .....
+# Install dependencies based on the preferred package manager
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* pnpm-workspace.yaml ./
+# .....
+```
+
+Apply steps in [troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md)
+
 ### Error during seeding
 - An error occured while seeding
   - Check for proper file/directory ownership in payload container
-
-### An error occured while seeding
-- Apply [troubleshoot/seeding](../troubleshoot/seeding.md) for details
+  - Still getting the error, Apply [troubleshoot/seeding](../troubleshoot/seeding.md)
 
 ### Container keeps restarting
 `Error: Cannot find module '/home/node/app/server.js'`
@@ -254,4 +165,12 @@ Log contains "Next.js package not found"
 - Apply [troubleshoot/frozen-lockfile](../troubleshoot/frozen-lockfile.md) for details
 
 ### Updates were rejected because the tip of your current branch is behind
-  - Apply [git/git-pull-1](../git/git-pull-1.md) for details 
+  - Read Git Documentation https://git-scm.com/docs/git-pull 
+
+---
+
+### References:
+- We use the Payload Website template, https://github.com/payloadcms/payload/tree/main/templates/website .
+- https://payloadcms.com/docs/getting-started/what-is-payload
+- https://payloadcms.com/docs/production/deployment
+

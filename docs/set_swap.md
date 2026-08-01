@@ -1,9 +1,6 @@
+# Set swap
 
 - Connect to the computer where you want ot set swap
-  - VM, VPS
-    - ssh to VM or VPS with root user.
-  - Local computer
-    - Continue
 
 ## Check swap files
 
@@ -58,8 +55,6 @@ ls -lh /swapfile
 ```bash
 -rw------- 1 root root 4.0G Jan  6 00:21 /swapfile
 ```
-
-TODO: Check file ownership information (root:disk on CachyOS)
 
 ## Enabling the Swap File
 ```bash
@@ -117,7 +112,7 @@ sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 ## Tuning your Swap Settings
 
-There are a few options that you can configure that will have an impact on your system’s performance when dealing with swap.
+There are a few options that you can configure that will have an impact on your system's performance when dealing with swap.
 
 ### Adjusting the Swappiness Property
 
@@ -128,16 +123,22 @@ cat /proc/sys/vm/swappiness
 ```bash
 sudo sysctl vm.swappiness=1
 ```
+If you have low physical memory, do not set swappiness to a low value. 
+Also check swap status on Virtual Machine, and Virtual Private Server. 
 
-Also check swap status on Virtual Machine, and Virtual Private Server
+---
 
-### Continue
+## For development environment continue with: 
+### Install Multipass and Create a Virtual Machine [multipass/install-multipass-create-vm](install-cpm-cms-dev.md#install-multipass-and-create-a-virtual-machine-multipassinstall-multipass-create-vm) .
 
-For development environment continue with [Install Multipass and Create a Virtual Machine](multipass/install-dev-multipass.md) .
+---
 
-For production environment continue with [Install & run Coolify on a Virtual Private Server](coolify/install-prod-coolify.md)
+## For production environment continue with:
+### Install & run Coolify on a Virtual Private Server [coolify/install-prod-coolify](install-cpm-cms-prod.md#install--run-coolify-on-a-virtual-private-server-coolifyinstall-prod-coolify)
 
-### References:
+---
+
+## References:
 - Digital Ocean tutorial: 
   - https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04#step-4-enabling-the-swap-file
  

@@ -4,7 +4,7 @@
   - resend.com/emails
     - Domains  
       - Add domain
-        - Name: my-domain.com
+        - Name: < domain-name >
         - Region: Choose nearest to you
         - Add domain
           - Read Fill in your DNS Records section, and set your DNS records according to the document.
@@ -20,7 +20,7 @@
     - Create API Key
       - Name: resendsend
       - Permission: Sending access
-      - Domain: Select your domain ( my-domain.com )
+      - Domain: Select your domain ( < domain-name > )
       - Add
         - View API Key
           - Click copy icon, and store the API key in a safe place
@@ -28,7 +28,7 @@
 
 - Coolify Settings -> Transactional Email
   - From Name: John Doe
-  - From Address: info@my-domain.com
+  - From Address: info@< domain-name >
   - Resend
     - API Key: Enter the API Key we created at the previous step
     - Check Enabled
@@ -45,3 +45,6 @@
       - (Don't forget!; Resend (free version) has limited resources.)
     - Save
 
+---
+
+### Continue with : Create a snapshot of the virtual machine [coolify/create-snapshot.md](../install-cpm-cms-dev.md#create-a-snapshot-of-the-virtual-machine-coolifycreate-snapshot)

@@ -17,6 +17,7 @@ Open the following inbound ports in VM/VPS firewall
 ICMP    ICMP  Any IPv4, Any IPv6
 22      TCP   Any IPv4, Any IPv6  (or custom SSH port)
 80      TCP   Any IPv4, Any IPv6  ( http )
+80      UDP   Any IPv4, Any IPv6  ( http )
 443     TCP   Any IPv4, Any IPv6  ( https )
 443     UDP   Any IPv4, Any IPv6  ( https )
 3000    TCP   Any IPv4, Any IPv6  ( Node )
@@ -36,38 +37,69 @@ ICMP    ICMP  Any IPv4, Any IPv6
 ### Set Coolify Domain
 
 - Coolify Web UI -> Settings -> Configuration -> General
-  - URL: https://coolify.devserver1.my-domain.com
+  - URL: https://coolify.< dev-domain-name >
   - Name: coolify-dev
   - Instance Timezone: UTC
   - Do not change Instance's Public IPv4
   - Save
+  - May give a DNS validation error, continue
   - Your IPv4 may not be reachable from public internet because of network structure.
+
+### Set DNS Servers
+
+- Settings -> Configuration -> Advanced
+  - DNS Settings
+    - DNS Validation: Uncheck
+  - Custom DNS Servers:
+    - Enter IPs of your domain's name servers
+  - API Settingss
+    - Allowed IPs for API Access
+      - `< vps-ip-address >`
+      - `< virtual-m-ip >`
+      - seperated with a comma
+    - API Access: Check
+  - Save
+
+- Settings -> Configuration -> Advanced
+  - DNS Settings
+    - DNS Validation: Check
+  - Save
+  - May give a DNS validation error, continue
+
+- Settings -> Configuration -> Advanced -> UI Settings
+  - SPA Navigation: Uncheck
+  - Save
+
+---
 
 ### Setup General Settings for the Virtual Machine
 - Coolify Web User Interface:
-  - Servers -> localhost -> Configuration -> General
-    - Name: < servername > (initial value: localhost)
-      - devserver1
-    - Wildcard Domain: https://devserver1.my-domain.com
+  - dev-domain-name: devserver1.my-domain.com
+  - vm-server-name: devserver1
+  - Servers -> localhost or devserver1 -> Configuration -> General
+    - Name: < vm-server-name > (initial value: localhost)
+    - Wildcard Domain: https://< dev-domain-name >
     - IP Address/Domain: host.docker.internal
     - User: root
     - Port: < vm-ssh-port > ( default: 22 )
     - Save
-    - Validate server if needed.
   - Start/Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
   - Refresh Page
 
-  - Servers -> < servername > -> Sentinel
-    - Coolify URL
-      - http://coolify.devserver1.my-domain.com
-      - Sentinel Enabled (OK if Disable Sentinel buton is visible)
-    - Save
+### Setup Sentinel for the Virtual Machine
+- Servers -> < servername > -> Sentinel
+  - Coolify URL
+    - http://coolify.< dev-domain-name >
+    - Sentinel Enabled (OK if Disable Sentinel buton is visible)
+    - Click Sync button if Sentinel is out of Sync
+  - Save
 
-  - Servers -> < servername > -> Proxy -> Configuration -> Advanced
-    - Override default request handler: 
-      - Unchecked
-    - Save
+### Setup Proxy for the Virtual Machine
+- Servers -> < vm-server-name > -> Proxy -> Configuration -> Advanced
+  - Override default request handler: 
+    - Unchecked
+  - Save
   - Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
     - Or close the form if you see the "Successfull ..." message
@@ -92,7 +124,7 @@ US/Eastern
 Set the following values in UI
 - Settings -> Configuration -> General -> Instance Timezone
   - Save
-- Servers -> `< servername >` -> Configuration -> General -> Server Timezone  
+- Servers -> `< vm-server-name >` -> Configuration -> General -> Server Timezone  
   - Save
 
 #### Prepare username & password for Traefik Basic Authentication
@@ -115,11 +147,15 @@ htpasswd -c users.txt traefikuser
 Enter a password you choose twice. This will save your traefik user name and encrypted password to user.txt file. Open the file and copy the row you see. We will enter it below as  `Traefik Dynamic Configuration` value for `traefik.http.middlewares.traefik-basic-auth.basicauth.users` in single quotes .
 
 ### Edit Traefik Configuration on VM
+- dev-domain-name: devserver1.my-domain.com
+- vm-server-name: devserver1
 - Coolify Web User Interface:
-  - Servers -> < servername > -> Proxy -> Configuration -> Traefik (Coolify Proxy)
+  - Servers -> < vm-server-name > -> Proxy -> Configuration -> Traefik (Coolify Proxy)
   - Add or modify the following sections: 
     - ( ..... represents the ommited sections )
     - < variable-inside > Enter the value of the variable suits to your setup without the angle brackets .
+    - Remove section networks 
+    - Remove section services.traefik.networks
     - Get values from your DNS Provider for
       - For Hetzner
         - DNS: hetzner
@@ -208,7 +244,7 @@ https://doc.traefik.io/traefik/expose/docker/
 
 ### Add Traefik Dynamic Configuration
 
-- Coolify UI -> Servers -> < servername > -> Proxy -> Dynamic Configurations
+- Coolify UI -> Servers -> < vm-server-name > -> Proxy -> Dynamic Configurations
   - +Add
     - Filename: traefik-dashboard.yml
 ```yaml
@@ -218,7 +254,7 @@ http:
       basicAuth:
         realm: traefik-dashboard
         users:
-          - '< traefik-user >:< traefik-enc-password >'
+          - '< traefik-user >:< traefik-encrypted-password >'
     content-type:
       contenttype: true
     gzip:
@@ -263,9 +299,9 @@ http:
         certResolver: letsencrypt
         domains:
           -
-            main: devserver1.my-domain.com
+            main: < dev-domain-name >
             sans:
-              - '*.devserver1.my-domain.com'
+              - '*.< dev-domain-name >'
 ```    
 
 - Save
@@ -277,36 +313,10 @@ http:
 
 ---
 
-### Set DNS Servers
-
-- Settings -> Configuration -> Advanced
-  - DNS Settings
-    - DNS Validation: Uncheck
-  - Custom DNS Servers:
-    - Enter IPs of your domain's name servers
-  - API Settingss
-    - Allowed IPs for API Access
-      - `< vps-ip >`
-      - `< virtual-m-ip >`
-      - seperated with a comma
-    - API Access: Check
-  - Save
-
-- Settings -> Configuration -> Advanced
-  - DNS Settings
-    - DNS Validation: Check
-  - Save
-
-- Settings -> Configuration -> Advanced -> UI Settings
-  - SPA Navigation: Uncheck
-  - Save
-
----
-
-### Start Proxy or Restart Proxy
+### Start / Restart Proxy
 
 - Coolify Web User Interface:
-  - Servers -> < servername > -> Start Proxy / Restart Proxy
+  - Servers -> < vm-server-name > -> Start Proxy / Restart Proxy
 
 Modal Form - Proxy Status
 ```bash
@@ -314,9 +324,9 @@ Modal Form - Proxy Status
 Successfully started coolify-proxy.
 Successfully connected coolify-proxy to coolify network.
 ```
-Close Form. If form is unresponsive, wait a few minutes, than browser to https://coolify.devserver1.< domain-name > .
+Close Form. If form is unresponsive, wait a few minutes, than browse to https://coolify.< vm-server-name > .
 
-### Check https://coolify.devserver1.< domain-name >
+### Check https://coolify.< dev-domain-name >
 
 - Login
 - Change your password. 
@@ -328,13 +338,22 @@ If it returns "OK", Traefik ping is OK .
 
 https://traefik.< dev-domain-name >/dashboard/
 
-Asks for username and password. Enter username (traefikuser) & password you created during "Traefik Basic Authentication" step.
+Please enter the last `/` (forward-slash) to the URL, it is important.
 
-- You can close port 8000 on firewall after successful login via domain name.
+Asks for username and password. Enter username (< traefik-user >) & password you created during "Traefik Basic Authentication" step.
+
+- You can close port 8000, 6001, 6002 on firewall after successful login via domain name.
 
 ---
 
 Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs#normal for setting up Traefik settings for your application.
+
+---
+
+### Continue with : Send e-mail with Resend [coolify/coolify-email-resend.md](../install-cpm-cms-dev.md#send-e-mail-with-resend-coolifycoolify-email-resend)
+
+---
+
 
 ## Troubleshooting
 
@@ -346,4 +365,6 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
       - host.docker.internal
       - Save
 ### Deploy command ends in error. Can not connect to MongoDB with Mongo URL (Internal)
-  - If Dockerfile includes Node build commands, it wants to connect to the database, but it can connect during build time. So moving build steps after image deployment gets rid of the error.
+  - If Dockerfile includes Node build commands, it wants to connect to the database, but it can not connect during build time. So moving build steps after image deployment gets rid of the error.
+  - As a second option, you can enable Mongo URL (Public), and use it as DATABASE_URL
+  - This project's current setup moved build step after deployment, runs in container.

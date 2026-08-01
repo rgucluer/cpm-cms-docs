@@ -4,6 +4,7 @@ Read documentation of your VPS Service Provider, and make root user able to logi
 
 ## [Create & Add ssh keys](create-ssh-keys-prod.md)
 
+- ssh to VPS
 - Update apt packages
 
 ## Install apt packages
@@ -18,16 +19,10 @@ Install packages
 sudo apt install lego nano curl python3-pip ncdu
 ```
 
-## [Install git](../install-git.md)
-
 ## Set hostname on VPS
 
 ```bash
 hostnamectl set-hostname < server-name >
-```
-
-```bash
-hostnamectl set-hostname serv1
 ```
 
 ```bash
@@ -36,7 +31,7 @@ nano /etc/hosts
 
 ```bash
 127.0.0.1 localhost
-127.0.1.1 traefik.< domain-name > coolify.< domain-name > www.< domain-name > < servername >.< domain-name > < domain-name > < servername >
+127.0.1.1 traefik.< domain-name > coolify.< domain-name > www.< domain-name > < prod-domain-name > < servername >.< domain-name > < domain-name > < servername >
 .....
 ```
 Save, and exit.
@@ -78,7 +73,7 @@ Edit /etc/ssh/sshd_config. After you succesfully connected with public ssh keys,
 .....
 # Set your ssh port here, Open this port in your firewall
 Port 22
-MaxAuthTries 200
+MaxAuthTries 6
 PermitRootLogin prohibit-password
 PubkeyAuthentication yes
 # PasswordAuthentication no
@@ -91,16 +86,14 @@ X11Forwarding no
 # ClientAliveCountMax 3
 .....
 # AllowUsers < vps-user-name > root
-# AllowUsers < vps-user-name >
-
 ```
 
 ```bash
 systemctl restart ssh
 ```
 
+TODO: It would be better if we can use Coolify with a regular user.
 
+---
 
-
-It would be better if we can use Coolify with a regular user.
-
+### Continue with: Set swap [set-swap](../install-cpm-cms-prod.md#set-swap-set_swap)

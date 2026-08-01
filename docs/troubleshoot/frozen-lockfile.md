@@ -1,4 +1,7 @@
 On Dev PC
+
+Run Virtual Machine, database service must be runnning
+
 ```bash
 $ cd < payload-app-full-path >
 ```
@@ -12,7 +15,7 @@ $ pnpm store prune
 ```
 
 ```bash
-$ corepack use pnpm@latest-10
+$ corepack use pnpm@latest-11
 ```
 
 ```bash

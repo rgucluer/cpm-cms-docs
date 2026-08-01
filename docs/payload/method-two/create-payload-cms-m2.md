@@ -20,17 +20,6 @@ $ mv cpm-cms payload-app
 $ cd payload-app
 ```
 
-```bash
-$ corepack use pnpm@latest-10
-```
-
-```bash
-$ pnpm approve-builds
-```
-
-```bash
-$ pnpm install
-```
 
 ```bash
 $ cp .env.example .env
@@ -50,4 +39,8 @@ $ cp .env.example .env
 
 ---
 
-Continue with [Make some changes in source code](change-source-code.md) for details
+### Install npm packages & build the project [nextjs/install-npm-packs-build](../../nextjs/install-npm-packs-build.md)
+
+---
+
+## Continue with : Coolify - Add a new Source ( GitHub App ) too Coolify [coolify/add-new-source](../publish-payload-app.md#add-a-new-source--github-app--to-coolify-coolifyadd-new-source)

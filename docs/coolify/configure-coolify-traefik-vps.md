@@ -7,7 +7,7 @@ https://coolify.io/docs/knowledge-base/proxy/traefik/wildcard-certs
 - You need to use [dnsChallenge](https://doc.traefik.io/traefik/https/acme/#dnschallenge) in Traefik to get wildcard certificates from Let's Encrypt.
 - You need to use one of the supported DNS providers.
   - Each provider needs environment variables to be set in the Traefik configuration.
-  - You can find the required variables in the [official documentation](https://doc.traefik.io/traefik/https/acme/#providers) .
+  - You can find the required variables in the [official Traefik documentation](https://doc.traefik.io/traefik/https/acme/#providers) .
 
 ---
 
@@ -17,6 +17,7 @@ Open the following inbound ports in VM/VPS firewall
 ICMP    ICMP  Any IPv4, Any IPv6
 22      TCP   Any IPv4, Any IPv6  (or custom SSH port)
 80      TCP   Any IPv4, Any IPv6  ( http )
+80      UDP   Any IPv4, Any IPv6  ( http )
 443     TCP   Any IPv4, Any IPv6  ( https )
 443     UDP   Any IPv4, Any IPv6  ( https )
 3000    TCP   Any IPv4, Any IPv6  ( Node )
@@ -45,7 +46,7 @@ ICMP    ICMP  Any IPv4, Any IPv6
 ### Setup General Settings for the Virtual Private Server
 - Coolify Web User Interface:
   - Servers -> localhost -> Configuration -> General
-    - Name: < servername >
+    - Name: < servername >  (initial value: localhost)
       - server1
     - Wildcard Domain: https://my-domain.com
     - IP Address/Domain: host.docker.internal
@@ -57,19 +58,22 @@ ICMP    ICMP  Any IPv4, Any IPv6
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
   - Refresh Page
 
-  - Servers -> < servername > -> Sentinel
-    - Coolify URL
-      - http://coolify.my-domain.com
-      - Sentinel Enabled (OK if Disable Sentinel buton is visible)
-    - Save
+### Setup Sentinel for the Virtual Private Server
+- Servers -> < servername > -> Sentinel
+  - Coolify URL
+    - http://coolify.my-domain.com
+    - Sentinel Enabled (OK if Disable Sentinel buton is visible)
+  - Save
 
-  - Servers -> < servername > -> Proxy -> Configuration -> Advanced
-    - Override default request handler: 
-      - Unchecked
-    - Save
+### Setup Proxy for the Virtual Machine
+- Servers -> < servername > -> Proxy -> Configuration -> Advanced
+  - Override default request handler: 
+    - Unchecked
+  - Save
   - Restart Proxy
   - Wait a few minutes, and close the "Proxy Startup Logs" form.
     - Or close the form if you see the "Successfull ..." message
+
 ---
 
 ### Set Timezone
@@ -328,7 +332,7 @@ https://traefik.< domain-name >/dashboard/
 
 Asks for username and password. Enter username (traefikuser) & password you created during "Traefik Basic Authentication" step.
 
-- You can close port 8000 on firewall after successful login via domain name.
+- You can close port 8000, 6001, 6002 on firewall after successful login via domain name.
 
 ---
 
@@ -336,9 +340,11 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
 
 ---
 
-## Troubleshooting
-- TODO: [Get rid of zombies](../troubleshoot/get-rid-of-zombies.md)
+### Continue with : Send e-mail with Resend [coolify/coolify-email-resend.md](../install-cpm-cms-prod.md#send-e-mail-with-resend-coolifycoolify-email-resend)
 
+---
+
+## Troubleshooting
 - After changing Traefik settings get error:
   - "ERR_CONNECTION_REFUSED"
     - Open port 8000 on VM/VPS
@@ -346,4 +352,11 @@ Later , after adding a App (Resource), read https://coolify.io/docs/knowledge-ba
         - Continue setup
         - Change password after a successsfull login via domain name.
     - Start Proxy
-    - Close port 8000
+
+- After successful login via domain name, you can close the ports
+  - 8000
+  - 6001
+  - 6002
+
+### References
+- https://coolify.io/docs/knowledge-base/server/firewall

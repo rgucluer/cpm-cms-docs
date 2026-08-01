@@ -16,11 +16,11 @@
     - Add Source to the Project
       - Apply [coolify/add-source-to-project](../coolify/add-source-to-project.md)
         - Project: cpm-cms
-        - GitHub App: payload-cms-for-vps
+        - GitHub App: cpm-cms-vps
         - Repository: cpm-cms
         - Docker Compose, /docker-compose.yml, dev branch
         - Continue
-        - Set Name: personal-blog-dev
+        - Set Name: cpm-cms-vps
         - Save
 
     - Configure the Payload Project
@@ -36,7 +36,7 @@
       - Change IP address to VM IP address ( ....@`IP ADDRESS`/?directConnection=true )
 
     - Deploy Payload Project
-      - VM -> Coolify -> Projects -> < project-name > -> < application-name >
+      - VM -> Coolify -> Projects -> < coolify-project-name > -> < coolify-application-name >
         - Advanced -> Force Deploy
 
   - Check/Set service name in Traefik Dynamic configuration for payload service
@@ -59,5 +59,5 @@
             - Homepage renders with images. 
           - Message: "An error ocurred during seeding"
             - Problem continues
-            - Hımm, not so good. ( Did not happen in my setup after applying the steps above )
+            - Not so good. ( Did not happen in my setup after applying the steps above )
 

@@ -1,8 +1,6 @@
-## Ubuntu 24.04, Debian 13
+## Ubuntu 24.04, Debian 13, Pop OS
 
-```bash
-sudo apt install lego nano curl python3-pip ncdu
-```
+On Developer PC
 
 ```bash
 sudo apt install git-all -y
@@ -15,3 +13,5 @@ git config --global user.email < github-user-email >
 git config --global core.editor nano
 git config --list
 ```
+
+### Continue with : Create & Add ssh keys  [multipass/install-multipass-create-vm.md](multipass/install-multipass-create-vm.md#create--add-ssh-keys-create-ssh-keys)

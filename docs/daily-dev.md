@@ -10,10 +10,6 @@ ssh-add ~/.ssh/< vm-user-key >
 ```
 
 ```bash
-ssh-add ~/.ssh/coolifyrootkey
-```
-
-```bash
 ssh-add ~/.ssh/< github-user-key > 
 ```
 
@@ -159,7 +155,7 @@ git push origin dev
 
 #### Redeploy on VM
 - Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Project -> < project-name > -> payload 
+  - Project -> < coolify-project-name > -> payload 
     - Stop -> Check "Run Docker Clean ..." -> Continue -> Confirm
       - Wait, see the red "Exited" label
     - Click "Reload Compose file"
@@ -179,9 +175,17 @@ git push origin dev
 ### Update documentation
 - Update documentation about changes.
 
-Continue to [daily-prod](daily-prod.md) if everything is OK.
+---
+
+### Continue to [daily-prod](daily-prod.md#add-ssh-keys-to-ssh-agent) if everything is OK.
+
+---
 
 ### TODO: Add tests
 
 References:
 - https://payloadcms.com/
+
+---
+
+### [Back to README](../README.md)

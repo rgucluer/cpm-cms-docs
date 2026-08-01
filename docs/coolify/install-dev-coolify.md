@@ -1,27 +1,17 @@
 # Install & run Coolify on a Virtual Machine
 
-Following [self hosted installation instructions](https://coolify.io/self-hosted/) for [Coolify](https://coolify.io/)
-
-https://coolify.io/docs/get-started/installation#quick-installation-recommended
-
 ssh to the virtual machine
+
 ```bash
 ssh root@< virtual-m-ip >
 ```
 
 ```bash
-The authenticity of host '.....)' can't be established.
-ED25519 key fingerprint is SHA256:......
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-```
-Enter `yes` <kbd>ENTER</kbd>
-
-
-```bash
 nano /etc/ssh/sshd_config
 ```
-Ensure these settings are present:
+
+Ensure these settings are present, and NOT commented out:
+
 ```bash
 PermitRootLogin prohibit-password
 PubkeyAuthentication yes
@@ -46,7 +36,10 @@ cd ~
 curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 ```
 
-Result
+Wait the install process . 
+
+Result:
+
 ```bash
  - Coolify is ready!
 
@@ -60,7 +53,7 @@ Result
 
 Your instance is ready to use!
 
-You can access Coolify through your Public IPV4: http://< your-public-ip >:8000
+You can access Coolify through your Public IPV4: http://< dev-pc-global-ip >:8000
 
 If your Public IP is not accessible, you can use the following Private IPs:
 
@@ -92,7 +85,15 @@ WARNING: It is highly recommended to backup your Environment variables file (/da
     - This Machine 
       - Wait a few seconds
   - Project Setup
-    - Click Skip Setup
+    - Click Skip Setup ( Bottom of page, small letters. )
   - Close pop up forms
 
-### Continue with [Configure Coolify - Setup Wildcard SSL Certificates with Traefik ](configure-coolify-traefik.md)
+---
+
+### Continue with : Configure Coolify - Setup Wildcard SSL Certificates with Traefik [coolify/configure-coolify-traefik](../install-cpm-cms-dev.md#configure-coolify---setup-wildcard-ssl-certificates-with-traefik-coolifyconfigure-coolify-traefik)
+
+---
+
+### References
+- Following [self hosted installation instructions](https://coolify.io/self-hosted/) for [Coolify](https://coolify.io/)
+- https://coolify.io/docs/get-started/installation#quick-installation-recommended

@@ -1,6 +1,5 @@
 ## Make some changes in source code
 
-
 < payload-app-full-path >/src/components/Media/ImageMedia/index.tsx
 ```typescript
 .....
@@ -30,6 +29,8 @@
 
 < payload-app-full-path >/next.config.ts
 ```typescript
+.....
+import { redirects } from './redirects'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL
   ? process.env.NEXT_PUBLIC_SERVER_URL
@@ -43,7 +44,7 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackMemoryOptimizations: true,
   },
-  output: 'standalone',
+  // output: 'standalone',
   .....
 }
 
@@ -57,16 +58,20 @@ export default .....
 < payload-app-full-path >/.env.example
 
 ```ini
-NODE_OPTIONS="--no-deprecation --max-old-space-size=3072"
+NODE_OPTIONS="--no-deprecation --max-old-space-size=2048"
 
 HOSTNAME='0.0.0.0'
 
 .....
 ```
 
+---
+
 < payload-app-full-path >/.env
 
-Enter a value for CRON_SECRET, and PREVIEW_SECRET
+Enter a value for CRON_SECRET, PREVIEW_SECRET
+
+Check DATABASE_URL , if this is not set, set it to Database public URL, Change IP to VM IP
 
 ---
 
@@ -76,8 +81,6 @@ Edit < payload-app-full-path >/.gitignore file . Add "*.db" at the end of file .
 /playwright/.cache/
 
 *.db
-*.old
-*.ignore
 ```
 
 ---
@@ -85,45 +88,39 @@ Edit < payload-app-full-path >/.gitignore file . Add "*.db" at the end of file .
 < payload-app-full-path >/Dockerfile
 
 Original:
-https://github.com/payloadcms/payload/blob/main/templates/website/Dockerfile
+https://github.com/payloadcms/payload/blob/v3.86.0/templates/website/Dockerfile
 
 Changed:
-https://github.com/rgucluer/cpm-cms/blob/dev/Dockerfile
+https://github.com/rgucluer/cpm-cms/blob/main/Dockerfile
 
 ---
 
 < payload-app-full-path >/docker-compose.yml
 
 Original:
-https://github.com/payloadcms/payload/blob/main/templates/website/docker-compose.yml
+https://github.com/payloadcms/payload/blob/v3.86.0/templates/website/docker-compose.yml
 
 Changed:
-https://github.com/rgucluer/cpm-cms/blob/dev/docker-compose.yml
+https://github.com/rgucluer/cpm-cms/blob/main/docker-compose.yml
 
 ---
 
-pnpm-lock.yaml is generated with `pnpm install` command or `corepack use pnpm@latest-10` command referencing package.json content. We will use this command in the next section. If error occurs after installing and removing npm packages apply steps in [frozen-lockfile](../troubleshoot/frozen-lockfile.md).
+pnpm-lock.yaml is generated with `pnpm install` command or `corepack use pnpm@latest-11` command referencing package.json content. We will use this command in the next section. If error occurs after installing and removing npm packages apply steps in [frozen-lockfile](../troubleshoot/frozen-lockfile.md).
 
 ---
 
-Install/update pnpm. 
+package.json
 
-```bash
-cd < payload-app-full-path >
-```
-```bash
-corepack use pnpm@latest-10
-```
+- Remove the last pnpm section.
 
----
 
 Our previous actions make the following changes in package.json
 
 Original:
-https://github.com/payloadcms/payload/blob/main/templates/website/package.json
+https://github.com/payloadcms/payload/blob/v3.86.0/templates/website/package.json
 
 Changed:
-https://github.com/rgucluer/cpm-cms/blob/dev/package.json
+https://github.com/rgucluer/cpm-cms/blob/main/package.json
 
 ---
 
@@ -152,21 +149,37 @@ declare module '@payloadcms/next/css'
 
 ---
 
-after-deploy.sh
+Add LICENSE.md
+
+---
+
+Rename README.md as README-payload.md
+
+---
+
+Add README.md
+
+---
+
+< payload-app-full-path >/after-deploy.sh
+
 ```bash
 export NODE_ENV=production
 # export NEXT_TELEMETRY_DISABLED=1
 
 cd /app
 
-if [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+corepack enable
+
+corepack enable pnpm && corepack prepare pnpm@latest-11 --activate
+
+if [ -f pnpm-lock.yaml ]; then pnpm run build; \
 else echo "Lockfile not found." && exit 1; \
 fi
 
 cp -r /app/public /home/node/app/
 cp -r /app/.next/standalone/. /home/node/app/
 
-mkdir /home/node/app/.next
 chown node:node /home/node/app/.next
 cp -r /app/.next/static /home/node/app/.next/static
 
@@ -184,4 +197,4 @@ node server.js
 
 ---
 
-Continue from [Install npm packages & build the project](publish-payload-app.md#install-npm-packages--build-the-project)
+### Continue with: Install npm packages & build the project [payload/method-one/install-npm-packs-build](create-payload-cms-m1#install-npm-packages--build-the-project-payloadmethod-oneinstall-npm-packs-build)

@@ -68,4 +68,8 @@ Similarly remove other images.
 Coolify Successfully Uninstalled .
 
 
+---
+
+### [Back to README](../../README.md#self-host-a-payload-cms-application-with-coolify)
+
 

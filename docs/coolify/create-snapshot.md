@@ -8,4 +8,7 @@ multipass stop coolvm
 multipass snapshot coolvm
 ```
 
-### Continue with [Create a Payload CMS Application from a private git repository ](payload/publish-payload-app.md)
+---
+
+### Continue with: Create a Payload CMS Application from a private git repository [payload/publish-payload-app](../install-cpm-cms-dev.md#create-a-payload-cms-application-from-a-private-git-repository-payloadpublish-payload-app)
+

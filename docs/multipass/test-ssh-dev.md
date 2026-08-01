@@ -37,6 +37,9 @@ ssh vmuser@< virtual_machine_IP >
 
 Now, we are in the Virtual Machine. To exit from ssh session, press <kbd>CTRL</kbd>+<kbd>D</kbd>.
 
-Continue with [Edit /etc/hosts file on Developer PC](edit-hosts.md)
+---
+
+### Continue with: Test Virtual Machine ssh login with domain name [multipass/test-ssh-dev-domain](install-multipass-create-vm.md#test-virtual-machine-ssh-login-with-domain-name-multipasstest-ssh-dev-domain)
+
 
 

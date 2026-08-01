@@ -1,35 +1,19 @@
 ## Set Traefik for the new application
 
 - After deploying payload service,
-- Get container name information
-  - Deployment Logs
-    - Projects -> < project-name > -> payload -> Deployments
-      - Click to the last successful deployment log
-      - Scroll to the end of the log
-        - Find "New container started" message
-        - Before this row log lists the container name
-          ```bash
-          Container payload-abcdefghijklmabcdefghi-012345678901 Started
-          ```
-  - Or use `docker ps` command in virtual machine
-    - ssh to VM
-    ```bash
-    docker ps
-    ```
+- Get Payload application service name information
+  - Coolify UI -> Projects : cpm-cms -> Applications: payload
+    - Configuration -> General
+    - Click Details
+      - Service Name : Resource Name + "-" + Resource UUID
+      - Service Name : payload-some25charsuuidstring1234
 
-    ```bash
-    CONTAINER ID   IMAGE  COMMAND  CREATED  STATUS  PORTS NAMES
-    9.........e                                           payload-abcdefghijklmabcdefghi-012345678901
-    ```
+Use payload-some25charsuuidstring1234@docker in payload.yaml in Dynamic Configurations below
 
-We use the first two sections of the container name, and adding @docker at the end as payload-abcdefghijklmabcdefghid@docker
-
-Use payload-abcdefghijklmabcdefghi@docker in payload-app.yaml in Dynamic Configurations below
-
-- Coolify UI on VM (https://coolify.devserver1.my-domain.com)
-  - Servers -> < vm-coolify-server-name > -> Proxy -> Dynamic Configurations
+- Coolify UI on VM (https://coolify.< dev-domain-name >)
+  - Servers -> < vm-server-name > -> Proxy -> Dynamic Configurations
     - +Add/Edit
-      - Filename: payload-app.yaml
+      - Filename: payload.yaml
       - Configuration: 
         ```yaml
         http:
@@ -62,14 +46,9 @@ Use payload-abcdefghijklmabcdefghi@docker in payload-app.yaml in Dynamic Configu
                   main: devserver1.my-domain.com
                   sans:
                     - '*.devserver1.my-domain.com'
-              service: payload-.....@docker
+              service: payload-some25charsuuidstring1234@docker
         ```
-
-      - Paste the Payload service name + "@docker" as value to service (payload-abcdefghijklmabcdefghid@docker)
-        - Use only the first two sections of the container name
-          - payload-y....d-123...234
-          - payload-y....d@docker
-      - Check domain names, change them to your according to your setup.
+      - Paste the Payload service name payload-some25charsuuidstring1234@docker as value to service ( < coolify-application-name >-< payload-container-uuid >@docker )
       - Check spaces, do not use tabs, use only spaces. Indentation is important.
       - Save
       - Close Form
@@ -77,4 +56,6 @@ Use payload-abcdefghijklmabcdefghi@docker in payload-app.yaml in Dynamic Configu
         - Wait a few minutes than close the "Proxy Startup Logs" form
           - A white page can appear, click background on edges of white form.
         - Still unresponsive, browse to https://coolify.<domain-name>
+
+## Continue with : Check the Application [check-the-application](../payload/publish-payload-app.md#check-the-application)
 

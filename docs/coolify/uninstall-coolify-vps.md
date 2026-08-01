@@ -66,3 +66,8 @@ docker rmi traefik:v3.1
 Similarly remove other images.
 
 Coolify Successfully Uninstalled .
+
+
+---
+
+### [Back to README](../README.md)
